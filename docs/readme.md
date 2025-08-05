@@ -5,7 +5,7 @@ Use the links below (or your site's nav) to explore each section:
 
 - [Introduction & Purpose](introduction.md)  
 - [System Architecture](system-architecture.md)  
-- [Frontend](frontend.md)  
+- [Frontend](frontend.html)  
 - [Account & Authentication](authentication.md)  
 - [Wallet & Vault](wallet-vault.md)  
 - [Rewards & Bonus](rewards-bonus.md)  
