@@ -3,13 +3,13 @@
 Welcome to the technical handover for external contributors.  
 Use the links below (or your site's nav) to explore each section:
 
-- [Introduction & Purpose](introduction.md)  
-- [System Architecture](system-architecture.md)  
-- [Frontend](frontend.md)  
-- [Account & Authentication](authentication.md)  
-- [Wallet & Vault](wallet-vault.md)  
-- [Rewards & Bonus](rewards-bonus.md)  
-- [Affiliate & Referral](affiliate-referral.md)  
-- [Slot Challenges](challenges.md)  
-- [Admin Panel](admin-panel.md)  
-- [Deployment & CI/CD](deployment-cicd.md)
+- [Introduction & Purpose](https://evo-verse.github.io/Dropbet.com/introduction.html)  
+- [System Architecture](https://evo-verse.github.io/Dropbet.com/system-architecture.html)  
+- [Frontend](https://evo-verse.github.io/Dropbet.com/frontend.html)  
+- [Account & Authentication](https://evo-verse.github.io/Dropbet.com/authentication.html)  
+- [Wallet & Vault](https://evo-verse.github.io/Dropbet.com/wallet-vault.html)  
+- [Rewards & Bonus](https://evo-verse.github.io/Dropbet.com/rewards-bonus.html)  
+- [Affiliate & Referral](https://evo-verse.github.io/Dropbet.com/affiliate-referral.html)  
+- [Slot Challenges](https://evo-verse.github.io/Dropbet.com/challenges.html)  
+- [Admin Panel](https://evo-verse.github.io/Dropbet.com/admin-panel.html)  
+- [Deployment & CI/CD](https://evo-verse.github.io/Dropbet.com/deployment-cicd.html)
