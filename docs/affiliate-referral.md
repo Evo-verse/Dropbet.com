@@ -1,11 +1,3 @@
----
-layout: default
-title: "Affiliate & Referral"
-permalink: /affiliate-referral/
----
-
-[← Home](/)
-
 # 7. Affiliate & Referral System
 
 ## 7.1 Multi-Tier Structure

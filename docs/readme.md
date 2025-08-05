@@ -1,9 +1,3 @@
----
-layout: default
-title: "Home"
-permalink: /
----
-
 # DropBet Casino Platform Documentation
 
 Welcome to the technical handover for external contributors.  
