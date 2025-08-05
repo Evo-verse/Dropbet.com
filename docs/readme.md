@@ -12,5 +12,4 @@ Use the links below (or your site's nav) to explore each section:
 - [Affiliate & Referral](affiliate-referral.md)  
 - [Slot Challenges](challenges.md)  
 - [Admin Panel](admin-panel.md)  
-- [Deployment & CI/CD](deployment-cicd.md)  
-- [Conclusion](conclusion.md)
+- [Deployment & CI/CD](deployment-cicd.md)
