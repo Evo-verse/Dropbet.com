@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Rewards & Bonus"
 permalink: /rewards-bonus/
 ---
+
+[← Home](/)
 
 # 6. Rewards & Bonus System
 

@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Authentication"
 permalink: /authentication/
 ---
+
+[← Home](/)
 
 # 4. Authentication
 

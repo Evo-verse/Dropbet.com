@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Wallet & Vault"
 permalink: /wallet-vault/
 ---
+
+[← Home](/)
 
 # 5. Wallet & Vault
 

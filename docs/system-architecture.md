@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "System Architecture"
 permalink: /system-architecture/
 ---
+
+[← Home](/)
 
 # 2. System Architecture
 

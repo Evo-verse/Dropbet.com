@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Frontend"
 permalink: /frontend/
 ---
+
+[← Home](/)
 
 # 3. Frontend
 

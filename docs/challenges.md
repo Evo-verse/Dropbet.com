@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Slot Challenges"
 permalink: /challenges/
 ---
+
+[← Home](/)
 
 # 8. Slot Challenges & Engagement
 

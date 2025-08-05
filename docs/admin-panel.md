@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Admin Panel"
 permalink: /admin-panel/
 ---
+
+[← Home](/)
 
 # 9. Admin Panel
 

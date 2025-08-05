@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Deployment & CI/CD"
 permalink: /deployment-cicd/
 ---
+
+[← Home](/)
 
 # 10. Deployment & CI/CD
 

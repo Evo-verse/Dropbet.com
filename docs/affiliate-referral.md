@@ -1,7 +1,10 @@
 ---
+layout: default
 title: "Affiliate & Referral"
 permalink: /affiliate-referral/
 ---
+
+[← Home](/)
 
 # 7. Affiliate & Referral System
 
