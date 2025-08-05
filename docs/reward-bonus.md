@@ -1,11 +1,3 @@
----
-layout: default
-title: "Rewards & Bonus"
-permalink: /rewards-bonus/
----
-
-[← Home](/)
-
 # 6. Rewards & Bonus System
 
 ## 6.1 Rakeback
@@ -32,3 +24,5 @@ permalink: /rewards-bonus/
 - Bonus balance with wagering requirement (e.g., 30x)  
 - Wagering progress, “Forfeit bonus” option  
 - Configuration in code/database, not admin
+
+[← Home](readme.md)

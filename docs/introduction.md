@@ -1,11 +1,3 @@
----
-layout: default
-title: "Introduction & Purpose"
-permalink: /introduction/
----
-
-[← Home](/)
-
 # 1. Introduction & Purpose
 
 **Project Name:** DropBet Casino Platform
@@ -28,3 +20,5 @@ Full technical handover—architecture, code structure, deployment, and feature 
 
 **Target Audience:**  
 External contributors: developers, DevOps, QA, product managers.
+
+[← Home](readme.md)

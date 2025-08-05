@@ -1,11 +1,3 @@
----
-layout: default
-title: "Deployment & CI/CD"
-permalink: /deployment-cicd/
----
-
-[← Home](/)
-
 # 10. Deployment & CI/CD
 
 ## 10.1 Environments
@@ -32,3 +24,5 @@ permalink: /deployment-cicd/
 - DB replicas, indexes, migrations (`prisma migrate deploy`)  
 - Backups, log rotation, Sentry & uptime monitoring  
 - Developer onboarding: README with env var list, Docker Compose for local services
+
+[← Home](readme.md)

@@ -1,11 +1,3 @@
----
-layout: default
-title: "Frontend"
-permalink: /frontend/
----
-
-[← Home](/)
-
 # 3. Frontend
 
 Covers UI components, account flows, wallet, and rewards from the client side.
@@ -87,3 +79,5 @@ src/components/
 - **Bet History** (game name, bet, result)  
 - **Bonuses & Promotions**  
 - **Affiliate Stats** (if applicable)
+
+[← Home](readme.md)

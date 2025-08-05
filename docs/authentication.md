@@ -1,11 +1,3 @@
----
-layout: default
-title: "Authentication"
-permalink: /authentication/
----
-
-[← Home](/)
-
 # 4. Authentication
 
 Detailed auth flows and JWT handling.
@@ -42,3 +34,5 @@ Detailed auth flows and JWT handling.
 
 - Self-exclusion: temporary or permanent, enforced server-side  
 - KYC via Sumsub iframe, status updates via webhooks
+
+[← Home](readme.md)

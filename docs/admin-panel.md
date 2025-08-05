@@ -1,11 +1,3 @@
----
-layout: default
-title: "Admin Panel"
-permalink: /admin-panel/
----
-
-[← Home](/)
-
 # 9. Admin Panel
 
 ## 9.1 Tech & Access
@@ -53,3 +45,5 @@ permalink: /admin-panel/
 
 - Same pipeline as main app or separate CI/CD  
 - Environment vars for admin endpoints
+
+[← Home](readme.md)

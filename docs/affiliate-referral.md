@@ -22,3 +22,5 @@
 - Registration form auto-fills referral code  
 - Backend records relationship and calculates commissions  
 - Front-end fetches stats via React Query
+
+[← Home](readme.md)

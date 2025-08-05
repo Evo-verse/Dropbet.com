@@ -1,11 +1,3 @@
----
-layout: default
-title: "Slot Challenges"
-permalink: /challenges/
----
-
-[← Home](/)
-
 # 8. Slot Challenges & Engagement
 
 ## 8.1 Challenge Types
@@ -30,3 +22,5 @@ permalink: /challenges/
 - Daily login bonuses (if present)  
 - Slot tournaments (future scope)  
 - Chat integration (socket.io) for social events
+
+[← Home](readme.md)

@@ -1,11 +1,3 @@
----
-layout: default
-title: "System Architecture"
-permalink: /system-architecture/
----
-
-[← Home](/)
-
 # 2. System Architecture
 
 This section outlines the overall architecture of the DropBet platform, including core frameworks, libraries, key decisions, and project structure.
@@ -126,3 +118,5 @@ src/
 - **SCSS mixins** + **Tailwind responsive utilities**  
 - **Container queries**, **flexbox/grid**  
 - **MobileMenu**, **useMediaQuery** for dynamic layouts  
+
+[← Home](readme.md)

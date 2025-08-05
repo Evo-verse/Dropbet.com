@@ -1,11 +1,3 @@
----
-layout: default
-title: "Wallet & Vault"
-permalink: /wallet-vault/
----
-
-[← Home](/)
-
 # 5. Wallet & Vault
 
 ## 5.1 Crypto Wallet
@@ -50,3 +42,5 @@ permalink: /wallet-vault/
 
 - Mirror CCPayment flow for fiat on-ramp  
 - Separate webhook handlers
+
+[← Home](readme.md)
