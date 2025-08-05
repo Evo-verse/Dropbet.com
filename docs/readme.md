@@ -1,8 +1,3 @@
-Thanks! I’ll prepare GitHub Pages documentation suitable for external contributors, structured as a multi-page site with dedicated sections for each major functional area of the DropBet platform. I’ll organize it clearly with a navigation sidebar, clean formatting, and contributor-friendly language.
-
-I’ll let you know when it’s ready for review.
-
-
 # DropBet Casino Platform – Technical Documentation
 
 ## 1. Introduction & Purpose
