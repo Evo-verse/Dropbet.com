@@ -1,0 +1,3263 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">api documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >EnvironmentVariables</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>libs/shared/src/env-config/env.dto.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#APP_BE_ORIGIN" >APP_BE_ORIGIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#APP_FE_ORIGIN" >APP_FE_ORIGIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#APP_FE_ORIGIN_ADMIN" >APP_FE_ORIGIN_ADMIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#BASE_DOMAIN" >BASE_DOMAIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#BUCKET_NAME" >BUCKET_NAME</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#COINGECKO_API_KEY" >COINGECKO_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#COINGECKO_MODE" >COINGECKO_MODE</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#DATABASE_URL" >DATABASE_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#DEBUG_LOGIN" >DEBUG_LOGIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#DEFAULT_LOG_LEVEL" >DEFAULT_LOG_LEVEL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#ENABLE_SLOTS" >ENABLE_SLOTS</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#EOS_NODE_AUTH_HEADER_1" >EOS_NODE_AUTH_HEADER_1</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#EOS_NODE_AUTH_HEADER_2" >EOS_NODE_AUTH_HEADER_2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#EOS_NODE_HOST_1" >EOS_NODE_HOST_1</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#EOS_NODE_HOST_2" >EOS_NODE_HOST_2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#EXP_MULTIPLIER" >EXP_MULTIPLIER</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#FASTTRACK_JWT_PRIVATE_KEY" >FASTTRACK_JWT_PRIVATE_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#FASTTRACK_JWT_PUBLIC_KEY" >FASTTRACK_JWT_PUBLIC_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#FEATURE_FLAGS_API_KEY" >FEATURE_FLAGS_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#FEATURE_FLAGS_API_URL" >FEATURE_FLAGS_API_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#FEATURE_FLAGS_USE_LOCAL" >FEATURE_FLAGS_USE_LOCAL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#FILE_UPLOAD_MAX_FILE_SIZE_KB" >FILE_UPLOAD_MAX_FILE_SIZE_KB</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#GEETEST_PRIVATE_KEY" >GEETEST_PRIVATE_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#GOOGLE_CALLBACK_URL" >GOOGLE_CALLBACK_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#GOOGLE_CLIENT_ID" >GOOGLE_CLIENT_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#GOOGLE_CLIENT_SECRET" >GOOGLE_CLIENT_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#INTERCOM_SECRET_KEY" >INTERCOM_SECRET_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_MFA_TEMP_SECRET" >JWT_MFA_TEMP_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_SECRET" >JWT_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_USERNAME_SETUP_EXPIRES_IN" >JWT_USERNAME_SETUP_EXPIRES_IN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_USERNAME_SETUP_SECRET" >JWT_USERNAME_SETUP_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_VERIFICATION_TOKEN_EXPIRATION_TIME" >JWT_VERIFICATION_TOKEN_EXPIRATION_TIME</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#JWT_VERIFICATION_TOKEN_SECRET" >JWT_VERIFICATION_TOKEN_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#MAXMIND_ID" >MAXMIND_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#MAXMIND_KEY" >MAXMIND_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#NODE_ENV" >NODE_ENV</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_CLIENT_ID" >PM8_CLIENT_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_CLIENT_SECRET" >PM8_CLIENT_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_DATA_API_URL" >PM8_DATA_API_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_LAUNCH_URL" >PM8_LAUNCH_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_MAX_BET_CENT" >PM8_MAX_BET_CENT</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_OPERATOR_LOGIN" >PM8_OPERATOR_LOGIN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_OPERATOR_PASSWORD" >PM8_OPERATOR_PASSWORD</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_PARTNER_KEY" >PM8_PARTNER_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_SIG_SECRET_KEY" >PM8_SIG_SECRET_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PM8_TEST_USER" >PM8_TEST_USER</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#PORT" >PORT</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_CCPAYMENT_APP_ID" >PROVIDER_CCPAYMENT_APP_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_CCPAYMENT_SECRET" >PROVIDER_CCPAYMENT_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_CCPAYMENT_URL" >PROVIDER_CCPAYMENT_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_NOWPAYMENTS_API_KEY" >PROVIDER_NOWPAYMENTS_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_NOWPAYMENTS_API_URL" >PROVIDER_NOWPAYMENTS_API_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#PROVIDER_NOWPAYMENTS_AUTH_CREDENTIALS" >PROVIDER_NOWPAYMENTS_AUTH_CREDENTIALS</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_NOWPAYMENTS_CALLBACK_URL" >PROVIDER_NOWPAYMENTS_CALLBACK_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#PROVIDER_NOWPAYMENTS_IPN_KEY" >PROVIDER_NOWPAYMENTS_IPN_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#RECAPTCHA_SECRET" >RECAPTCHA_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#REDISCLOUD_BOT_URL" >REDISCLOUD_BOT_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#REDISCLOUD_URL" >REDISCLOUD_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_API_KEY" >SENDGRID_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_DEPOSIT_SUCCESSFUL_EMAIL_TEMPLATE_ID" >SENDGRID_DEPOSIT_SUCCESSFUL_EMAIL_TEMPLATE_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_FROM_EMAIL" >SENDGRID_FROM_EMAIL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_RESET_PASSWORD_EMAIL_TEMPLATE_ID" >SENDGRID_RESET_PASSWORD_EMAIL_TEMPLATE_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_VERIFY_EMAIL_TEMPLATE_ID" >SENDGRID_VERIFY_EMAIL_TEMPLATE_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SENDGRID_WELCOME_EMAIL_TEMPLATE_ID" >SENDGRID_WELCOME_EMAIL_TEMPLATE_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SESSION_SECRET" >SESSION_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SKINDECK_API_KEY" >SKINDECK_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SKINDECK_API_SECRET" >SKINDECK_API_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SOFTSWISS_API_LIST_GAMES" >SOFTSWISS_API_LIST_GAMES</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SOFTSWISS_API_SECRET" >SOFTSWISS_API_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SOFTSWISS_API_URL" >SOFTSWISS_API_URL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_CLIENT_NAME" >SPORTSBOOK_CLIENT_NAME</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_CLIENT_SECRET" >SPORTSBOOK_CLIENT_SECRET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_JWT_PRIVATE_KEY" >SPORTSBOOK_JWT_PRIVATE_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_JWT_PUBLIC_KEY" >SPORTSBOOK_JWT_PUBLIC_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_X_BRAND" >SPORTSBOOK_X_BRAND</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SPORTSBOOK_X_OPERATOR_ID" >SPORTSBOOK_X_OPERATOR_ID</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#STEAM_WEB_API_KEY" >STEAM_WEB_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SUMSUB_APP_TOKEN" >SUMSUB_APP_TOKEN</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SUMSUB_SECRET_KEY" >SUMSUB_SECRET_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#SUMSUB_WEBHOOK_SECRET_KEY" >SUMSUB_WEBHOOK_SECRET_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#TELEGRAM_BOT_API_KEY" >TELEGRAM_BOT_API_KEY</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#TMT_POSTBACK_SERVER" >TMT_POSTBACK_SERVER</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#USE_PROXY_FOR_PAYMENT_PROVIDER" >USE_PROXY_FOR_PAYMENT_PROVIDER</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#WITHDRAW_WAGER_MULTIPLIER" >WITHDRAW_WAGER_MULTIPLIER</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#XMR_POSTBACK_SERVER" >XMR_POSTBACK_SERVER</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="APP_BE_ORIGIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>APP_BE_ORIGIN</b></span>
+                        <a href="#APP_BE_ORIGIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="APP_FE_ORIGIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>APP_FE_ORIGIN</b></span>
+                        <a href="#APP_FE_ORIGIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="APP_FE_ORIGIN_ADMIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>APP_FE_ORIGIN_ADMIN</b></span>
+                        <a href="#APP_FE_ORIGIN_ADMIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BASE_DOMAIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>BASE_DOMAIN</b></span>
+                        <a href="#BASE_DOMAIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BUCKET_NAME"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>BUCKET_NAME</b></span>
+                        <a href="#BUCKET_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COINGECKO_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>COINGECKO_API_KEY</b></span>
+                        <a href="#COINGECKO_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COINGECKO_MODE"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>COINGECKO_MODE</b></span>
+                        <a href="#COINGECKO_MODE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DATABASE_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>DATABASE_URL</b></span>
+                        <a href="#DATABASE_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEBUG_LOGIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>DEBUG_LOGIN</b></span>
+                        <a href="#DEBUG_LOGIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsOptional()<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_LOG_LEVEL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>DEFAULT_LOG_LEVEL</b></span>
+                        <a href="#DEFAULT_LOG_LEVEL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ENABLE_SLOTS"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>ENABLE_SLOTS</b></span>
+                        <a href="#ENABLE_SLOTS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Transform( &#x3D;&gt; )<br />@IsBoolean()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EOS_NODE_AUTH_HEADER_1"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>EOS_NODE_AUTH_HEADER_1</b></span>
+                        <a href="#EOS_NODE_AUTH_HEADER_1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EOS_NODE_AUTH_HEADER_2"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>EOS_NODE_AUTH_HEADER_2</b></span>
+                        <a href="#EOS_NODE_AUTH_HEADER_2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EOS_NODE_HOST_1"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>EOS_NODE_HOST_1</b></span>
+                        <a href="#EOS_NODE_HOST_1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EOS_NODE_HOST_2"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>EOS_NODE_HOST_2</b></span>
+                        <a href="#EOS_NODE_HOST_2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EXP_MULTIPLIER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>EXP_MULTIPLIER</b></span>
+                        <a href="#EXP_MULTIPLIER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Decimal</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Decimal(1)</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Transform( &#x3D;&gt; )<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FASTTRACK_JWT_PRIVATE_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>FASTTRACK_JWT_PRIVATE_KEY</b></span>
+                        <a href="#FASTTRACK_JWT_PRIVATE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FASTTRACK_JWT_PUBLIC_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>FASTTRACK_JWT_PUBLIC_KEY</b></span>
+                        <a href="#FASTTRACK_JWT_PUBLIC_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FEATURE_FLAGS_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>FEATURE_FLAGS_API_KEY</b></span>
+                        <a href="#FEATURE_FLAGS_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsOptional()<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FEATURE_FLAGS_API_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>FEATURE_FLAGS_API_URL</b></span>
+                        <a href="#FEATURE_FLAGS_API_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FEATURE_FLAGS_USE_LOCAL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>FEATURE_FLAGS_USE_LOCAL</b></span>
+                        <a href="#FEATURE_FLAGS_USE_LOCAL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Transform(undefined)<br />@IsBoolean()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FILE_UPLOAD_MAX_FILE_SIZE_KB"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>FILE_UPLOAD_MAX_FILE_SIZE_KB</b></span>
+                        <a href="#FILE_UPLOAD_MAX_FILE_SIZE_KB"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsInt()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GEETEST_PRIVATE_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>GEETEST_PRIVATE_KEY</b></span>
+                        <a href="#GEETEST_PRIVATE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GOOGLE_CALLBACK_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>GOOGLE_CALLBACK_URL</b></span>
+                        <a href="#GOOGLE_CALLBACK_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GOOGLE_CLIENT_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>GOOGLE_CLIENT_ID</b></span>
+                        <a href="#GOOGLE_CLIENT_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GOOGLE_CLIENT_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>GOOGLE_CLIENT_SECRET</b></span>
+                        <a href="#GOOGLE_CLIENT_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="INTERCOM_SECRET_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>INTERCOM_SECRET_KEY</b></span>
+                        <a href="#INTERCOM_SECRET_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_MFA_TEMP_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_MFA_TEMP_SECRET</b></span>
+                        <a href="#JWT_MFA_TEMP_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_SECRET</b></span>
+                        <a href="#JWT_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_USERNAME_SETUP_EXPIRES_IN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_USERNAME_SETUP_EXPIRES_IN</b></span>
+                        <a href="#JWT_USERNAME_SETUP_EXPIRES_IN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_USERNAME_SETUP_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_USERNAME_SETUP_SECRET</b></span>
+                        <a href="#JWT_USERNAME_SETUP_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_VERIFICATION_TOKEN_EXPIRATION_TIME"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_VERIFICATION_TOKEN_EXPIRATION_TIME</b></span>
+                        <a href="#JWT_VERIFICATION_TOKEN_EXPIRATION_TIME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="JWT_VERIFICATION_TOKEN_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>JWT_VERIFICATION_TOKEN_SECRET</b></span>
+                        <a href="#JWT_VERIFICATION_TOKEN_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAXMIND_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>MAXMIND_ID</b></span>
+                        <a href="#MAXMIND_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MAXMIND_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>MAXMIND_KEY</b></span>
+                        <a href="#MAXMIND_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NODE_ENV"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>NODE_ENV</b></span>
+                        <a href="#NODE_ENV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_CLIENT_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_CLIENT_ID</b></span>
+                        <a href="#PM8_CLIENT_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_CLIENT_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_CLIENT_SECRET</b></span>
+                        <a href="#PM8_CLIENT_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_DATA_API_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_DATA_API_URL</b></span>
+                        <a href="#PM8_DATA_API_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_LAUNCH_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_LAUNCH_URL</b></span>
+                        <a href="#PM8_LAUNCH_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_MAX_BET_CENT"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_MAX_BET_CENT</b></span>
+                        <a href="#PM8_MAX_BET_CENT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_OPERATOR_LOGIN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_OPERATOR_LOGIN</b></span>
+                        <a href="#PM8_OPERATOR_LOGIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_OPERATOR_PASSWORD"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_OPERATOR_PASSWORD</b></span>
+                        <a href="#PM8_OPERATOR_PASSWORD"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_PARTNER_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_PARTNER_KEY</b></span>
+                        <a href="#PM8_PARTNER_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_SIG_SECRET_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_SIG_SECRET_KEY</b></span>
+                        <a href="#PM8_SIG_SECRET_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PM8_TEST_USER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PM8_TEST_USER</b></span>
+                        <a href="#PM8_TEST_USER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PORT"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>PORT</b></span>
+                        <a href="#PORT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsOptional()<br />@IsInt()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_CCPAYMENT_APP_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_CCPAYMENT_APP_ID</b></span>
+                        <a href="#PROVIDER_CCPAYMENT_APP_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_CCPAYMENT_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_CCPAYMENT_SECRET</b></span>
+                        <a href="#PROVIDER_CCPAYMENT_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_CCPAYMENT_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_CCPAYMENT_URL</b></span>
+                        <a href="#PROVIDER_CCPAYMENT_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_NOWPAYMENTS_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_NOWPAYMENTS_API_KEY</b></span>
+                        <a href="#PROVIDER_NOWPAYMENTS_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_NOWPAYMENTS_API_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_NOWPAYMENTS_API_URL</b></span>
+                        <a href="#PROVIDER_NOWPAYMENTS_API_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_NOWPAYMENTS_AUTH_CREDENTIALS"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>PROVIDER_NOWPAYMENTS_AUTH_CREDENTIALS</b></span>
+                        <a href="#PROVIDER_NOWPAYMENTS_AUTH_CREDENTIALS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#p" target="_self" >literal type</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsOptional()<br />@Transform( &#x3D;&gt; )<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_NOWPAYMENTS_CALLBACK_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_NOWPAYMENTS_CALLBACK_URL</b></span>
+                        <a href="#PROVIDER_NOWPAYMENTS_CALLBACK_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROVIDER_NOWPAYMENTS_IPN_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>PROVIDER_NOWPAYMENTS_IPN_KEY</b></span>
+                        <a href="#PROVIDER_NOWPAYMENTS_IPN_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RECAPTCHA_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>RECAPTCHA_SECRET</b></span>
+                        <a href="#RECAPTCHA_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REDISCLOUD_BOT_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>REDISCLOUD_BOT_URL</b></span>
+                        <a href="#REDISCLOUD_BOT_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REDISCLOUD_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>REDISCLOUD_URL</b></span>
+                        <a href="#REDISCLOUD_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_API_KEY</b></span>
+                        <a href="#SENDGRID_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_DEPOSIT_SUCCESSFUL_EMAIL_TEMPLATE_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_DEPOSIT_SUCCESSFUL_EMAIL_TEMPLATE_ID</b></span>
+                        <a href="#SENDGRID_DEPOSIT_SUCCESSFUL_EMAIL_TEMPLATE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_FROM_EMAIL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_FROM_EMAIL</b></span>
+                        <a href="#SENDGRID_FROM_EMAIL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_RESET_PASSWORD_EMAIL_TEMPLATE_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_RESET_PASSWORD_EMAIL_TEMPLATE_ID</b></span>
+                        <a href="#SENDGRID_RESET_PASSWORD_EMAIL_TEMPLATE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_VERIFY_EMAIL_TEMPLATE_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_VERIFY_EMAIL_TEMPLATE_ID</b></span>
+                        <a href="#SENDGRID_VERIFY_EMAIL_TEMPLATE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SENDGRID_WELCOME_EMAIL_TEMPLATE_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SENDGRID_WELCOME_EMAIL_TEMPLATE_ID</b></span>
+                        <a href="#SENDGRID_WELCOME_EMAIL_TEMPLATE_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SESSION_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SESSION_SECRET</b></span>
+                        <a href="#SESSION_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SKINDECK_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SKINDECK_API_KEY</b></span>
+                        <a href="#SKINDECK_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SKINDECK_API_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SKINDECK_API_SECRET</b></span>
+                        <a href="#SKINDECK_API_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOFTSWISS_API_LIST_GAMES"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SOFTSWISS_API_LIST_GAMES</b></span>
+                        <a href="#SOFTSWISS_API_LIST_GAMES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOFTSWISS_API_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SOFTSWISS_API_SECRET</b></span>
+                        <a href="#SOFTSWISS_API_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SOFTSWISS_API_URL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SOFTSWISS_API_URL</b></span>
+                        <a href="#SOFTSWISS_API_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_CLIENT_NAME"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_CLIENT_NAME</b></span>
+                        <a href="#SPORTSBOOK_CLIENT_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_CLIENT_SECRET"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_CLIENT_SECRET</b></span>
+                        <a href="#SPORTSBOOK_CLIENT_SECRET"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_JWT_PRIVATE_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_JWT_PRIVATE_KEY</b></span>
+                        <a href="#SPORTSBOOK_JWT_PRIVATE_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_JWT_PUBLIC_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_JWT_PUBLIC_KEY</b></span>
+                        <a href="#SPORTSBOOK_JWT_PUBLIC_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_X_BRAND"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_X_BRAND</b></span>
+                        <a href="#SPORTSBOOK_X_BRAND"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SPORTSBOOK_X_OPERATOR_ID"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SPORTSBOOK_X_OPERATOR_ID</b></span>
+                        <a href="#SPORTSBOOK_X_OPERATOR_ID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STEAM_WEB_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>STEAM_WEB_API_KEY</b></span>
+                        <a href="#STEAM_WEB_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SUMSUB_APP_TOKEN"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SUMSUB_APP_TOKEN</b></span>
+                        <a href="#SUMSUB_APP_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SUMSUB_SECRET_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SUMSUB_SECRET_KEY</b></span>
+                        <a href="#SUMSUB_SECRET_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SUMSUB_WEBHOOK_SECRET_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>SUMSUB_WEBHOOK_SECRET_KEY</b></span>
+                        <a href="#SUMSUB_WEBHOOK_SECRET_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TELEGRAM_BOT_API_KEY"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>TELEGRAM_BOT_API_KEY</b></span>
+                        <a href="#TELEGRAM_BOT_API_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TMT_POSTBACK_SERVER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>TMT_POSTBACK_SERVER</b></span>
+                        <a href="#TMT_POSTBACK_SERVER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USE_PROXY_FOR_PAYMENT_PROVIDER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>USE_PROXY_FOR_PAYMENT_PROVIDER</b></span>
+                        <a href="#USE_PROXY_FOR_PAYMENT_PROVIDER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsBoolean()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="WITHDRAW_WAGER_MULTIPLIER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>WITHDRAW_WAGER_MULTIPLIER</b></span>
+                        <a href="#WITHDRAW_WAGER_MULTIPLIER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Decimal</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsNotEmpty()<br />@Transform( &#x3D;&gt; )<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="XMR_POSTBACK_SERVER"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>XMR_POSTBACK_SERVER</b></span>
+                        <a href="#XMR_POSTBACK_SERVER"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'EnvironmentVariables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
