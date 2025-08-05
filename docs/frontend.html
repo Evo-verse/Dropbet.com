@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Frontend Technical Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Project Technical Overview</h1>
+<p>This document outlines the key frameworks, libraries, and architectural decisions behind the project.</p>
+
+<div class="section">
+    <h2>Frameworks and Libraries</h2>
+
+    <h3>Core Framework</h3>
+    <ul>
+        <li>Next.js: The project leverages Next.js, specifically its app router with integrated internationalization features.</li>
+        <li>React: Utilized as the primary UI library, with extensive use of React Hooks.</li>
+        <li>TypeScript: The entire codebase is written in TypeScript for robust type safety.</li>
+    </ul>
+
+    <h3>State Management</h3>
+    <ul>
+        <li>@tanstack/react-query: Extensively used for data fetching, caching, and server state management.</li>
+        <li>Zustand: Manages client-side global state through various stores:
+            <ul>
+                <li>useWalletStore: For wallet and currency management.</li>
+                <li>useTrafficIncomeStore: For affiliate/traffic tracking.</li>
+                <li>useRakebackStore: For rakeback challenge features.</li>
+                <li>useAffiliateCodeStore: For affiliate code management.</li>
+                <li>useGameSettingsStore: For game settings, such as sound preferences.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>UI and Styling</h3>
+    <ul>
+        <li>shadcn/ui: Provides custom UI components built on top of Radix UI primitives.</li>
+        <li>Tailwind CSS: Employed for utility-first styling, configured in tailwind.config.ts.</li>
+        <li>SCSS Modules: Used extensively for component-specific styling (.module.scss files).</li>
+        <li>clsx/classnames: For conditional class name composition.</li>
+    </ul>
+
+    <h3>Internationalization</h3>
+    <ul>
+        <li>next-intl: Facilitates multi-language support with locale-based routing.</li>
+    </ul>
+
+    <h3>Form Handling</h3>
+    <ul>
+        <li>react-hook-form: Manages form state and validation.</li>
+    </ul>
+
+    <h3>Other Notable Libraries</h3>
+    <ul>
+        <li>axios: For efficient HTTP requests.</li>
+        <li>socket.io-client: Enables real-time communication.</li>
+        <li>howler: For audio effects within games.</li>
+        <li>framer-motion: Used for sophisticated animations.</li>
+        <li>embla-carousel: For creating carousel/slider components.</li>
+        <li>qrcode.react: For generating QR codes (likely for 2FA or crypto addresses).</li>
+    </ul>
+
+    <h3>Build Tools</h3>
+    <ul>
+        <li>PostCSS: For processing CSS with various plugins.</li>
+        <li>Tailwind CSS: Integrated as a PostCSS plugin.</li>
+        <li>ESLint: Enforces code linting with custom rules.</li>
+        <li>Prettier: Ensures consistent code formatting.</li>
+        <li>Stylelint: For SCSS/CSS linting.</li>
+        <li>mini-css-extract-plugin: For extracting CSS into separate files.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>File Structure</h2>
+    <p>The project adheres to the Next.js app router structure with internationalization:</p>
+    <pre>
+src/
+ ├── app/
+ │   └── [locale]/   # Internationalized routes
+ │       ├── layout.tsx
+ │       ├── page.tsx
+ │       ├── settings/
+ │       ├── games/
+ │       └── ...
+ ├── components/
+ │   ├── common/     # Shared components
+ │   ├── modals/     # Modal components
+ │   ├── originalGames/ # Game-specific components
+ │   ├── pages/      # Page-specific components
+ │   └── ui/         # UI library components
+ ├── api/
+ │   └── apiClient/  # API client implementation
+ ├── hooks/          # Custom React hooks
+ ├── providers/      # React context providers
+ ├── queries/        # React Query definitions
+ ├── stores/         # Zustand stores
+ ├── styles/         # Global styles and mixins
+ ├── types/          # TypeScript type definitions
+ ├── utils/          # Utility functions
+ ├── constants/      # Constants and configuration
+ ├── i18n/           # Internationalization setup
+ └── mappers/        # Data transformation utilities
+    </pre>
+</div>
+
+<div class="section">
+    <h2>Styling Approach</h2>
+    <p>The project employs a hybrid styling approach:</p>
+    <ol>
+        <li>Tailwind CSS: For utility-first styling, configured in tailwind.config.ts.</li>
+        <li>SCSS Modules: For component-specific styling using .module.scss files.</li>
+        <li>Global CSS: Found in src/styles/globals.css for base styles and CSS variables.</li>
+        <li>SCSS Mixins: Defined in src/styles/mixins.scss for responsive design and reusable patterns.</li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2>Theming</h2>
+    <p>The project implements theming through:</p>
+    <ul>
+        <li>CSS Variables: Defined within the Tailwind configuration using HSL color values.</li>
+        <li>shadcn/ui: Components are themed via the components.json configuration.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Routing</h2>
+    <ul>
+        <li>Next.js App Router: Used for all page routing.</li>
+        <li>Internationalized Routes: Implemented with next-intl utilizing the [locale] parameter in routes.</li>
+        <li>Protected Routes: Managed in middleware.ts with arrays like authProtectedRoutes that check for authentication tokens.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>State Management</h2>
+    <h3>Server State</h3>
+    <ul>
+        <li>@tanstack/react-query: Utilized for efficient data fetching, caching, and server state management.</li>
+    </ul>
+    <h3>Client State</h3>
+    <ul>
+        <li>Zustand: For global state management with various dedicated stores.</li>
+        <li>React Context: Used for specific features via providers such as useModal and useUser.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>UI Component Library</h2>
+    <ul>
+        <li>shadcn/ui: A custom component library built on Radix UI primitives.</li>
+        <li>Components Organization:
+            <ul>
+                <li>Base UI components reside in src/components/ui/.</li>
+                <li>Shared components are found in src/components/common/.</li>
+                <li>Feature-specific components are organized in dedicated folders.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>API Handling</h2>
+    <ul>
+        <li>Custom API Client: Implemented in src/api/apiClient/ with:
+            <ul>
+                <li>ApiClientBase.ts: Provides a base implementation with common methods.</li>
+                <li>ApiClientBrowser.ts: Handles browser-specific implementation, including token refresh logic.</li>
+                <li>ApiClientServer.ts: Manages server-specific implementation for SSR.</li>
+            </ul>
+        </li>
+        <li>React Query: Used for data fetching with custom hooks for specific API endpoints.</li>
+        <li>Error Handling: Implemented in API client interceptors and React Query error callbacks.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Authentication</h2>
+    <ul>
+        <li>JWT-based Authentication: Employs access, refresh, and socket tokens.</li>
+        <li>Login/Signup: Implemented in the AuthModal component, supporting:
+            <ul>
+                <li>Email/password authentication.</li>
+                <li>Social logins (Google, Steam) via OAuth.</li>
+                <li>Username setup after OAuth login.</li>
+            </ul>
+        </li>
+        <li>2FA Implementation:
+            <ul>
+                <li>Google Authenticator integration.</li>
+                <li>QR code scanning for setup.</li>
+                <li>Recovery codes for backup.</li>
+                <li>Verification during login with verify2FA mutation.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Third-Party Integrations</h2>
+    <ul>
+        <li>OAuth Providers:
+            <ul>
+                <li>Google (/auth/google)</li>
+                <li>Steam (/auth/steam)</li>
+            </ul>
+        </li>
+        <li>Crypto Wallets: Supports multiple cryptocurrencies and networks:
+            <ul>
+                <li>BTC, ETH, SOL, USDC, USDT, LTC, POL (Polygon), TRX (Tron), BNB.</li>
+                <li>Multiple network support (ERC-20, BEP-20, TRC-20, etc.).</li>
+            </ul>
+        </li>
+        <li>Payment Processing: Integrates for buying crypto with credit cards and digital wallets:
+            <ul>
+                <li>Visa, Mastercard, Google Pay, Apple Pay.</li>
+            </ul>
+        </li>
+        <li>Analytics: Sentry integration for error tracking and monitoring.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Responsive Design</h2>
+    <p>The project implements responsive design through:</p>
+    <ol>
+        <li>SCSS Mixins: Defined in src/styles/mixins.scss with specific breakpoints:
+            <ul>
+                <li>Mobile: max-width 430px</li>
+                <li>Tablet-min: max-width 968px</li>
+                <li>Tablet: between 430px and 1380px</li>
+                <li>Desktop: between 1400px and 1860px</li>
+                <li>Large Desktop: min-width 1860px</li>
+            </ul>
+        </li>
+        <li>Container Queries: Used for component-specific responsive behavior.</li>
+        <li>Media Queries: Employed in SCSS modules for component-specific responsive styling.</li>
+        <li>Responsive Components:
+            <ul>
+                <li>MobileMenu component for mobile navigation.</li>
+                <li>Responsive layouts using flexbox and grid.</li>
+                <li>useMediaQuery hook from usehooks-ts for responsive logic.</li>
+            </ul>
+        </li>
+        <li>Mobile-Optimized Views: Special components and layouts for mobile devices, such as game interfaces adapted for touch interaction.</li>
+    </ol>
+</div>
+</body>
+</html>
