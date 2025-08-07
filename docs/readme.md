@@ -6,6 +6,7 @@ Use the links below (or your site's nav) to explore each section:
 - [Introduction & Purpose](introduction.md)
 - [System Architecture](system-architecture.md)
 - [Api CompoDoc](api-docs/index.html)
+- [Code structure example](https://github.com/Evo-verse/Dropbet.com/blob/main/code-examples/api-sportbook)
 - Rest-Collection:
   - [Swagger](https://api.dropbet-stage.com/swagger/#/)
   - [Postman Rest Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-rest-api.postman_collection.json)
