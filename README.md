@@ -5,7 +5,8 @@ Use the links below (or your site's nav) to explore each section:
 
 - [Introduction & Purpose](https://evo-verse.github.io/Dropbet.com/introduction.html)  
 - [System Architecture](https://evo-verse.github.io/Dropbet.com/system-architecture.html)  
-- [DB Markdown](https://evo-verse.github.io/Dropbet.com/db-schema-documentation.html)  
+- [DB Markdown](https://evo-verse.github.io/Dropbet.com/db-schema-documentation.html)
+- [Swagger](https://api.dropbet-stage.com/swagger/#/)  
 - [Frontend](https://evo-verse.github.io/Dropbet.com/frontend.html)  
 - [Account & Authentication](https://evo-verse.github.io/Dropbet.com/authentication.html)  
 - [Wallet & Vault](https://evo-verse.github.io/Dropbet.com/wallet-vault.html)  
