@@ -1194,3 +1194,5 @@
 | `avatar` | `String` | `@map("avatar")` |
 | `vipLevel` | `Int` | `@map("vip_level")` |
 | `bets` | `SpeedRouletteBet[]` | `` |
+
+[← Home](readme.md)
