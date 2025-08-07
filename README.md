@@ -8,8 +8,8 @@ Use the links below (or your site's nav) to explore each section:
 - [Api CompoDoc](https://evo-verse.github.io/Dropbet.com/api-docs/index.html)
 - Rest-Collection:
   - [Swagger](https://api.dropbet-stage.com/swagger/#/)
-  - [Postman Rest Collection](https://evo-verse.github.io/Dropbet.com/postman-collections/dropbet-rest-api.postman_collection.json)
-  - [Postman Integration Collection](https://evo-verse.github.io/Dropbet.com/postman-collections/dropbet-integration-api.postman_collection.json)
+  - [Postman Rest Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-rest-api.postman_collection.json)
+  - [Postman Integration Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-integration-api.postman_collection.json)
 - [DB Markdown](https://evo-verse.github.io/Dropbet.com/db-schema-documentation.html)
 - [Frontend](https://evo-verse.github.io/Dropbet.com/frontend.html)  
 - [Account & Authentication](https://evo-verse.github.io/Dropbet.com/authentication.html)  
