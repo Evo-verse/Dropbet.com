@@ -4,7 +4,8 @@ Welcome to the technical handover for external contributors.
 Use the links below (or your site's nav) to explore each section:
 
 - [Introduction & Purpose](introduction.md)  
-- [System Architecture](system-architecture.md)  
+- [System Architecture](system-architecture.md) 
+- [DB Markdown](db-schema-documentation.md)   
 - [Frontend](frontend.md)  
 - [Account & Authentication](authentication.md)  
 - [Wallet & Vault](wallet-vault.md)  
