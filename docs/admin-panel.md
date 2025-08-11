@@ -9,3 +9,5 @@
 - [Affiliates](./admin-panel/affiliates.html)
 - [Streamers](./admin-panel/streamers.html)
 - [Bets History](./admin-panel/bets-history.html)
+
+[← Home](readme.md)
