@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Platform - Wallet & Vault</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>5. Wallet &amp; Vault</h1>
+<p>
+    This section covers the architecture and functionality of the wallet system used in the DropBet platform.
+    It includes support for cryptocurrency deposits and withdrawals, internal balance management (Vault), tipping,
+    and third-party integrations for purchasing crypto.
+</p>
+
+<h2>5.1 Crypto Wallet Overview</h2>
+<p>The platform supports multi-currency and multi-network crypto wallets.</p>
+<h3>Supported Coins:</h3>
+<ul>
+    <li>BTC</li>
+    <li>ETH</li>
+    <li>SOL</li>
+    <li>USDC</li>
+    <li>USDT</li>
+    <li>LTC</li>
+    <li>POL (Polygon)</li>
+    <li>TRX (Tron)</li>
+    <li>BNB</li>
+</ul>
+
+<h3>Supported Networks:</h3>
+<ul>
+    <li>ERC-20</li>
+    <li>BEP-20</li>
+    <li>TRC-20</li>
+    <li>SOL</li>
+    <li>BTC</li>
+</ul>
+
+<p>Users can:</p>
+<ul>
+    <li>Deposit crypto into their casino wallet.</li>
+    <li>Withdraw crypto to external addresses.</li>
+    <li>View wallet balances in a single DBC currency.</li>
+</ul>
+
+<p>The wallet is integrated into both the user account UI and the header/balance bar for quick access and visibility.</p>
+
+<h2>5.2 Vault (Internal Balance System)</h2>
+<p>The Vault is a separate balance layer within the user’s account, distinct from their main wallet balance.</p>
+<h3>Use cases for the Vault:</h3>
+<ul>
+    <li>Segregated balance management</li>
+    <li>Locking funds for specific activities</li>
+</ul>
+<h3>Features:</h3>
+<ul>
+    <li>Manual transfers between Wallet and Vault (send/receive).</li>
+</ul>
+
+<h2>5.3 Crypto Purchases via Third-Party Provider</h2>
+<p>Users can purchase cryptocurrency directly on the platform using traditional payment methods via a third-party fiat on-ramp provider.</p>
+<h3>Supported payment methods:</h3>
+<ul>
+    <li>Visa</li>
+    <li>Mastercard</li>
+    <li>Google Pay</li>
+    <li>Apple Pay</li>
+</ul>
+
+<h3>The integration:</h3>
+<ul>
+    <li>Is embedded into the platform via an iframe.</li>
+    <li>Supports automatic deposit into the user's casino balance upon completion.</li>
+    <li>Provides users with instructions and real-time status updates.</li>
+</ul>
+
+<h2>5.4 Transaction History</h2>
+<p>The user account page includes a detailed log of all wallet-related actions:</p>
+<ul>
+    <li>Deposits (confirmed via blockchain)</li>
+    <li>Withdrawals (with status: pending, in review, confirmed)</li>
+    <li>Tips sent and received</li>
+    <li>Manual transfers to/from Vault</li>
+    <li>Crypto purchases</li>
+    <li>Promocode claims</li>
+</ul>
+
+<h3>Each transaction log includes:</h3>
+<ul>
+    <li>Timestamp</li>
+    <li>Amount</li>
+    <li>Currency</li>
+    <li>Status (e.g. pending, complete)</li>
+    <li>Destination/source address (where relevant)</li>
+</ul>
+<p>This history is available in the account dashboard with filtering and export options (to confirm).</p>
+
+<h2>5.5 Tips System</h2>
+<p>Users can tip each other directly from their wallet or Vault balance.</p>
+<h3>Features:</h3>
+<ul>
+    <li>Search for recipient by username</li>
+    <li>Input amount and confirmation modal</li>
+    <li>Optional note/message with the tip</li>
+    <li>Both sender and receiver see the tip in their transaction history</li>
+    <li>Tips are near-instant and processed off-chain (internally)</li>
+</ul>
+
+<h2>5.6 Payment Provider Integrations</h2>
+<p>
+    The platform integrates with multiple external payment providers to support cryptocurrency deposits, withdrawals, and virtual item (skin) deposits.
+    Each provider uses webhook-based confirmation with transaction validation and user balance updates.
+</p>
+
+<h3>CCPayment Integration</h3>
+<h4>Integration Flow</h4>
+<ul>
+    <li>Backend listens to all webhook events from CCPayment.</li>
+    <li>For each payment notification, the platform validates the transaction by querying CCPayment’s API to confirm its existence and status.</li>
+    <li>If the transaction is confirmed and processed, the user’s wallet is credited.</li>
+    <li>Each user is assigned a unique deposit address (or link) tied to their account, which enables accurate mapping of incoming funds.</li>
+</ul>
+
+<h4>Relevant API Endpoints</h4>
+<ul>
+    <li><strong>GetSupportToken:</strong> Retrieves a list of supported tokens (currencies) and their IDs.</li>
+    <li><strong>GetTokenChain:</strong> Lists available networks for a token (e.g. USDT-ERC20, BEP-20).</li>
+    <li><strong>CreateOrder:</strong> Creates a deposit order via API—returns token, network, pay_address, order_id, etc.</li>
+    <li><strong>CheckoutUrl:</strong> Optional when using hosted payment pages; returns a checkout URL.</li>
+    <li><strong>Withdraw:</strong> Used by backend/admin to initiate withdrawals; returns order info and network fee.</li>
+    <li><strong>GetTokenRate:</strong> Converts USD amount into crypto amount based on current rate.</li>
+    <li><strong>NetworkFee:</strong> Retrieves blockchain fee estimates for a given network.</li>
+</ul>
+
+<h4>Webhook Handling</h4>
+<ul>
+    <li>Platform responds to CCPayment webhook callbacks for order confirmations.</li>
+    <li>Each webhook payload contains transaction details including token_id, amount, network, status, and possibly an order ID.</li>
+    <li>The backend verifies webhook authenticity (e.g. via HMAC signature).</li>
+    <li>Once validated, the platform triggers user balance credit and transaction logs.</li>
+</ul>
+
+<h4>Core Contract Logic</h4>
+<ul>
+    <li>Deposit addresses are generated per user session or request to ensure correct attribution.</li>
+    <li>The platform handles multi-chain support via GetTokenChain and validation logic.</li>
+    <li>Auto-callback support allows for real-time updates on deposit completion.</li>
+</ul>
+
+<h3>NOWPayments Integration</h3>
+<p>Flow mirrors CCPayment:</p>
+<ul>
+    <li>Webhook notification on deposit detection.</li>
+    <li>Backend calls API to verify transaction status.</li>
+    <li>Upon confirmation, user wallet credited.</li>
+</ul>
+<p>Supports multiple coins and networks. Separate address management and mapping logic per user.</p>
+
+<h3>Developer Reference Table</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Function</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>GetSupportToken</td><td>Get list of supported tokens (currency metadata)</td></tr>
+    <tr><td>GetTokenChain</td><td>Enumerate networks per token (ERC-20, TRC-20, etc.)</td></tr>
+    <tr><td>CreateOrder</td><td>Generate deposit order and payment address</td></tr>
+    <tr><td>Withdraw</td><td>Request cryptocurrency withdrawal via API</td></tr>
+    <tr><td>GetTokenRate</td><td>Calculate crypto amount from USD amount</td></tr>
+    <tr><td>CheckoutUrl</td><td>Optionally create hosted checkout URL</td></tr>
+    <tr><td>Webhook Callbacks</td><td>Confirm payment events and provide structured info</td></tr>
+    </tbody>
+</table>
+
+<h3>Webhook Security</h3>
+<ul>
+    <li>Webhooks must be verified using signature verification (e.g. HMAC) or via a secret token.</li>
+    <li>The backend confirms authenticity of CCPayment events before crediting users.</li>
+    <li>System handles retries and logs any unmatched or suspicious webhook payloads.</li>
+</ul>
+</body>
+</html>

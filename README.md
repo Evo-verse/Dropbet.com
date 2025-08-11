@@ -1,4 +1,4 @@
-# DropBet Casino Platform Documentation
+# Casino Platform Documentation
 
 Welcome to the technical handover for external contributors.  
 Use the links below (or your site's nav) to explore each section:

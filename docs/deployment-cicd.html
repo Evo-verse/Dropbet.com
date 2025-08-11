@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Casino Platform - Project Infrastructure and CI/CD Pipeline</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h2>Project Infrastructure and CI/CD Pipeline</h2>
+
+<h3>Branching Strategy</h3>
+<p>The project follows a controlled Git workflow with two primary long-lived branches:</p>
+<ul>
+    <li><b>prod</b> – Active production branch connected to the production environment.</li>
+    <li><b>staging</b> – Pre-production branch connected to the staging environment for QA and UAT (User Acceptance Testing).</li>
+</ul>
+<p>All feature branches must be branched off <b>prod</b> and merged back via Pull Requests (PRs) after passing review and automated checks.</p>
+<p><b>Hotfixes</b> intended for release may be branched off <b>staging</b> and merged back into both branches after deployment.</p>
+
+<h3>Deployment Pipeline Overview</h3>
+<p>The CI/CD process is fully automated and triggered by merging a Pull Request into <b>prod</b> or <b>staging</b>. The process is executed on Google Cloud Platform (GCP) using containerized builds, with full step-by-step logging available.</p>
+
+<h3>Pipeline Stages</h3>
+
+<ol>
+    <li>
+        <b>Trigger &amp; Source Retrieval</b>
+        <ul>
+            <li>A Git webhook triggers the pipeline on PR merge.</li>
+            <li>The pipeline fetches the latest commit from the target branch.</li>
+            <li>The repository is checked out into a clean container environment.</li>
+            <li><b>.env files</b> for the respective environment are securely loaded from the <b>DOPPLER</b>.</li>
+        </ul>
+    </li>
+    <li>
+        <b>Pre-Build Validations</b>
+        <ul>
+            <li><b>Code Style &amp; Static Analysis</b></li>
+            <li>Type checking via <b>TypeScript compiler</b> for frontend.</li>
+            <li><b>Security Checks</b></li>
+            <li>Runs dependency vulnerability scan (e.g., npm audit, pip-audit, yarn audit).</li>
+            <li><b>Unit Tests</b></li>
+            <li>Runs Nest.js .spec.ts tests via <b>npm test</b>.</li>
+            <li>Reports coverage percentage; build fails if below threshold.</li>
+        </ul>
+    </li>
+    <li>
+        <b>Database Migration Handling</b>
+        <ul>
+            <li>Executes latest migration scripts using the ORM migration tool by <b>PRISMA</b>.</li>
+            <li>Verifies:</li>
+            <ul>
+                <li>Schema integrity against the migration history.</li>
+                <li>Foreign key constraints and indexes.</li>
+            </ul>
+            <li><b>Failure Handling</b></li>
+            <li>If any migration fails, the pipeline triggers an automatic rollback to the last known good database snapshot.</li>
+            <li>Rollback logs are attached to the build log output for debugging.</li>
+        </ul>
+    </li>
+    <li>
+        <b>Application Build</b>
+        <ul>
+            <li><b>Isolated Sandbox Deployment</b></li>
+            <li>Creates a disposable containerized environment for the build.</li>
+            <li>Installs dependencies in a clean environment with cache optimization.</li>
+            <li><b>Build Process</b></li>
+            <li>Frontend build (e.g., <code>npm run build</code>) with minification and tree-shaking.</li>
+            <li>Backend build (e.g., compiling TypeScript, packaging Python modules, building Docker images).</li>
+            <li><b>ENV Verification</b></li>
+            <li>Compares required environment variables against <code>.env.example</code>.</li>
+            <li>Fails build if any mandatory variable is missing.</li>
+            <li><b>Health Checks</b></li>
+            <li>Runs internal API health endpoints (e.g., <code>/health</code>, <code>/status</code>).</li>
+            <li>Confirms database connection and cache server availability.</li>
+            <li>Verifies that build artifacts are generated and not corrupted.</li>
+        </ul>
+    </li>
+    <li>
+        <b>Deployment Execution</b>
+        <ul>
+            <li>Deploys Docker image to <b>GCP Artifact Registry</b>.</li>
+            <li>Updates <b>GCP Cloud Run</b> service with the new image.</li>
+            <li>Waits for deployment rollout to complete.</li>
+            <li>Monitors pod readiness probes and liveness checks to confirm service stability.</li>
+        </ul>
+    </li>
+    <li>
+        <b>Post-Deployment Validation</b>
+        <ul>
+            <li>Runs smoke tests against deployed endpoints.</li>
+            <li>Validates frontend load via Lighthouse or Puppeteer checks.</li>
+            <li>Confirms logs are streaming correctly to <b>GCP Cloud Logging</b>.</li>
+            <li>Monitoring <b>Sentry</b> for incoming errors.</li>
+            <li>If any post-deployment check fails:</li>
+            <ul>
+                <li>Deployment is automatically rolled back to the last stable build.</li>
+                <li>Rollback process is logged with timestamp.</li>
+            </ul>
+        </ul>
+    </li>
+    <li>
+        <b>Notifications &amp; Logs</b>
+        <ul>
+            <li><b>Success</b> – A success message with build ID, commit hash, and deploy time is posted to the Discord channel.</li>
+            <li><b>Failure</b> – A failure notification is sent:</li>
+            <ul>
+                <li><b>GoLand</b> displays an in-IDE alert.</li>
+                <li>Direct link to GCP build logs is provided.</li>
+                <li>Log contains:</li>
+                <ul>
+                    <li>Exact stage and error message.</li>
+                    <li>Relevant stack traces or failed command output.</li>
+                </ul>
+            </ul>
+        </ul>
+    </li>
+</ol>
+
+<h3>Infrastructure Components</h3>
+<ul>
+    <li><b>CI/CD Platform:</b> GitLab CI / GCP Cloud Build.</li>
+    <li><b>Containerization:</b> Docker.</li>
+    <li><b>Orchestration:</b> Cloud Run.</li>
+    <li><b>Secrets Management:</b> Doppler.</li>
+    <li><b>Logging &amp; Monitoring:</b></li>
+    <ul>
+        <li>GCP Cloud Logging with EVOlogger.</li>
+        <li>Sentry</li>
+        <li>GCP Cloud Monitoring / Prometheus + Grafana dashboards.</li>
+    </ul>
+    <li><b>Database:</b></li>
+    <ul>
+        <li>PostgreSQL (hosted on Cloud SQL) with automated backups and point-in-time recovery.</li>
+    </ul>
+    <li><b>Caching Layer:</b> Redis (GCP Memorystore).</li>
+</ul>
+</body>
+</html>

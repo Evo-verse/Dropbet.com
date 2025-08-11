@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3. User Profile - DropBet Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>3. User Profile</h2>
+<p>The User Profile opens a full, tabbed view of a single player’s account with top‑level actions and detailed financial, gameplay, and affiliate information.</p>
+
+<h3>3.1 Header (always visible)</h3>
+<ul>
+    <li><b>Username + avatar</b></li>
+    <li><b>User ID</b></li>
+    <li><b>VIP badge/level</b> (e.g., “silver 3”)</li>
+    <li><b>Displayed balance</b> (e.g., “1,368.5 USD”)</li>
+    <li><b>Action buttons (right side):</b>
+        <ul>
+            <li><b>Active Bot</b> — toggle/mark user’s bot status (as labeled)</li>
+            <li><b>Ban User</b> — ban the account</li>
+            <li><b>Block Withdrawals</b> — prevent this user from withdrawing</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>3.2 Tabs</h3>
+<p>Tabs across the top of the profile: Player info, Finances, Bets, Notes, Affiliates.</p>
+
+<h3>3.3 Player info (tab)</h3>
+
+<h4>Registration data (card)</h4>
+<ul>
+    <li><b>Date</b> (timestamp of registration)</li>
+    <li><b>Device</b> (e.g., “unknown, Apple Macintosh”)</li>
+    <li><b>Language</b> (locale code)</li>
+    <li><b>IP address</b> (full value shown)</li>
+    <li><b>Country</b></li>
+    <li><b>Registration type</b> (e.g., LOCAL)</li>
+    <li><b>Referrer username</b> (or N/A)</li>
+    <li><b>Referral code</b> (or N/A)</li>
+</ul>
+
+<h4>Statistics (card)</h4>
+<ul>
+    <li><b>KYC level</b> (with Edit KYC level pencil action)</li>
+    <li><b>GGR</b></li>
+    <li><b>Total wagered</b></li>
+    <li><b>Total withdrawals</b></li>
+    <li><b>Total deposits</b></li>
+    <li><b>LTV</b></li>
+    <li><b>Total Bets</b></li>
+    <li><b>Total Payouts</b></li>
+    <li><b>Total Loss</b></li>
+</ul>
+
+<h4>Personal data (card)</h4>
+<p><b>First name / Last name / Birth date / Residential address</b> (fields present; may be N/A)</p>
+
+<h4>Account balances (card)</h4>
+<ul>
+    <li><b>Total balances</b> (aggregate)</li>
+    <li><b>Per‑currency row</b> (e.g., DBC amount)</li>
+    <li><b>Inline actions</b> (icons/buttons on the header of this card):
+        <ul>
+            <li><b>Edit balance</b></li>
+            <li><b>Tip</b></li>
+            <li><b>Deduct balance</b></li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Contact data (card)</h4>
+<p><b>Email</b> with Verified badge if verified</p>
+
+<h4>Unclaimed rakeback (card)</h4>
+<ul>
+    <li><b>Total</b></li>
+    <li><b>Instant</b></li>
+    <li><b>Monthly</b></li>
+    <li><b>Daily</b></li>
+</ul>
+
+<h4>Settings (card)</h4>
+<p><b>Toggle switches:</b></p>
+<ul>
+    <li><b>Is streamer</b></li>
+    <li><b>Private</b></li>
+    <li><b>Is test user</b></li>
+    <li><b>Can use chat</b></li>
+</ul>
+
+<h4>Vault balance (card)</h4>
+<ul>
+    <li><b>Total vault balance</b></li>
+    <li><b>Per‑currency</b> (e.g., DBC vault amount)</li>
+</ul>
+
+<h3>3.4 Finances (tab)</h3>
+<p>Sub‑tabs: <b>Deposits, Withdrawals, Tips, Accounting, Promocodes.</b></p>
+
+<h4>Deposits</h4>
+<p><b>Controls:</b></p>
+<ul>
+    <li><b>Filter by status</b> (dropdown)</li>
+    <li><b>Sort by</b> (dropdown)</li>
+</ul>
+<p><b>Table columns:</b></p>
+<ul>
+    <li><b>Network</b></li>
+    <li><b>Currency</b></li>
+    <li><b>Amount in crypto</b></li>
+    <li><b>Amount USD</b></li>
+    <li><b>Transaction Hash</b></li>
+    <li><b>From Address</b></li>
+    <li><b>External ID</b></li>
+    <li><b>Status</b></li>
+    <li><b>Date</b></li>
+</ul>
+
+<h4>Withdrawals</h4>
+<p>Status tabs: <b>Pending Review, Approved, Rejected, Failed.</b></p>
+<p>Control: <b>Sort by</b> (dropdown)</p>
+<p><b>Table columns:</b></p>
+<ul>
+    <li><b>ID</b></li>
+    <li><b>User</b></li>
+    <li><b>Amount</b></li>
+    <li><b>USD Amount</b></li>
+    <li><b>Payment Provider Status</b></li>
+    <li><b>Transaction Hash</b></li>
+    <li><b>Transaction ID</b></li>
+    <li><b>Date</b></li>
+    <li><b>Stats</b></li>
+    <li><b>Finance Stats</b></li>
+    <li><b>Admin action</b></li>
+    <li><b>Status</b></li>
+    <li><b>More info</b></li>
+</ul>
+
+<h4>Tips</h4>
+<p><b>Sub‑tabs:</b> Users, Admins</p>
+<p><b>Table columns:</b></p>
+<ul>
+    <li><b>Sent by</b></li>
+    <li><b>Received by</b></li>
+    <li><b>Amount</b></li>
+    <li><b>Currency</b></li>
+    <li><b>Public</b> (flag)</li>
+    <li><b>Created At</b></li>
+    <li><b>More info</b></li>
+</ul>
+
+<h4>Accounting</h4>
+<p><b>Controls:</b> Open Filters button</p>
+<p><b>Ledger table columns:</b></p>
+<ul>
+    <li><b>Tag</b> (e.g., BET (BET), BET (WIN))</li>
+    <li><b>Amount</b> (green/red formatting in UI)</li>
+    <li><b>Balance Before</b></li>
+    <li><b>Balance After</b></li>
+    <li><b>Date</b></li>
+</ul>
+
+<h4>Promocodes</h4>
+<p><b>Table columns:</b></p>
+<ul>
+    <li><b>Code</b></li>
+    <li><b>Claimed</b></li>
+    <li><b>Status</b></li>
+    <li><b>Actions</b></li>
+</ul>
+
+<h3>3.5 Bets (tab)</h3>
+<p><b>Filters:</b></p>
+<ul>
+    <li><b>Period preset</b> (e.g., Previous month)</li>
+    <li><b>Start Date</b></li>
+    <li><b>End Date</b></li>
+    <li><b>Open Filters button</b></li>
+</ul>
+<p><b>Table columns:</b></p>
+<ul>
+    <li><b>Game</b> (with external/open icon link)</li>
+    <li><b>Bet</b></li>
+    <li><b>Multiplier</b> (e.g., “x0.00” chip)</li>
+    <li><b>Payout</b></li>
+    <li><b>Date</b></li>
+</ul>
+
+<h3>3.6 Notes (tab)</h3>
+<p><b>Add Note button</b> opens a modal:</p>
+<ul>
+    <li><b>Choose Risk Level</b> (dropdown)</li>
+    <li><b>Note text</b> (textarea)</li>
+    <li><b>Cancel / Confirm actions</b></li>
+</ul>
+<p><b>Notes table columns (visible structure):</b></p>
+<ul>
+    <li><b>Admin</b></li>
+    <li><b>Risk Level</b></li>
+    <li><b>Updated At</b></li>
+    <li><b>Actions</b></li>
+</ul>
+
+<h3>3.7 Affiliates (tab)</h3>
+
+<h4>General statistics</h4>
+<p><b>Tiles:</b></p>
+<ul>
+    <li><b>Tier</b> (e.g., Tier 1)</li>
+    <li><b>Affiliate Level</b></li>
+    <li><b>Amount of Commission Claimed</b></li>
+    <li><b>Commission</b> (percentage)</li>
+</ul>
+
+<h4>Period statistics</h4>
+<p><b>Controls:</b></p>
+<ul>
+    <li><b>Select Queries to Show</b></li>
+    <li><b>Select Admin Tips Tags to Show</b></li>
+    <li><b>Date preset</b> (e.g., Custom date)</li>
+    <li><b>Start Date / End Date</b></li>
+</ul>
+<p><b>Tiles include (as shown):</b></p>
+<ul>
+    <li><b>Referrals GGR</b></li>
+    <li><b>Affiliate Referrals Wager</b></li>
+    <li><b>Affiliate Referrals Bet Count</b></li>
+    <li><b>Affiliate Referrals Bet Average</b></li>
+    <li><b>Affiliate Referrals Deposits Amount</b></li>
+    <li><b>Affiliate Referrals Deposits Count</b></li>
+    <li><b>Affiliate Referrals Deposit Average</b></li>
+    <li><b>Affiliate Referrals FTD Amount</b></li>
+    <li><b>Affiliate Referrals FTD Count</b></li>
+    <li><b>Affiliate Referrals FTD Average</b></li>
+    <li><b>Affiliate Admin Tips</b></li>
+    <li><b>Affiliate Referrals Count</b></li>
+    <li><b>Affiliate Active Referrals Count</b></li>
+    <li><b>Affiliate Reward Taken</b></li>
+    <li><b>Affiliate Total Withdrawals</b></li>
+</ul>
+
+<h4>Actions / Management</h4>
+<ul>
+    <li><b>Update Affiliate Level:</b> input Enter Affiliate Level + Update button</li>
+    <li><b>Referral Codes:</b> input Enter referral code + Add Code button</li>
+</ul>
+
+<h4>Referrals table (bottom)</h4>
+<p><b>Columns:</b></p>
+<ul>
+    <li><b>Status</b></li>
+    <li><b>Username</b></li>
+    <li><b>Affiliate Deposits</b></li>
+    <li><b>Earned Commission</b></li>
+    <li><b>Total Deposit</b></li>
+    <li><b>Total Withdrawn</b></li>
+    <li><b>Total Wagered</b></li>
+    <li><b>Profit/Loss</b></li>
+    <li><b>First Deposit</b></li>
+    <li><b>Last Deposit</b></li>
+    <li><b>Registered</b></li>
+    <li><b>More info</b></li>
+</ul>
+
+</body>
+</html>

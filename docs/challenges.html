@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slot Challenges - Casino Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 4px;
+    }
+
+    h3 {
+      font-size: 1.4em;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    ol {
+      margin-left: 20px;
+    }
+
+    code {
+      background-color: #eee;
+      padding: 2px 4px;
+      font-family: Consolas, monospace;
+      border-radius: 4px;
+    }
+
+    pre {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 0.95em;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+<h2>10. Slot Challenges</h2>
+<p>The Slot Challenges system is a promotional feature designed to increase player engagement on DropBet by rewarding users who achieve specific in-game milestones while playing slot games. The challenge format is the “Hit Multiplier” mechanic, where a player must achieve a defined multiplier (e.g., x500) on a single spin with at least the minimum qualifying bet amount.</p>
+
+<h3>10.1 Challenge Mechanics</h3>
+<ul>
+  <li>The main condition is to hit a specified multiplier on a qualifying game</li>
+  <li>Minimum bet amount is enforced to ensure challenge validity</li>
+  <li>Only real money wagers qualify</li>
+</ul>
+
+<h3>10.2 Prize Attribution</h3>
+<p>Once a player meets the challenge conditions, the event is recorded in the database with relevant details:</p>
+<ul>
+  <li>Player ID</li>
+  <li>Game ID</li>
+  <li>Bet amount</li>
+  <li>Multiplier achieved</li>
+  <li>Timestamp of win</li>
+</ul>
+<p>The admin team reviews the record from the <b>Admin Panel</b></p>
+<p>Prizes are then <b>manually attributed</b> to the qualifying player via the admin interface</p>
+<p>Prize types can include:</p>
+<ul>
+  <li>Direct balance credit</li>
+</ul>
+
+<h3>10.3 Admin Panel Integration</h3>
+<p>Admins can:</p>
+<ul>
+  <li>Configure active challenges (multiplier target, min bet, qualifying games)</li>
+  <li>Monitor current list of users who have hit the target</li>
+  <li>Approve or reject winners</li>
+  <li>Assign prizes directly to user accounts</li>
+  <li>Prize attribution is logged for auditing purposes</li>
+</ul>
+
+<h3>10.4 Technical Implementation</h3>
+<p><strong>Detection Logic:</strong></p>
+<ul>
+  <li>Multiplier results are evaluated in the backend during the win transaction callback from the slot provider</li>
+  <li>If multiplier &ge; challenge requirement <b>and</b> bet &ge; min bet, the result is flagged as a potential win</li>
+</ul>
+<p><strong>Storage:</strong></p>
+<ul>
+  <li>Flagged results are stored in a dedicated <code>slot_challenges</code> table with full metadata</li>
+</ul>
+<p><strong>Admin Panel:</strong></p>
+<ul>
+  <li>Interfaces with backend endpoints for fetching eligible wins and issuing rewards</li>
+  <li>No automatic payout is performed; all rewards are subject to admin verification</li>
+</ul>
+
+<h3>10.5 Security & Validation</h3>
+<p>Prevents fraudulent claims by:</p>
+<ul>
+  <li>Verifying results against official game provider round data</li>
+  <li>Enforcing exact multiplier and bet thresholds</li>
+  <li>Duplicate wins in the same round are ignored unless the challenge allows multiple payouts per player</li>
+</ul>
+
+<h3>10.6 Player Experience</h3>
+<ul>
+  <li>Players are informed about active challenges via banners in the lobby</li>
+  <li>Achievements are highlighted in the “My Competed” challenges tab when they occur</li>
+  <li>Winners are displayed on the main site “Finished” tab</li>
+</ul>
+</body>
+</html>

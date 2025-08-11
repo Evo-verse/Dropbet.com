@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3. Users Management - Casino Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>3. Users Management</h2>
+<p>The Users Management module provides a full overview of all registered players, their activity, and account details. It allows admins to filter, search, and review player statistics in real time.</p>
+
+<h3>3.1 Key Stats Overview</h3>
+<p>At the top of the page, four live counters summarize platform user activity:</p>
+<ul>
+    <li><b>New Users</b> – Number of newly registered accounts in the selected period.</li>
+    <li><b>Online</b> – Current count of users actively online.</li>
+    <li><b>Total Users</b> – Total registered accounts.</li>
+    <li><b>Restricted Users</b> – Accounts with restricted access due to bans, compliance issues, or manual suspension.</li>
+</ul>
+
+<h3>3.2 Filters</h3>
+<p>Admins can refine user lists using the following filters:</p>
+<ul>
+    <li><b>VIP Level</b> – Filter by minimum and maximum VIP tier.</li>
+    <li><b>Total Wagered</b> – Filter by total bet amount range.</li>
+    <li><b>LTV</b> – Lifetime value range.</li>
+    <li><b>Balance</b> – Current wallet balance range.</li>
+    <li><b>Registration Date</b> – Filter by specific sign-up period.</li>
+</ul>
+<p>The <b>Hide Filters</b> button collapses the filter section for more workspace. <b>Clear</b> resets all filters.</p>
+
+<h3>3.3 Search</h3>
+<p>The search bar allows quick lookup by username or email address. Clicking <b>Search</b> applies the term alongside any active filters.</p>
+
+<h3>3.4 User List Table</h3>
+<p>The table displays all users matching the filter/search criteria with the following columns:</p>
+<ul>
+    <li><b>User</b> – Player’s username with profile icon.</li>
+    <li><b>Email Address</b> – Registered email.</li>
+    <li><b>VIP Level</b> – Current loyalty tier.</li>
+    <li><b>Total Wagered</b> – Cumulative bets placed.</li>
+    <li><b>LTV</b> – Lifetime value of the player.</li>
+    <li><b>Last Active</b> – Time since last login.</li>
+    <li><b>Referral Code</b> – Code used during registration (if any).</li>
+    <li><b>Balance</b> – Current wallet balance.</li>
+    <li><b>Register Date</b> – Exact date and time of account creation.</li>
+    <li><b>More</b> – Action menu for user-specific management options (e.g., view full profile, adjust balance, apply restrictions).</li>
+</ul>
+
+</body>
+</html>

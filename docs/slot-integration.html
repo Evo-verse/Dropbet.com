@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slot Aggregation Integration - Casino Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Slot Aggregation Integration</h1>
+
+<p>Casino integrates a wide range of third-party slot games via the Eva aggregation platform. This integration provides centralized access to multiple providers, handling everything from game launches to wallet callbacks and promotional features.</p>
+
+<p>Slot integration documentation: <a href="https://integration-hub.eva-stage-pm8games.com/docs/operator/index.html" target="_blank" rel="noopener noreferrer">https://integration-hub.eva-stage-pm8games.com/docs/operator/index.html</a></p>
+
+<h2>1. Integration Overview</h2>
+<p>The Eva aggregation platform acts as a unified layer between Casino and dozens of slot providers. It enables:</p>
+<ul>
+    <li>Centralized game launch API</li>
+    <li>Secure session management</li>
+    <li>Real-time wallet transaction relay (bet, win, refund)</li>
+    <li>Provider-agnostic handling of promotions and game metadata</li>
+</ul>
+
+<h2>2. Non-Functional Requirements</h2>
+<ul>
+    <li>All wallet endpoints must be hosted over HTTPS</li>
+    <li>JSON payloads must gracefully ignore unknown fields (forward compatibility)</li>
+    <li>Authentication is handled via HTTP Basic Auth + Partner Key headers</li>
+    <li>Requests are IP-restricted (whitelisted Eva servers only)</li>
+    <li>Wallet API must meet strict performance targets (e.g., sub-450ms for P99 responses)</li>
+</ul>
+
+<h2>3. Game Launch Flow</h2>
+<p>To launch a game, the Casino frontend constructs a URL to Casino BE-endpoint with parameters such as:</p>
+<ul>
+    <li>gameId: internal Eva game identifier</li>
+    <li>channel: desktop or mobile</li>
+    <li>partnerKey: Casino’s assigned partner ID</li>
+    <li>sessionToken: the user’s active session token (omitted for demo mode)</li>
+    <li>language: user’s preferred language</li>
+    <li>lobbyUrl: fallback URL when exiting a game</li>
+</ul>
+<p>The resulting URL is opened in an iframe on the frontend.</p>
+
+<h2>4. Wallet Integration (Callback API)</h2>
+<p>Eva relays user game activity through a standardized set of wallet API endpoints implemented on Casino’s backend:</p>
+
+<h3>Player Endpoints</h3>
+<ul>
+    <li><code>GET /players/accounts/:playerId</code></li>
+    <li><code>GET /players/sessions/:sessionToken</code></li>
+</ul>
+
+<h3>Transaction Endpoints</h3>
+<ul>
+    <li><code>POST /transactions/bet</code></li>
+    <li><code>POST /transactions/win</code></li>
+    <li><code>POST /transactions/refund</code></li>
+    <li><code>POST /transactions/promoWin</code></li>
+    <li><code>POST /transactions/tournamentWin</code></li>
+</ul>
+
+<p>Each call contains transaction data such as:</p>
+<ul>
+    <li><code>amount, currency, playerId, gameId, roundId, txId, reason</code></li>
+</ul>
+
+<p>Responses must include the updated balance state and transaction confirmation.</p>
+
+<h2>5. Wallet Transaction Format</h2>
+<p>Each transaction request includes:</p>
+<ul>
+    <li>Identifiers: <code>playerId, gameId, roundId, provider, txId</code></li>
+    <li>Financials: <code> amount,</code>(minor units) <code>currency</code></li>
+    <li>Metadata: <code>reason, freeSpinData, tournamentId,</code> etc.</li>
+</ul>
+<p>Wallet response must return:</p>
+<ul>
+    <li><code>balance</code>: broken into <code>main, bonus,</code> and <code>locked</code></li>
+    <li><code>tx</code>: confirmation details, unique ID, and <code>processed</code> flag</li>
+</ul>
+
+<h2>6. Error Handling & Idempotency</h2>
+<ul>
+    <li>All wallet endpoints must handle duplicate <code>txId</code> submissions safely by returning <code>processed: true</code> if already handled</li>
+    <li>Errors must be returned with JSON structure: <code> errorCode, message</code>, and timestamp</li>
+    <li>Common errors: <code>insufficient-balance, session-expired, invalid-amount,</code> etc.</li>
+</ul>
+
+<h2>7. Game Metadata API</h2>
+<p>Eva provides a data API for syncing game catalogs, filtering games, and managing visual assets. Casino uses this to:</p>
+<ul>
+    <li>Sync the latest provider game lists</li>
+    <li>Filter by <code>gameId, provider, productType</code>, or <code>enabled</code></li>
+    <li>Cache game thumbnails, categories, and volatility</li>
+    <li>Custom branding can be applied to games by overriding default thumbnails via Eva’s image endpoints.</li>
+</ul>
+
+<h2>8. Free Spins System</h2>
+<p>The platform supports free spin promotions managed through the aggregator:</p>
+<ul>
+    <li>Admins define campaigns (bet amounts, validity, per-currency amounts)</li>
+    <li>Spins are issued to users via API call</li>
+    <li>Spins can be cancelled (per-user or full campaign)</li>
+    <li>Eva handles bonus context during gameplay (e.g., free spin payout routing)</li>
+</ul>
+
+<h2>9. Admin Capabilities</h2>
+<p>From the admin panel, Casino can:</p>
+<ul>
+    <li>Enable or disable games globally or per provider</li>
+    <li>View game usage statistics</li>
+    <li>Attach challenges or missions to specific games</li>
+    <li>Override thumbnails, sort order, or categories</li>
+</ul>
+</body>
+</html>

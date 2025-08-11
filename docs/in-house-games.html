@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>8. In-House Games — Technical Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>8. In-House Games — Technical Documentation</h1>
+<p>This section provides a complete technical overview of DropBet’s in-house games. These custom-built games are fully integrated with the platform’s wallet, fairness systems, admin panel, and user account logic.</p>
+
+<h2>1. Overview</h2>
+<p>DropBet features 9 internally developed games, live in production:</p>
+<ul>
+    <li>Monkey Run</li>
+    <li>Limbo</li>
+    <li>Plinko</li>
+    <li>Mines</li>
+    <li>Dice</li>
+    <li>Speed Roulette</li>
+    <li>Keno</li>
+    <li>Roulette</li>
+    <li>Blackjack</li>
+</ul>
+<p>Each game is designed for instant interaction, transparency, and platform-native integration. All games support provably fair mechanics, real-money wagering, and centralized logging.</p>
+
+<h2>2. Architecture Overview</h2>
+<h3>2.1 Backend Architecture</h3>
+<p>Each in-house game is implemented as a <b>fully modular NestJS module</b>.</p>
+<ul>
+    <li>Every game has its own <b>controller and service</b>, maintaining full isolation.</li>
+    <li>Modules are registered through a central <code>casino.module</code> that aggregates logic without breaking encapsulation.</li>
+    <li>Game logic resides 100% server-side; the frontend only receives results and renders them visually.</li>
+</ul>
+
+<h3>2.2 Frontend Architecture</h3>
+<ul>
+    <li>Built in <b>React + TypeScript</b>.</li>
+    <li>Game components are housed in <code>src/components/originalGames/</code>.</li>
+    <li>Each game uses either <b>FormProvider (react-hook-form)</b> or <b>React Context</b> to manage input and local state.</li>
+    <li>State persistence between page reloads is supported for games that require it.</li>
+    <li>Animations start <b>after receiving the result</b> from the backend.</li>
+    <li>Responsive design is implemented via Tailwind classes, SCSS mixins, and container queries.</li>
+    <li>Sound handled with <b>howler</b>; animations handled with <b>framer-motion</b> and CSS transitions.</li>
+</ul>
+
+<h3>2.3 Communication</h3>
+<ul>
+    <li>All bets are submitted via REST API, not WebSocket.</li>
+    <li>Each game posts to a specific endpoint: <code>/casino/games/house/[game-name]/bet</code>.</li>
+    <li>Inside each game folder, a <code>utils/queries.ts</code> file defines all API calls.</li>
+    <li>Backend responses return the result payload, which triggers frontend rendering and animation.</li>
+</ul>
+
+<h2>3. Provably Fair System</h2>
+<p>DropBet's fairness system is fully transparent and user-verifiable.</p>
+
+<h3>3.1 Server Seed Management</h3>
+<p>Each user has a <b>dedicated fairness seed set</b> stored in <code>user_fairness_seeds</code>:</p>
+<ul>
+    <li><code>serverSeed</code> – actual value used for outcome generation (kept secret)</li>
+    <li><code>hashedServerSeed</code> – publicly visible hash for fairness validation</li>
+    <li><code>nextServerSeed/nextHashedServerSeed</code> – pre-generated for rotation</li>
+</ul>
+<p>Once a server seed is used, it's archived in <code>user_inactive_fairness_seeds</code>.</p>
+
+<h3>3.2 Client Seed</h3>
+<p>The client seed is user-configurable.</p>
+<p>When updated:</p>
+<ul>
+    <li>The current pair is archived</li>
+    <li><code>nextServerSeed</code> is promoted to active</li>
+    <li>A new <code>nextServerSeed</code> and hash are generated</li>
+</ul>
+
+<h3>3.3 Verification</h3>
+<p>Every game round includes:</p>
+<ul>
+    <li>serverSeed (hidden)</li>
+    <li>clientSeed (user-defined)</li>
+    <li>nonce (auto-incrementing)</li>
+    <li>hashedServerSeed</li>
+</ul>
+<p>After each round, users can verify the fairness via the My Bets interface.</p>
+
+<h2>4. Gameplay & Mechanics</h2>
+<h3>4.1 Wagering</h3>
+<ul>
+    <li>All in-house games use the main wallet balance.</li>
+    <li>Min/max bets and RTP (if applicable) are configurable via the admin panel.</li>
+    <li>Supported bet parameters depend on the game (e.g. multiplier, grid selection).</li>
+</ul>
+
+<h3>4.2 Bet Isolation & Duplicate Prevention</h3>
+<ul>
+    <li>Each frontend bet submission is unique.</li>
+    <li>The bet button is disabled until the result is received, preventing double-betting.</li>
+</ul>
+
+<h3>4.3 Session Resilience</h3>
+<p>For games with state or progression, the frontend can request current state to restore gameplay after a disconnect or reload.</p>
+
+<h3>4.4 Multi-Tab Support</h3>
+<p>Users can play multiple games in separate tabs without restriction.</p>
+
+<h2>5. Database Schema (Bet Model)</h2>
+<p>Each in-house bet record stores the following:</p>
+<p>Identifiers:</p>
+<ul>
+    <li>id, userId, gameId, roundId</li>
+</ul>
+<p>Financials:</p>
+<ul>
+    <li>amount, payout (in original currency)</li>
+    <li>usdAmount, usdPayout</li>
+    <li>currencyId</li>
+    <li>multiplier, commissionGgrUsdAmount, commissionGgrPercent</li>
+</ul>
+<p>Status:</p>
+<ul>
+    <li>status, settledAt, createdAt, updatedAt, errorDetails</li>
+</ul>
+<p>Metadata:</p>
+<ul>
+    <li>payload: JSON object containing game-specific result data or mechanics (e.g. hit tiles in Mines)</li>
+</ul>
+
+<h2>6. Admin Tools</h2>
+<p>Admins can:</p>
+<ul>
+    <li>Enable/disable any in-house game</li>
+    <li>Set min/max bet limits and RTP</li>
+    <li>View live rounds and round history</li>
+    <li>Track per-game statistics (volume, wins, user activity)</li>
+    <li>Search and filter by user, round ID, or time range</li>
+</ul>
+
+<h2>7. Logging & My Bets</h2>
+<p>All game rounds are saved to bet history.</p>
+<p>Users can view:</p>
+<ul>
+    <li>Game name, result, amount, payout</li>
+    <li>Fairness details (hash, seeds, nonce)</li>
+    <li>Timestamps</li>
+</ul>
+<p>Admins have full access to:</p>
+<ul>
+    <li>Raw bet data (including payload)</li>
+    <li>Round outcome inspection</li>
+    <li>User wager summaries</li>
+</ul>
+
+<h2>Monkey Run</h2>
+<h3>1. Game Overview</h3>
+<p>Description: Monkey Run is a progressive obstacle-avoidance game where the player guides the monkey across multiple lanes, each containing a hidden risk, a car.</p>
+<p>Objective: Move the monkey forward by selecting lanes, aiming to reach the highest possible multiplier without hitting an obstacle.</p>
+
+<h3>2. Game Flow</h3>
+<ul>
+    <li>Player selects bet amount and risk level (Easy, Medium, Hard, Extreme).</li>
+    <li>Multipliers for each step are generated before the run begins.</li>
+    <li>Player progresses step-by-step by clicking on a lane.</li>
+    <li>If a trap is hit, the round ends, and the player loses the bet.</li>
+    <li>The player can cash out at any time to secure the current multiplier.</li>
+</ul>
+
+<h3>3. Betting Rules</h3>
+<ul>
+    <li>Supported currencies: All platform-supported coins/tokens.</li>
+    <li>Min/Max bets: Defined in admin settings (varies per casino configuration).</li>
+    <li>Only one bet per round per player.</li>
+    <li>Auto-bet not available (manual play only).</li>
+</ul>
+
+<h3>4. Game Logic & Outcomes</h3>
+<ul>
+    <li>Outcome is determined per step: the system reveals if the chosen lane has a trap or a safe multiplier.</li>
+    <li>Safe step: Progress continues, multiplier increases.</li>
+    <li>Trap: Game ends, no payout.</li>
+    <li>Cash out: Payout equals bet × current multiplier.</li>
+</ul>
+
+<h3>5. Payout Structure</h3>
+<p>Payout = Bet Amount × Multiplier at the time of cash out.</p>
+<p>Multipliers increase incrementally with each safe step based on chosen risk level:</p>
+<ul>
+    <li>Easy: Smaller multiplier growth, fewer traps.</li>
+    <li>Medium: Balanced growth and trap count.</li>
+    <li>Hard: Higher multiplier growth, more traps.</li>
+    <li>Extreme: Maximum multiplier growth, high trap risk.</li>
+</ul>
+
+<h3>6. Special Features</h3>
+<ul>
+    <li>Multiple difficulty modes.</li>
+    <li>Progressive risk/reward balance.</li>
+    <li>Instant cash out option.</li>
+</ul>
+
+<h3>7. Fairness & Compliance</h3>
+<ul>
+    <li>Uses provably fair system with pre-generated results per round.</li>
+    <li>Seeds are verifiable by the player post-game.</li>
+</ul>
+
+<h2>Limbo</h2>
+<h3>1. Game Overview</h3>
+<p>Description: Limbo is a fast-paced, single-click multiplier game where players choose a target multiplier and attempt to hit or exceed it.</p>
+<p>Objective: Predict a multiplier that will be reached in the round. If the multiplier is reached or exceeded, the player wins.</p>
+
+<h3>2. Game Flow</h3>
+<ul>
+    <li>Player sets bet amount and target multiplier (manually or via auto mode).</li>
+    <li>The system generates a random multiplier for the round.</li>
+    <li>If the result ≥ player’s chosen multiplier, the player wins.</li>
+    <li>If the result &lt; chosen multiplier, the bet is lost.</li>
+</ul>
+
+<h3>3. Betting Rules</h3>
+<ul>
+    <li>Supported currencies: All platform-supported coins/tokens.</li>
+    <li>Min/Max bets: Defined in admin configuration.</li>
+    <li>Player chooses the multiplier and odds are calculated automatically.</li>
+    <li>Available in Manual and Auto-bet modes.</li>
+</ul>
+
+<h3>4. Game Logic & Outcomes</h3>
+<ul>
+    <li>Random multiplier is generated server-side using the provably fair seed.</li>
+    <li>Outcome is deterministic and verifiable post-round.</li>
+    <li>Multipliers are clamped by minimum and maximum RTP settings.</li>
+</ul>
+
+<h3>5. Payout Structure</h3>
+<p>Payout = <b>Bet Amount × Target Multiplier</b> (if won), otherwise zero.</p>
+
+<h3>6. Special Features</h3>
+<ul>
+    <li>Auto-bet system supports strategies and stop conditions.</li>
+    <li>Live multiplier animations during round reveal.</li>
+    <li>Instant bet placement and result delivery.</li>
+</ul>
+
+<h3>7. Fairness & Compliance</h3>
+<ul>
+    <li>Provably fair seed usage per round.</li>
+    <li>Round hashes and seeds available for user verification.</li>
+</ul>
+
+<h2>Keno</h2>
+<h3>1. Game Overview</h3>
+<p>Description: Keno is a lottery-style game where players select numbers and hope they match drawn numbers.</p>
+<p>Objective: Select a set of numbers and win based on how many are matched.</p>
+
+<h3>2. Game Flow</h3>
+<ul>
+    <li>Player chooses numbers from a pool (usually 1–80).</li>
+    <li>The system draws a fixed number of winning numbers randomly.</li>
+    <li>Winnings depend on the number of matches and bet size.</li>
+</ul>
+
+<h3>3. Betting Rules</h3>
+<ul>
+    <li>Supported currencies: All platform coins/tokens.</li>
+    <li>Min/Max bets set by admin.</li>
+    <li>Number of selected spots affects payout odds.</li>
+    <li>One bet per round per user.</li>
+</ul>
+
+<h3>4. Game Logic & Outcomes</h3>
+<ul>
+    <li>Random draw generated server-side with provably fair seed.</li>
+    <li>Matching numbers calculated and payout determined.</li>
+    <li>Game supports variable payout tables based on spots.</li>
+</ul>
+
+<h3>5. Payout Structure</h3>
+<p>Payout calculated based on matched numbers and bet amount using defined payout tables.</p>
+
+<h3>6. Special Features</h3>
+<ul>
+    <li>Multiple spot selections (e.g. 1-10 numbers).</li>
+    <li>Configurable payout tables.</li>
+    <li>Quick pick option for random selection.</li>
+</ul>
+
+<h3>7. Fairness & Compliance</h3>
+<ul>
+    <li>Provably fair draws with transparent seed hashes.</li>
+    <li>Verification possible via user interface.</li>
+</ul>
+
+<h2>Plinko</h2>
+<h3>1. Game Overview</h3>
+<p>Description: Plinko is a pegboard game where a ball drops through a grid of pegs to land in a multiplier slot at the bottom.</p>
+<p>Objective: Drop the ball and win based on the multiplier slot it lands in.</p>
+
+<h3>2. Game Flow</h3>
+<ul>
+    <li>Player sets bet amount and optionally chooses risk level.</li>
+    <li>The ball is dropped and bounces through pegs.</li>
+    <li>The landing slot multiplier determines the payout.</li>
+</ul>
+
+<h3>3. Betting Rules</h3>
+<ul>
+    <li>Supported currencies: All platform coins/tokens.</li>
+    <li>Min/Max bets as per admin settings.</li>
+    <li>Only one bet per round per player.</li>
+</ul>
+
+<h3>4. Game Logic & Outcomes</h3>
+<ul>
+    <li>The landing position is generated server-side using provably fair seed.</li>
+    <li>Outcome and payout calculated accordingly.</li>
+    <li>Front-end shows ball drop animation based on result.</li>
+</ul>
+
+<h3>5. Payout Structure</h3>
+<p>Payout = Bet Amount × Multiplier of landing slot.</p>
+
+<h3>6. Special Features</h3>
+<ul>
+    <li>Adjustable peg layout and multiplier distribution.</li>
+    <li>Instant result reveal after animation.</li>
+    <li>Supports multiple bet amounts and currencies.</li>
+</ul>
+
+<h3>7. Fairness & Compliance</h3>
+<ul>
+    <li>Provably fair random generation of landing slot.</li>
+    <li>Seed and hash available for verification.</li>
+</ul>
+
+</body>
+</html>

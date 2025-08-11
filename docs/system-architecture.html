@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Casino Platform - System Architecture</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   background-color: #f9f9f9;
+   color: #333;
+   margin: 0;
+   padding: 20px;
+   line-height: 1.6;
+  }
+
+  h1 {
+   font-size: 2.5em;
+   margin-bottom: 10px;
+  }
+
+  h2 {
+   font-size: 1.8em;
+   margin-top: 40px;
+   margin-bottom: 10px;
+   border-bottom: 2px solid #ddd;
+   padding-bottom: 4px;
+  }
+
+  h3 {
+   font-size: 1.4em;
+   margin-top: 20px;
+   margin-bottom: 8px;
+  }
+
+  ul {
+   margin-left: 20px;
+  }
+
+  ol {
+   margin-left: 20px;
+  }
+
+  code {
+   background-color: #eee;
+   padding: 2px 4px;
+   font-family: Consolas, monospace;
+   border-radius: 4px;
+  }
+
+  pre {
+   background-color: #f0f0f0;
+   padding: 15px;
+   border-radius: 5px;
+   overflow-x: auto;
+   font-size: 0.95em;
+  }
+
+  .section {
+   margin-bottom: 40px;
+  }
+ </style>
+</head>
+<body>
+<h1>2. System Architecture</h1>
+<p>This section outlines the key frameworks, libraries, architectural decisions, and project structure behind this casino platform.</p>
+
+<h2>2.1 Frameworks and Libraries</h2>
+<h3>Core Framework</h3>
+<ul>
+ <li><strong>Next.js:</strong> The project leverages Next.js, specifically its App Router with integrated internationalization features.</li>
+ <li><strong>React:</strong> Utilized as the primary UI library, with extensive use of React Hooks.</li>
+ <li><strong>TypeScript:</strong> The entire codebase is written in TypeScript for robust type safety.</li>
+</ul>
+
+<h3>State Management</h3>
+<ul>
+ <li><strong>@tanstack/react-query:</strong> Extensively used for data fetching, caching, and server state management.</li>
+ <li><strong>Zustand:</strong> Manages client-side global state through various stores:
+  <ul>
+   <li><code>useWalletStore</code>: For wallet and currency management.</li>
+   <li><code>useTrafficIncomeStore</code>: For affiliate/traffic tracking.</li>
+   <li><code>useRakebackStore</code>: For rakeback challenge features.</li>
+   <li><code>useAffiliateCodeStore</code>: For affiliate code management.</li>
+   <li><code>useGameSettingsStore</code>: For game settings, such as sound preferences.</li>
+  </ul>
+ </li>
+</ul>
+
+<h3>UI and Styling</h3>
+<ul>
+ <li><strong>shadcn/ui:</strong> Provides custom UI components built on top of Radix UI primitives.</li>
+ <li><strong>Tailwind CSS:</strong> Employed for utility-first styling, configured in <code>tailwind.config.ts</code>.</li>
+ <li><strong>SCSS Modules:</strong> Used extensively for component-specific styling (<code>.module.scss</code> files).</li>
+ <li><strong>clsx/classnames:</strong> For conditional class name composition.</li>
+</ul>
+
+<h3>Internationalization</h3>
+<ul>
+ <li><strong>next-intl:</strong> Facilitates multi-language support with locale-based routing.</li>
+</ul>
+
+<h3>Form Handling</h3>
+<ul>
+ <li><strong>react-hook-form:</strong> Manages form state and validation.</li>
+</ul>
+
+<h3>Other Notable Libraries</h3>
+<ul>
+ <li><strong>axios:</strong> For efficient HTTP requests.</li>
+ <li><strong>socket.io-client:</strong> Enables real-time communication.</li>
+ <li><strong>howler:</strong> For audio effects within games.</li>
+ <li><strong>framer-motion:</strong> Used for sophisticated animations.</li>
+ <li><strong>embla-carousel:</strong> For creating carousel/slider components.</li>
+ <li><strong>qrcode.react:</strong> For generating QR codes (likely for 2FA or crypto addresses).</li>
+</ul>
+
+<h2>2.2 Build Tools</h2>
+<ul>
+ <li>PostCSS: For processing CSS with various plugins.</li>
+ <li>Tailwind CSS: Integrated as a PostCSS plugin.</li>
+ <li>ESLint: Enforces code linting with custom rules.</li>
+ <li>Prettier: Ensures consistent code formatting.</li>
+ <li>Stylelint: For SCSS/CSS linting.</li>
+ <li>mini-css-extract-plugin: For extracting CSS into separate files.</li>
+</ul>
+
+<h2>2.3 File Structure</h2>
+<pre>
+src/
+ ├── app/
+ │   └── [locale]/         # Internationalized routes
+ │       ├── layout.tsx
+ │       ├── page.tsx
+ │       ├── settings/
+ │       ├── games/
+ │       └── ...
+ ├── components/
+ │   ├── common/           # Shared components
+ │   ├── modals/           # Modal components
+ │   ├── originalGames/    # Game-specific components
+ │   ├── pages/            # Page-specific components
+ │   └── ui/               # UI library components
+ ├── api/
+ │   └── apiClient/        # API client implementation
+ ├── hooks/                # Custom React hooks
+ ├── providers/            # React context providers
+ ├── queries/              # React Query definitions
+ ├── stores/               # Zustand stores
+ ├── styles/               # Global styles and mixins
+ ├── types/                # TypeScript type definitions
+ ├── utils/                # Utility functions
+ ├── constants/            # Constants and configuration
+ ├── i18n/                 # Internationalization setup
+ └── mappers/              # Data transformation utilities
+    </pre>
+
+<h2>2.4 Styling Approach</h2>
+<ul>
+ <li><strong>Tailwind CSS:</strong> For utility-first styling, configured in <code>tailwind.config.ts</code>.</li>
+ <li><strong>SCSS Modules:</strong> For component-specific styling using <code>.module.scss</code> files.</li>
+ <li><strong>Global CSS:</strong> Found in <code>src/styles/globals.css</code> for base styles and CSS variables.</li>
+ <li><strong>SCSS Mixins:</strong> Defined in <code>src/styles/mixins.scss</code> for responsive design and reusable patterns.</li>
+</ul>
+
+<h2>2.5 Theming</h2>
+<ul>
+ <li><strong>CSS Variables:</strong> Defined within the Tailwind configuration using HSL color values.</li>
+ <li><strong>shadcn/ui:</strong> Components are themed via the <code>components.json</code> configuration.</li>
+</ul>
+
+<h2>2.6 Routing</h2>
+<ul>
+ <li><strong>Next.js App Router:</strong> Used for all page routing.</li>
+ <li><strong>Internationalized Routes:</strong> Implemented with <code>next-intl</code> utilizing the <code>[locale]</code> parameter in routes.</li>
+ <li><strong>Protected Routes:</strong> Managed in <code>middleware.ts</code> with arrays like <code>authProtectedRoutes</code> that check for authentication tokens.</li>
+</ul>
+
+<h2>2.7 State Management</h2>
+<h3>Server State</h3>
+<p>@tanstack/react-query: Utilized for efficient data fetching, caching, and server state management.</p>
+<h3>Client State</h3>
+<ul>
+ <li>Zustand: For global state management with various dedicated stores.</li>
+ <li>React Context: Used for specific features via providers such as <code>useModal</code> and <code>useUser</code>.</li>
+</ul>
+
+<h2>2.8 UI Component Library</h2>
+<ul>
+ <li><strong>shadcn/ui:</strong> A custom component library built on Radix UI primitives.</li>
+ <li><strong>Component Organization:</strong>
+  <ul>
+   <li>Base UI components reside in <code>src/components/ui/</code>.</li>
+   <li>Shared components are found in <code>src/components/common/</code>.</li>
+   <li>Feature-specific components are organized in dedicated folders.</li>
+  </ul>
+ </li>
+</ul>
+
+<h2>2.9 API Handling</h2>
+<ul>
+ <li><strong>Custom API Client:</strong> Implemented in <code>src/api/apiClient/</code> with:
+  <ul>
+   <li><code>ApiClientBase.ts</code>: Provides a base implementation with common methods.</li>
+   <li><code>ApiClientBrowser.ts</code>: Handles browser-specific implementation, including token refresh logic.</li>
+   <li><code>ApiClientServer.ts</code>: Manages server-specific implementation for SSR.</li>
+  </ul>
+ </li>
+ <li><strong>React Query:</strong> Used for data fetching with custom hooks for specific API endpoints.</li>
+ <li><strong>Error Handling:</strong> Implemented in API client interceptors and React Query error callbacks.</li>
+</ul>
+
+<h2>2.10 Authentication</h2>
+<ul>
+ <li><strong>JWT-based Authentication:</strong> Employs access, refresh, and socket tokens.</li>
+ <li><strong>Login/Signup:</strong> Implemented in the AuthModal component, supporting:
+  <ul>
+   <li>Email/password authentication</li>
+   <li>Social logins (Google, Steam) via OAuth</li>
+   <li>Username setup after OAuth login</li>
+  </ul>
+ </li>
+ <li><strong>2FA Implementation:</strong>
+  <ul>
+   <li>Google Authenticator integration</li>
+   <li>QR code scanning for setup</li>
+   <li>Recovery codes for backup</li>
+   <li>Verification during login with verify2FA mutation</li>
+  </ul>
+ </li>
+</ul>
+
+<h2>2.11 Third-Party Integrations</h2>
+<ul>
+ <li><strong>OAuth Providers:</strong>
+  <ul>
+   <li>Google (<code>/auth/google</code>)</li>
+   <li>Steam (<code>/auth/steam</code>)</li>
+  </ul>
+ </li>
+ <li><strong>Crypto Wallets:</strong> Supports multiple cryptocurrencies and networks:
+  <ul>
+   <li>BTC, ETH, SOL, USDC, USDT, LTC, POL (Polygon), TRX (Tron), BNB</li>
+   <li>Multiple network support: ERC-20, BEP-20, TRC-20, etc.</li>
+  </ul>
+ </li>
+ <li><strong>Payment Processing:</strong> Integrates for buying crypto with credit cards and digital wallets:
+  <ul>
+   <li>Visa, Mastercard, Google Pay, Apple Pay</li>
+  </ul>
+ </li>
+ <li><strong>Analytics:</strong> Sentry integration for error tracking and monitoring.</li>
+</ul>
+
+<h2>2.12 Responsive Design</h2>
+<p>The project implements responsive design through:</p>
+<ul>
+ <li><strong>SCSS Mixins:</strong> Defined in <code>src/styles/mixins.scss</code> with specific breakpoints:
+  <ul>
+   <li>Mobile: max-width 430px</li>
+   <li>Tablet-min: max-width 968px</li>
+   <li>Tablet: between 430px and 1380px</li>
+   <li>Desktop: between 1400px and 1860px</li>
+   <li>Large Desktop: min-width 1860px</li>
+  </ul>
+ </li>
+ <li><strong>Container Queries:</strong> Used for component-specific responsive behavior.</li>
+ <li><strong>Media Queries:</strong> Employed in SCSS modules for component-specific responsive styling.</li>
+ <li><strong>Responsive Components:</strong>
+  <ul>
+   <li>MobileMenu component for mobile navigation</li>
+   <li>Responsive layouts using flexbox and grid</li>
+   <li><code>useMediaQuery</code> hook from <code>usehooks-ts</code> for responsive logic</li>
+  </ul>
+ </li>
+ <li><strong>Mobile-Optimized Views:</strong> Special components and layouts for mobile devices, such as game interfaces adapted for touch interaction.</li>
+</ul>
+</body>
+</html>

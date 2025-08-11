@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admins Section - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h2>4. Admins</h2>
+<p>The Admins section allows you to view, create, and manage administrative accounts that have access to the backend panel. This is the control point for setting up who can manage the platform and what permissions they have.</p>
+
+<h3>Admin List</h3>
+<p>The main table displays all existing admin accounts with the following information:</p>
+<ul>
+    <li><b>User</b> – profile avatar and username for quick identification.</li>
+    <li><b>Email address</b> – the registered login email.</li>
+    <li><b>Last active</b> – the last time this admin was logged into the system, useful for monitoring account usage.</li>
+    <li><b>Register date</b> – when the account was created, allowing tracking of onboarding timelines.</li>
+    <li><b>More info</b> – additional details or actions (such as editing or deleting an admin).</li>
+</ul>
+<p>This list helps quickly review active and inactive admin accounts, ensuring only authorized staff have access.</p>
+
+<h3>Creating a New Admin</h3>
+<p>Clicking the Create Admin button opens a setup form with the following fields:</p>
+<ul>
+    <li><b>Username</b> – display name for the admin account.</li>
+    <li><b>Email</b> – login email for authentication.</li>
+    <li><b>Password</b> – secure password set at creation.</li>
+    <li><b>Select Permissions</b> – choose which sections of the admin panel the user can access.</li>
+    <li><b>Select all / Remove all</b> – quickly grant or revoke all permissions.</li>
+</ul>
+<p>Once permissions are set, click Submit to create the account or Close to cancel.</p>
+</body>
+</html>

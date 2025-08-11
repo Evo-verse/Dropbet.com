@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - Casino Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>2. Dashboard</h2>
+
+<h3>Purpose</h3>
+<p>The Dashboard provides detailed operational analytics for the casino platform, broken down into multiple tabs: General, Games, Game by Slug Stats, and Finances. This section is used to monitor platform performance, user activity, and financial trends in real time.</p>
+
+<h4>2.1 General Tab</h4>
+<p>Displays high-level KPIs and trends over the selected time period.</p>
+
+<h5>Metrics &amp; Graphs:</h5>
+<ul>
+    <li><b>Reg Count / FTD %</b> – Total number of registered users vs. first-time depositors, shown as counts and conversion percentage.</li>
+    <li><b>Deposit Amount / In/Out Ratio</b> – Compares deposit totals, withdrawal totals, and the in/out ratio percentage.</li>
+    <li><b>Active Players</b> – Number of unique active players within the selected time frame.</li>
+    <li><b>Turnover / ATPU</b> – Total bet turnover alongside Average Turnover Per User.</li>
+    <li><b>GGR / ARPU</b> – Gross Gaming Revenue compared to Average Revenue Per User.</li>
+    <li><b>NGR All</b> – Net Gaming Revenue across the platform.</li>
+</ul>
+
+<h5>Controls:</h5>
+<ul>
+    <li>Date range selector (e.g., Today, Last 24 hours)</li>
+    <li>Time granularity selector (By Hour, By Day)</li>
+    <li>Visibility toggles for each graph</li>
+</ul>
+
+<h4>2.2 Games Tab</h4>
+<p>Focuses on performance metrics for all games combined.</p>
+
+<h5>Metrics &amp; Graphs:</h5>
+<ul>
+    <li><b>Active Players</b> – Total active players per time slot.</li>
+    <li><b>Turnover / ATPU</b> – Total wagers and average turnover per user.</li>
+    <li><b>GGR / ARPU</b> – Gross Gaming Revenue and average revenue per user.</li>
+    <li><b>Game Type by Margin</b> – Bar chart comparing margin percentages for different game categories (e.g., Slots, House Games).</li>
+    <li><b>Game Type by Turnover</b> – Pie chart showing turnover distribution between game categories.</li>
+</ul>
+
+<h5>Filters:</h5>
+<ul>
+    <li>Game selection dropdown</li>
+    <li>Date range selector</li>
+    <li>Time granularity selector</li>
+</ul>
+
+<h4>2.3 Game by Slug Stats Tab</h4>
+<p>Provides per-game breakdowns.</p>
+
+<h5>Table Columns:</h5>
+<ul>
+    <li><b>Game Slug &amp; Name</b> – Internal identifier and game title.</li>
+    <li><b>Category</b> – Game category (e.g., Slots, House Game).</li>
+    <li><b>Provider</b> – Name of the game provider.</li>
+    <li><b>Turnover</b> – Total wagered amount for the game.</li>
+    <li><b>GGR</b> – Gross Gaming Revenue for that game.</li>
+    <li><b>Average Revenue</b> – Average revenue generated per session.</li>
+    <li><b>Average Turnover</b> – Average wager amount.</li>
+    <li><b>Bet Count</b> – Number of bets placed.</li>
+    <li><b>Active Players</b> – Unique players who played the game.</li>
+    <li><b>Margin</b> – Profitability percentage for the game.</li>
+    <li><b>More Info</b> – Link or menu for detailed data.</li>
+</ul>
+
+<h5>Filters:</h5>
+<ul>
+    <li>Game name</li>
+    <li>Game slug</li>
+    <li>Category</li>
+    <li>Provider</li>
+    <li>Date range</li>
+</ul>
+
+<h4>2.4 Finances Tab</h4>
+<p>Focuses on financial transaction data.</p>
+
+<h5>Metrics:</h5>
+<ul>
+    <li><b>Wallet Change</b> – Net change in user balances.</li>
+    <li><b>Deposits</b> – Total deposited amount.</li>
+    <li><b>Total Deposits</b> – Number of deposit transactions.</li>
+    <li><b>Average Deposit</b> – Mean deposit size.</li>
+    <li><b>Withdrawals</b> – Total amount withdrawn.</li>
+</ul>
+
+<h5>Filters:</h5>
+<ul>
+    <li>Include/Exclude test transactions</li>
+    <li>Date range picker</li>
+</ul>
+
+</body>
+</html>

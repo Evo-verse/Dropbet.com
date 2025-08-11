@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform - Affiliate System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<section id="affiliate-system">
+    <h1>7. Affiliate System</h1>
+    <p>The DropBet affiliate system allows users to generate custom referral codes, track their referred users, and earn commissions based on their referrals’ activity. It is tier-based and designed to support content creators, streamers, and regular players.</p>
+
+    <h2>7.1 Key Features</h2>
+    <h3>Affiliate Code Generation</h3>
+    <ul>
+        <li>Users can generate up to 3 custom affiliate codes.</li>
+        <li>Each code is unique and tied to the user’s ID.</li>
+        <li>Codes can be copied and shared as links (e.g. <code>dropbet.com?ref=CODE</code>).</li>
+    </ul>
+
+    <h3>Referral Tracking</h3>
+    <ul>
+        <li>When a new user signs up with a referral code, the referrer is saved in the system.</li>
+        <li>Tracking is cookie-based for non-logged-in users and applied during account creation.</li>
+        <li>The referral relationship is permanent and stored in the database.</li>
+    </ul>
+
+    <h3>Referral List</h3>
+    <p>Each affiliate user can see a full list of users who signed up using their code. The list includes:</p>
+    <ul>
+        <li>Username or ID of referred users</li>
+        <li>Registration date</li>
+        <li>Total wagered</li>
+        <li>Commission generated</li>
+    </ul>
+
+    <h3>Earnings and Commission</h3>
+    <ul>
+        <li>The commission system is tier-based:
+            <ul>
+                <li>Commission rates increase as the affiliate refers more wager volume or users.</li>
+            </ul>
+        </li>
+        <li>Commissions are based on referred players' losses or wagers, depending on configuration.</li>
+        <li>Earnings are shown in a dashboard-style UI, updated in real-time or via daily sync.</li>
+    </ul>
+
+    <h2>7.2 Frontend Architecture</h2>
+    <h3>State Management:</h3>
+    <ul>
+        <li>Uses Zustand (<code>useTrafficIncomeStore</code>) to track affiliate data on the frontend.</li>
+        <li>May share logic with promocode handling via <code>useAffiliateCodeStore</code>.</li>
+    </ul>
+
+    <h3>React Query:</h3>
+    <ul>
+        <li>Affiliate statistics and referral lists are fetched via <code>react-query</code> for real-time display.</li>
+    </ul>
+
+    <h3>UI Sections:</h3>
+    <ul>
+        <li>Code generator (input + copy/share buttons)</li>
+        <li>Referral list table</li>
+        <li>Commission stats block (current tier, earnings, claimable balance)</li>
+        <li>Terms &amp; conditions/info tooltip or modal</li>
+    </ul>
+
+    <h2>7.3 Backend Logic</h2>
+    <ul>
+        <li>Referral relationships are stored at user registration (<code>user_id → referred_by</code>).</li>
+        <li>Commissions are calculated based on platform-defined formulas, likely triggered by:
+            <ul>
+                <li>Bets placed by referred users</li>
+                <li>Net losses over a time period</li>
+            </ul>
+        </li>
+        <li>Commission tiers are defined in configuration or admin settings.</li>
+        <li>Affiliates have a balance that can be:
+            <ul>
+                <li>Claimed manually to wallet</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>7.4 Admin &amp; Control</h2>
+    <p>Admins can:</p>
+    <ul>
+        <li>See top affiliates by revenue or user count</li>
+        <li>Adjust commission tiers</li>
+        <li>View referral lists</li>
+        <li>Revoke or reset affiliate codes</li>
+    </ul>
+    <p>The system includes limits such as:</p>
+    <ul>
+        <li>Minimum wager volume for commission eligibility</li>
+        <li>Anti-abuse filters (e.g. self-referrals, duplicate IPs)</li>
+    </ul>
+
+    <h2>7.5 Promocode Connection</h2>
+    <ul>
+        <li>Promocodes can optionally be linked to affiliate accounts.</li>
+        <li>Claiming a promocode could trigger a referral attribution if no referrer is already set.</li>
+        <li>Useful for streamers who give out both codes and links.</li>
+    </ul>
+</section>
+</body>
+</html>
