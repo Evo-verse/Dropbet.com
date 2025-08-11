@@ -275,6 +275,42 @@ src/
  </li>
  <li><strong>Mobile-Optimized Views:</strong> Special components and layouts for mobile devices, such as game interfaces adapted for touch interaction.</li>
 </ul>
+<h2>2.13 BE-api General Information</h2>
+
+<h3>1. Main API</h3>
+<ul>
+ <li><b>Centralized component</b> that handles HTTP requests from the primary UI.</li>
+ <li>Implements core <b>casino business logic</b>, including betting, transactions, game processing, and user management.</li>
+ <li>Integrates external services:</li>
+ <ul>
+  <li><b>Payment gateways</b> for deposit and withdrawal operations.</li>
+  <li><b>Slot aggregators</b> to manage slots and fetch game results.</li>
+  <li><b>Sports betting API</b> for managing bets.</li>
+  <li><b>CRM (Fasttrack)</b> and <b>KYC (Sumsub)</b> systems.</li>
+  <li><b>Email brokers</b> for sending notifications.</li>
+ </ul>
+</ul>
+
+<h3>2. WebSocket Service</h3>
+<ul>
+ <li><b>Dedicated service</b> managing WebSocket connections.</li>
+ <li><b>Key responsibilities:</b></li>
+ <ul>
+  <li>Real-time notifications handling.</li>
+  <li>User chat rooms and messaging.</li>
+  <li>Real-time system and client notifications.</li>
+ </ul>
+</ul>
+
+<h3>3. Standalone Game Services (BlackJack & Speed Roulette)</h3>
+<ul>
+ <li><b>Separate from core API</b>, specialized in specific games.</li>
+ <li>Custom <b>Random Number Generators (RNG)</b>.</li>
+ <li>Individual <b>database schemas</b> for storing game outcomes.</li>
+ <li>Capable of exporting game results for external integration.</li>
+ <li><b>Real-time multiplayer functionality</b> and cross-platform interactions.</li>
+</ul>
+
 <footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
  <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
  >← Home</a
