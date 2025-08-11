@@ -1,0 +1,1759 @@
+{
+	"info": {
+		"_postman_id": "7016e306-1da9-45c4-95be-71debd472791",
+		"name": "Dropbet-integration-api",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39707524",
+		"_collection_link": "https://speeding-rocket-681129.postman.co/workspace/Team-Workspace~123632ec-4336-4108-84b9-25e50e736c2e/collection/39707524-7016e306-1da9-45c4-95be-71debd472791?action=share&source=collection_link&creator=39707524"
+	},
+	"item": [
+		{
+			"name": "sportsbook",
+			"item": [
+				{
+					"name": "balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Currency</th>\r",
+									"        <th>Cash</th>\r",
+									"        <th>Bonus</th>\r",
+									"        <th>Locked</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>USDT</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Brand",
+								"value": "loka",
+								"type": "text"
+							},
+							{
+								"key": "X-Operator-Id",
+								"value": "toka",
+								"type": "text"
+							},
+							{
+								"key": "X-Forwarded-For",
+								"value": "66.159.223.53",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/integration/:userId/balance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"integration",
+								":userId",
+								"balance"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "EVO-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transaction",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-brand",
+								"value": "CL23",
+								"type": "text"
+							},
+							{
+								"key": "x-operator-id",
+								"value": "CL23BINT",
+								"type": "text"
+							},
+							{
+								"key": "X-Forwarded-For",
+								"value": "66.159.223.53",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"288c6b2a-1c4c-4fc9-887c-95baea71d98f_7\",\r\n  \"currency\": \"USD\",\r\n  \"platform\": \"sport\",\r\n  \"type\": \"withdrawal\", // withdrawal deposit rollback\r\n  \"createdAt\": \"2025-02-26T15:32:57Z\",\r\n  \"initiatedAt\": \"2025-02-26T15:32:57Z\",\r\n  \"context\": {\r\n    \"product\": \"sportsbook\",\r\n    \"reason\": \"partial resettle\", // bet | resettle | cancelsettle | settle | partial settle  | partial cancelsettle | partial resettle\r\n    \"correlationId\": \"288c6b2a-1c4c-4fc9-887c-95baea71d98f\",\r\n    \"betId\": \"288c6b2a-1c4c-4fc9-887c-95baea71d98f\",\r\n    \"SportBonusOfferId\": \"\",\r\n    \"SportBonusPlayerOfferId\": \"\",\r\n    \"amount\": 2.0,\r\n    \"tax\": 0.0,\r\n    \"taxChanges\": 0.0\r\n  },\r\n  \"amountBreakdown\": { \"cash\": 10, \"locked\": 0.0, \"bonus\": 0.0 }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/integration/EVO-1/transactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"integration",
+								"EVO-1",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transaction",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"currency\": \"USDT\",\r\n    \"platform\": \"sport\",\r\n    \"id\": \"c7178121-950a-4cea-aa31-bbecbacd33a9\",\r\n    \"type\": \"deposit\", // \"deposit\", \"withdrawal\", \"rollback\"\r\n    \"initiatedAt\": \"2021-01-20T00:00:00Z\",\r\n    \"createdAt\": \"2021-01-20T00:00:00Z\",\r\n    \"context\": {\r\n        \"product\": \"sportsbook\",\r\n        \"reason\": \"bet\",\r\n        \"betId\": \"c7178121-950a-4cea-aa31-bbecbacd33a9\"\r\n    },\r\n    \"amountBreakdown\": {\r\n        \"cash\": \"210\",\r\n        \"bonus\": \"0\",\r\n        \"locked\": \"0\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/integration/:userId/transactions/:transactionId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"integration",
+								":userId",
+								"transactions",
+								":transactionId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "EVO-1"
+								},
+								{
+									"key": "transactionId",
+									"value": "530b9b65-bd44-4f2b-b77e-531364d679f7_1740417267051079_0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Public Key",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/integration/auth/get-sportsbook-public-key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"integration",
+								"auth",
+								"get-sportsbook-public-key"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sportsbook JWT token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiNzkyZGQ1ZDUtOWQyOS00N2M4LWJkMzktMjAwMjk3ZjRiMDc1Iiwic0tleSI6IjczMjExMWM1LWNkMTQtNDc2Zi1iNzExLWUzYTliYTdkMjBjZSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3MzgxNDcyOTIsImV4cCI6MTczODIzMzY5Mn0.GTQZegLTUHC2aYUe_uN-ujlIb3rKZ7C56o61-HI_B00",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/auth/get-sportsbook-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"auth",
+								"get-sportsbook-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sportsbook GR8 Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiNzkyZGQ1ZDUtOWQyOS00N2M4LWJkMzktMjAwMjk3ZjRiMDc1Iiwic0tleSI6IjczMjExMWM1LWNkMTQtNDc2Zi1iNzExLWUzYTliYTdkMjBjZSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3MzgxNDcyOTIsImV4cCI6MTczODIzMzY5Mn0.GTQZegLTUHC2aYUe_uN-ujlIb3rKZ7C56o61-HI_B00",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sportsbook/integration/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sportsbook",
+								"integration",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "Set Notification Read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiM2E4YzdlMzUtYWNiYy00YjQ3LWE2M2UtMWNjN2YyM2Q4MWZmIiwic0tleSI6ImY2NWY5ZTA2LTZhMDItNGVlOC05Mzg1LTM1YTVkMzU2MWQ3YSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3Mzk1MjY1OTYsImV4cCI6MTczOTYxMjk5Nn0.OBNu3ENfy_jvJ_vWKmw1XZf3PsBvZl0AzAWoO_IvnN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 2,\n    \"type\": \"Promotion\",\n    \"notification\": \"Вам письмоsc\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/notifications/aware",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"notifications",
+								"aware"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Set Notification Read RTTEST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiM2E4YzdlMzUtYWNiYy00YjQ3LWE2M2UtMWNjN2YyM2Q4MWZmIiwic0tleSI6ImY2NWY5ZTA2LTZhMDItNGVlOC05Mzg1LTM1YTVkMzU2MWQ3YSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3Mzk1MjY1OTYsImV4cCI6MTczOTYxMjk5Nn0.OBNu3ENfy_jvJ_vWKmw1XZf3PsBvZl0AzAWoO_IvnN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 2,\n    \"type\": \"Promotion\",\n    \"notification\": \"Вам письмоsc\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/notifications/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"notifications",
+								"test"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notification Test Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiM2E4YzdlMzUtYWNiYy00YjQ3LWE2M2UtMWNjN2YyM2Q4MWZmIiwic0tleSI6ImY2NWY5ZTA2LTZhMDItNGVlOC05Mzg1LTM1YTVkMzU2MWQ3YSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3Mzk1MjY1OTYsImV4cCI6MTczOTYxMjk5Nn0.OBNu3ENfy_jvJ_vWKmw1XZf3PsBvZl0AzAWoO_IvnN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"notification\": {\n        \"id\": \"0d248fe0-cc4c-42c1-b017-dec2454c2271\",\n        \"to\": 1,\n        \"type\": \"Promotion\",\n        \"notification\": \"Вам письмо\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"notifications"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Notification Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiM2E4YzdlMzUtYWNiYy00YjQ3LWE2M2UtMWNjN2YyM2Q4MWZmIiwic0tleSI6ImY2NWY5ZTA2LTZhMDItNGVlOC05Mzg1LTM1YTVkMzU2MWQ3YSIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3Mzk1MjY1OTYsImV4cCI6MTczOTYxMjk5Nn0.OBNu3ENfy_jvJ_vWKmw1XZf3PsBvZl0AzAWoO_IvnN0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"notification\": {\n        \"id\": \"0d248fe0-cc4c-42c1-b017-dec2454c2271\",\n        \"to\": 1,\n        \"type\": \"Promotion\",\n        \"notification\": \"Вам письмо\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"notifications"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Staem",
+			"item": [
+				{
+					"name": "Start Steam Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiMmMwNzk1MGYtZThkNy00NjdhLTlhMTItZjg2NzU4ZGJmMjc2Iiwic0tleSI6ImU5NWQzYmU3LTcyNjctNGE3ZS1iNjE2LTY0YjZjY2ExYjM5NCIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3MzgyNTQyMTUsImV4cCI6MTczODM0MDYxNX0.nRGEL_9Mt8aFze_wGqK4GkpONOx7YSuShCL7SsZ2r4A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/auth/steam",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"steam"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PM8",
+			"item": [
+				{
+					"name": "Transactions",
+					"item": [
+						{
+							"name": "Bet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic cG04LXNsb3RzOjVlaHptOn5KRTYtMyQ=",
+										"type": "text"
+									},
+									{
+										"key": "X-Partner-Key",
+										"value": "9o0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 165000,\r\n    \"currency\": \"USD\",\r\n    \"gameId\": \"merry_scary_christmas\",\r\n    \"playerId\": \"38\",\r\n    \"provider\": \"mascot\",\r\n    \"reason\": \"bet\",\r\n    \"roundClosed\": false,\r\n    \"roundId\": \"15sg:h\",\r\n    \"sessionToken\": \"TVh4RVFrTjhOVE15ZkRJd01qVXdOREE0TURrd01qSTQ6RUdCMmNwWFhGOEJlLXJCTjJ6NDE=\",\r\n    \"txId\": \"3:bBl08M26NW15QAFf_bet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TestApi}}/slots/integration/pm8/wallet/transactions/bet",
+									"host": [
+										"{{TestApi}}"
+									],
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"transactions",
+										"bet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refund",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic cG04LXNsb3RzOjVlaHptOn5KRTYtMyQ=",
+										"type": "text"
+									},
+									{
+										"key": "X-Partner-Key",
+										"value": "9o0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"playerId\": \"1\",\r\n    \"gameId\": \"book_of_amaterasu\",\r\n    \"betTxId\": \"tx-3:1HhxgDHqaKK9m5FF_win-DBC-475-bet-15sg:2-b399c76f-ba69-5e8c-96ad-124856fcade7\",\r\n    \"refundTxId\": \"2\",\r\n    \"roundId\": \"15sg:2\",\r\n    \"roundClosed\": false,\r\n    \"amount\": 77,\r\n    \"currency\": \"USD\",\r\n    \"provider\": \"mascot\",\r\n    \"reason\": \"bet\",\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/slots/integration/pm8/wallet/transactions/refund",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"transactions",
+										"refund"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Win",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Basic cG04LXNsb3RzOjVlaHptOn5KRTYtMyQ=",
+										"type": "text"
+									},
+									{
+										"key": "X-Partner-Key",
+										"value": "9o0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 165000,\r\n    \"currency\": \"USD\",\r\n    \"freeSpinData\": {\r\n        \"freeSpin\": \"no\"\r\n    },\r\n    \"gameId\": \"merry_scary_christmas\",\r\n    \"playerId\": \"1\",\r\n    \"provider\": \"mascot\",\r\n    \"reason\": \"win\",\r\n    \"roundClosed\": true,\r\n    \"roundId\": \"15sg:h\",\r\n    \"txId\": \"3:3CnVp2qDCe6TRFAy_win\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/slots/integration/pm8/wallet/transactions/win",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"transactions",
+										"win"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Player",
+					"item": [
+						{
+							"name": "playerInfoById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Partner-Key",
+										"value": "9o0",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic cG04LXNsb3RzOjVlaHptOn5KRTYtMyQ=",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4000/slots/integration/pm8/wallet/players/accounts/:playerId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"players",
+										"accounts",
+										":playerId"
+									],
+									"variable": [
+										{
+											"key": "playerId",
+											"value": "DBC-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "playerInfoBySessionToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Partner-Key",
+										"value": "9o0",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic cG04LXNsb3RzOjVlaHptOn5KRTYtMyQ=",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{TestApi}}/slots/integration/pm8/wallet/players/sessions/:sessionToken",
+									"host": [
+										"{{TestApi}}"
+									],
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"players",
+										"sessions",
+										":sessionToken"
+									],
+									"variable": [
+										{
+											"key": "sessionToken",
+											"value": "TVh4RVFrTjhOemg4TWpBeU5UQTBNVFl4TlRFek5EUT06di11R2szVVQxd1N1azlqZnBnOVY="
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "InitTest (!Produciton)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Currency</th>\r",
+											"        <th>Cash</th>\r",
+											"        <th>Bonus</th>\r",
+											"        <th>Locked</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>USDT</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+											"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyMjYsIm5hbWUiOiJncjh0ZXN0b25lIiwiZW1haWwiOiJncjgtMUBtYWlsdG8ucGx1cyIsInNJZCI6IjMwZDRiZmRlLTEyZjUtNGI3Yi04OGZmLTRjNDg1M2Y1NWJjMyIsInNLZXkiOiIxNjI5NDZiNi02MzcxLTQ4NTgtYjRiNy00NmUzNGQ5NTBjZjAiLCJydCI6ZmFsc2UsInJvbGVzIjpbIlVzZXIiXSwiaWF0IjoxNzQ0ODE2MzI2LCJleHAiOjE3NDQ4MjcxMjZ9.wgMNChvdlkNXO7DEiBlhy81efzQrC9sxzcFYGRM0_BA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Partner-Key",
+										"value": "fox",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Basic RHJvcGxldFByb2QucG04X1k3aDozckQ4bUo2aEY5YiNUN2tQNAo=",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"playerId\": \"2226\",\r\n    \"gameId\": \"3oaks-great_panda\",\r\n    \"currency\": \"USD\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{TestApi}}/slots/integration/pm8/wallet/players/sessions",
+									"host": [
+										"{{TestApi}}"
+									],
+									"path": [
+										"slots",
+										"integration",
+										"pm8",
+										"wallet",
+										"players",
+										"sessions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Debug",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://casino.nolimitcity.com/EjsFrontWeb/fs",
+									"protocol": "https",
+									"host": [
+										"casino",
+										"nolimitcity",
+										"com"
+									],
+									"path": [
+										"EjsFrontWeb",
+										"fs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Launch Game",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Currency</th>\r",
+									"        <th>Cash</th>\r",
+									"        <th>Bonus</th>\r",
+									"        <th>Locked</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>USDT</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.cash}}</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.bonus}}</td>\r",
+									"        <td>{{response.sport.sportsbook.USDT.locked}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Brand",
+								"value": "loka",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Operator-Id",
+								"value": "toka",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Forwarded-For",
+								"value": "66.159.223.53",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "User-Agent",
+								"value": "{device: mobile}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"channel\": \"desktop\",\r\n    \"gameId\": \"p1-pragmatic-wolf-gold\"\r\n    //,\"demo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{TestApi}}/casino/launch/:slug?currency=DBC&demo=true",
+							"host": [
+								"{{TestApi}}"
+							],
+							"path": [
+								"casino",
+								"launch",
+								":slug"
+							],
+							"query": [
+								{
+									"key": "currency",
+									"value": "DBC"
+								},
+								{
+									"key": "demo",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "slug",
+									"value": "p1-pragmatic-wolf-gold"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET games",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Migration",
+			"item": [
+				{
+					"name": "Migrate Stats",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiMmMwNzk1MGYtZThkNy00NjdhLTlhMTItZjg2NzU4ZGJmMjc2Iiwic0tleSI6ImU5NWQzYmU3LTcyNjctNGE3ZS1iNjE2LTY0YjZjY2ExYjM5NCIsInJ0IjpmYWxzZSwicm9sZXMiOlsiU3VwZXJBZG1pbiJdLCJpYXQiOjE3MzgyNTQyMTUsImV4cCI6MTczODM0MDYxNX0.nRGEL_9Mt8aFze_wGqK4GkpONOx7YSuShCL7SsZ2r4A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4006/blackjack/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4006",
+					"path": [
+						"blackjack",
+						"test"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Sign Up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "recaptcha",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{$randomEmail}}\",\n    \"password\": \"2544379!@#$Qwer\",\n    \"username\": \"{{$randomFirstName}}\",\n    \n    \"captcha_id\": \"54088bb07d2df3c46b79f80300b0abbe\",\n    \"lot_number\": \"2a8b54926c954f7fbc0098aab12287f8\",\n    \"pass_token\": \"0a62dda8c32a0fd0749f3efe8f3db62879d544d0ee6c83414ce76ed55813b0a7\",\n    \"gen_time\": \"1732099254\",\n    \"captcha_output\": \"K1IaJ9ya0bTODk_LLqK2sGtz-5JQLvMUGsR25dX6TuhNdOPaOk92Evz5CgE6hwsEetIE2kd8GjlAI1cVofe0Y7i9eiZ7faGV3M4WK-7ONROrXbyT-x0GsphQAxhAH5JUk2vLNmhngydtoB_Eh9mjp5Co-qF-XI50Ofl_aROyZgESoRVvqH0YRR83tb0Fiu-HpQAzffY6Hs1A4sOErcvixywKWFsREkBhuEfGbe9EQEGL-sdBOza7OjWFt06ExZD7bFRU-0pg9piIwJ5q4YXAB2SwwBwwr-mQj4OA0BZUvseVHQMKAt3SvozAaOZF-NDG9IOFg40HIdNsAW1vhtJMzS-VlZ55w98EXVbJPUZfi8jYaVm7Wk1VWcz8JP16PFe0d08_zibrtUzj9aZWgBkHU31uH3AQUdAMDV2af_WMXqwXQN-WxMdP4rtlZiiXwum3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/auth/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Sign Up Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwic0lkIjoiZWRmOTA5ODItMjQzZi00M2YzLWI5YTItNWJlNmFjYWQzNTI5Iiwic0tleSI6ImJiYjdmM2VkLTM2NTUtNGVmNS04ZDUzLThmOWJhZDczMGJhNSIsInJ0IjpmYWxzZSwiaWF0IjoxNzM0NjIzNTQ3LCJleHAiOjE3MzQ3MDk5NDd9.dSvGRShdzKIMWjN3PeJuDW8chp7vt6BhMYHTSiSX8RQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "recaptcha",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipientUsername\": \"user_1_377\",\n    \"amount\": \"0.000001\",\n    \"currencyId\": \"TRX\",\n    \"isPublic\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/tips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"tips"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "BetLimitIncr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJodHRwczovL3N0ZWFtY29tbXVuaXR5LmNvbS9vcGVuaWQvaWQvNzY1NjExOTgzNjM2MTM5NTAiLCJpc1RlbXBVc2VyIjp0cnVlLCJpYXQiOjE3MzM3NjEwNTQsImV4cCI6MTczMzc2MTM1NH0.TD-MijoaC73m4Qg1w9GDe9IgW3EHagJ9Pnw01h8G0mA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "recaptcha",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/dashboard/test?startDate=2024-08-09T03:11:31&endDate=2024-11-05T16:30:36",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"dashboard",
+						"test"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-08-09T03:11:31"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-05T16:30:36"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Sign In",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/auth/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Dashboard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"notification\": {\n        \"id\": \"0d248fe0-cc4c-42c1-b017-dec2454c2271\",\n        \"to\": 1,\n        \"type\": \"Promotion\",\n        \"notification\": \"Вам письмо\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/dashboard/quick-stats?startDate=2024-12-17T16:00:00.000Z&endDate=2024-12-24T23:00:00.000Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"dashboard",
+						"quick-stats"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-12-17T16:00:00.000Z"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-12-24T23:00:00.000Z"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/info?id=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"info"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
