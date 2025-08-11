@@ -6,7 +6,7 @@ Use the links below (or your site's nav) to explore each section:
 - [Introduction & Purpose](introduction.html)  
 - [System Architecture](system-architecture.html)  
 - [Frontend](frontend.html)  
-- [Account & Authentication](account-and-authentication.html)  
+- [Account & Authentication](authentication.html)  
 - [Wallet & Vault](wallet-vault.html)  
 - [Rewards & Bonus](reward-bonus.html)  
 - [Affiliate & Referral](affiliate-referral.html)  
