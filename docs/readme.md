@@ -22,3 +22,4 @@ Use the links below (or your site's nav) to explore each section:
     - [Postman Rest Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-rest-api.postman_collection.json)
     - [Postman Integration Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-integration-api.postman_collection.json)
 - [DB Markdown](db-schema-documentation.md)
+- [Figma files](figma.html)
