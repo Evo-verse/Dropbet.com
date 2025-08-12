@@ -388,6 +388,169 @@
     <li>Provably fair random generation of landing slot.</li>
     <li>Seed and hash available for verification.</li>
 </ul>
+<h2>Roulette</h2>
+<h3>1. Game Objective</h3>
+<p>The goal is to correctly predict where the ball will land on the roulette wheel after it is spun. Players can bet on individual numbers, combinations, or broader outcomes such as color, odd/even, or high/low numbers.</p>
+
+<h3>2. Core Gameplay</h3>
+<ul>
+    <li>Players choose a chip denomination from available values (0.01, 0.1, 0.5, 1, up to 10,000).</li>
+    <li>Bets can be placed on:
+        <ul>
+            <li><b>Straight-up</b>: A single number.</li>
+            <li><b>Split</b>: Two adjacent numbers.</li>
+            <li><b>Street</b>: Three numbers in a row.</li>
+            <li><b>Corner</b>: Four numbers sharing a corner.</li>
+            <li><b>Line</b>: Six numbers (two adjacent rows of three).</li>
+            <li><b>Column / Dozen</b>: 12-number bets.</li>
+            <li><b>Even-Money Bets</b>: Red/Black, Odd/Even, 1–18 / 19–36.</li>
+        </ul>
+    </li>
+    <li>Controls:
+        <ul>
+            <li><b>Clear Table</b> – Remove all bets.</li>
+            <li><b>Undo</b> – Remove last placed chip.</li>
+            <li><b>Repeat Bet</b> – Repeat previous round's bets.</li>
+            <li><b>Double Bet</b> – Double all current bets.</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>3. Spin & Outcome</h3>
+<ul>
+    <li>After betting, the wheel spins and the ball lands in a numbered pocket.</li>
+    <li>Winning bets are highlighted and payouts applied according to standard roulette payout tables.</li>
+</ul>
+
+<h3>4. Interface Elements</h3>
+<ul>
+    <li>Chip Selector</li>
+    <li>Total Bet Amount Display</li>
+    <li>Bet Table</li>
+    <li>Roulette Wheel Animation</li>
+    <li>Manual/Auto Mode for betting</li>
+</ul>
+
+<h3>5. Fairness & Compliance</h3>
+<ul>
+    <li>Provably fair result generation.</li>
+    <li>Server-side result calculation with public verification data.</li>
+</ul>
+
+<h2>Speed Roulette</h2>
+<h3>1. Overview</h3>
+<p>Speed Roulette is a quick, timer-based version of roulette using a spinning reel of colored tiles with payout multipliers instead of numbers.</p>
+
+<h3>2. Core Gameplay</h3>
+<ul>
+    <li>~15 seconds betting phase before each spin.</li>
+    <li>Bet types:
+        <ul>
+            <li>Common colors: 2× payout</li>
+            <li>Less common colors: 7× payout</li>
+            <li>Rare colors: 14× payout</li>
+        </ul>
+    </li>
+    <li>Multi-colored tiles win for both colors if landed.</li>
+</ul>
+
+<h3>3. UI Elements</h3>
+<ul>
+    <li>Bet Amount Selector (½, 2×, Max)</li>
+    <li>Bet Categories (color/multiplier panels)</li>
+    <li>Countdown Timer</li>
+    <li>Reel Animation with result display</li>
+    <li>Statistics panel for last 100 spins</li>
+</ul>
+
+<h3>4. Rules</h3>
+<ul>
+    <li>Bets close when countdown ends.</li>
+    <li>Wins calculated by landed tile multiplier.</li>
+    <li>Split tiles pay full for both categories.</li>
+</ul>
+
+<h3>5. RTP & Monetization</h3>
+<ul>
+    <li>RTP adjustable via reel symbol distribution.</li>
+    <li>House edge determined by payout-to-probability ratio.</li>
+</ul>
+
+<h2>Mines</h2>
+<h3>1. Game Overview</h3>
+<p>Mines is a tile-based risk game where players uncover safe gems while avoiding mines. Each safe tile increases the payout multiplier, but hitting a mine ends the game with no payout.</p>
+
+<h3>2. Core Gameplay</h3>
+<ul>
+    <li>5×5 grid (25 tiles).</li>
+    <li>Player sets bet and number of mines (1–24).</li>
+    <li>Safe tiles (gems) increase multiplier; mines end the round.</li>
+    <li>Player can cash out anytime to secure winnings.</li>
+</ul>
+
+<h3>3. Controls</h3>
+<ul>
+    <li>Manual/Auto play modes.</li>
+    <li>Mines slider to adjust risk/payout ratio.</li>
+    <li>Cashout button to end round early.</li>
+    <li>Pick Random button for automated tile selection.</li>
+</ul>
+
+<h3>4. Payout Logic</h3>
+<ul>
+    <li>More mines → higher payout per tile.</li>
+    <li>Cashout Value = Bet × Current Multiplier.</li>
+</ul>
+
+<h2>Blackjack</h2>
+<h3>1. Game Objective</h3>
+<p>Beat the dealer by getting a hand total closer to 21 without going over.</p>
+
+<h3>2. Game Modes</h3>
+<ul>
+    <li>Standard Blackjack</li>
+    <li>Optional side bet: Perfect Pairs</li>
+</ul>
+
+<h3>3. Actions</h3>
+<ul>
+    <li>Hit, Stand, Split, Double</li>
+    <li>Dealer stands on all 17s</li>
+</ul>
+
+<h3>4. Payouts</h3>
+<ul>
+    <li>Blackjack: 3:2</li>
+    <li>Standard Win: 1:1</li>
+    <li>Insurance: 2:1</li>
+    <li>Perfect Pairs payout varies by pair type</li>
+</ul>
+
+<h3>5. RTP</h3>
+<ul>
+    <li>Main game ~99.5% with optimal play</li>
+    <li>Perfect Pairs ~95%</li>
+</ul>
+
+<h2>Dice</h2>
+<h3>1. Game Objective</h3>
+<p>Predict whether the rolled number (0–100) will be above or below a chosen target. Player controls win probability via a slider.</p>
+
+<h3>2. Features</h3>
+<ul>
+    <li>Adjustable chance & multiplier</li>
+    <li>Manual or Auto betting</li>
+    <li>Displayed profit, multiplier, and target roll-over point</li>
+</ul>
+
+<h3>3. Payout Formula</h3>
+<pre>Multiplier = (100 / Chance) × (1 − House Edge)</pre>
+<p>House edge: ~1%</p>
+
+<h3>4. RTP</h3>
+<ul>
+    <li>~99% (very high compared to most games)</li>
+</ul>
 <footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
     <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
     >← Home</a

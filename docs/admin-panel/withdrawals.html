@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Withdrawals Section - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .status-red {
+            color: #c00;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>8. Withdrawals</h2>
+
+<div class="section">
+    <h3>Withdrawals – Pending Review</h3>
+    <p>This section of the admin panel displays all withdrawal requests that have been submitted by users but have not yet been processed.</p>
+    <h4>Displayed Information</h4>
+    <ul>
+        <li><b>ID</b> – Unique withdrawal request ID.</li>
+        <li><b>User</b> – Username and avatar of the requester.</li>
+        <li><b>Amount</b> – Requested withdrawal amount and currency (e.g., 10 USDT).</li>
+        <li><b>USD Amount</b> – Value converted to USD.</li>
+        <li><b>Payment Provider Status</b> – Status from the payment provider (e.g., Pending).</li>
+        <li><b>Transaction Hash</b> – Blockchain transaction hash (empty until processed).</li>
+        <li><b>Transaction ID</b> – Internal reference ID.</li>
+        <li><b>Date</b> – Date and time of the withdrawal request.</li>
+        <li><b>Stats</b> – User-related statistics, including:
+            <ul>
+                <li>VIP level</li>
+                <li>LTV (Lifetime Value)</li>
+                <li>Total wagered</li>
+            </ul>
+        </li>
+        <li><b>Finance Stats</b> – Player's deposit, withdrawn amount, and net difference.</li>
+        <li><b>Admin Action</b> – Buttons for Approve or Reject the withdrawal.</li>
+    </ul>
+    <h4>Actions Available for Admins</h4>
+    <ul>
+        <li><b>Approve</b> – Triggers a 2FA verification prompt. After confirmation, processes withdrawal via payment provider, updating transaction hash and status automatically.</li>
+        <li><b>Reject</b> – Prompts for reject reason, stores it in record, notifies user, and moves request to Rejected tab.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Withdrawals – Approved</h3>
+    <p>This section lists all withdrawal requests that have been processed and successfully completed through the payment provider.</p>
+    <h4>Displayed Information</h4>
+    <ul>
+        <li><b>ID</b> – Unique withdrawal request ID.</li>
+        <li><b>User</b> – Username and avatar of the requester.</li>
+        <li><b>Amount</b> – Withdrawn amount and currency (e.g., 50 USDC).</li>
+        <li><b>USD Amount</b> – Value converted to USD.</li>
+        <li><b>Payment Provider Status</b> – Always displays Complete for approved withdrawals.</li>
+        <li><b>Transaction Hash</b> – Clickable blockchain transaction link for verification.</li>
+        <li><b>Transaction ID</b> – Internal system reference for the withdrawal.</li>
+        <li><b>Date</b> – Date and time when the withdrawal was processed.</li>
+        <li><b>Stats</b> – User-related statistics:
+            <ul>
+                <li>VIP level</li>
+                <li>LTV (Lifetime Value)</li>
+                <li>Total wagered amount</li>
+            </ul>
+        </li>
+        <li><b>Finance Stats</b> – Player’s deposit total, withdrawn total, and net difference.</li>
+        <li><b>Admin username</b> that approved the transaction.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Withdrawals – Rejected</h3>
+    <p>This section lists all withdrawal requests reviewed and denied by an admin.</p>
+    <h4>Displayed Information</h4>
+    <ul>
+        <li><b>ID</b> – Unique withdrawal request ID.</li>
+        <li><b>User</b> – Username and avatar of the requester.</li>
+        <li><b>Amount</b> – Requested amount and currency (e.g., 50 USDC).</li>
+        <li><b>USD Amount</b> – Value converted to USD.</li>
+        <li><b>Payment Provider Status</b> – <span class="status-red">Denied</span>.</li>
+        <li><b>Transaction Hash</b> – Empty for rejected withdrawals.</li>
+        <li><b>Transaction ID</b> – Internal reference number.</li>
+        <li><b>Date</b> – Date and time of the withdrawal request.</li>
+        <li><b>Stats</b> – User-related statistics:
+            <ul>
+                <li>VIP level</li>
+                <li>LTV (Lifetime Value)</li>
+                <li>Total wagered amount</li>
+            </ul>
+        </li>
+        <li><b>Finance Stats</b> – Player’s deposit total, withdrawn total, and net difference.</li>
+        <li><b>Admin Action</b> – Shows admin username, avatar, and timestamp of rejection.</li>
+        <li><b>Status</b> – <span class="status-red">Denied</span>.</li>
+        <li><b>Reject Reason</b> – Visible via a red info icon next to status, showing admin-provided reason on hover or click.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Withdrawals – Failed</h3>
+    <p>This section lists all withdrawal requests unsuccessful due to payment provider issues rather than admin decisions.</p>
+    <h4>Displayed Information</h4>
+    <ul>
+        <li><b>ID</b> – Unique withdrawal request ID.</li>
+        <li><b>User</b> – Username and avatar of the requester.</li>
+        <li><b>Amount</b> – Requested amount and currency (e.g., 0.25 LTC).</li>
+        <li><b>USD Amount</b> – Value converted to USD.</li>
+        <li><b>Payment Provider Status</b> – <span class="status-red">Failed</span>.</li>
+        <li><b>Transaction Hash</b> – Usually empty (transaction not confirmed).</li>
+        <li><b>Transaction ID</b> – Internal reference number.</li>
+        <li><b>Date</b> – Date and time of the withdrawal request.</li>
+        <li><b>Stats</b> – User-related statistics:
+            <ul>
+                <li>VIP level</li>
+                <li>LTV (Lifetime Value)</li>
+                <li><b>Admin Action</b> – Displays admin details if manually retried or rejected after failure.</li>
+                <li><b>Status</b> – <span class="status-red">Failed</span>.</li>
+            </ul>
+            <h4>Why Withdrawals Fail</h4>
+            <ul>
+                <li>Insufficient balance on the payment provider account.</li>
+                <li>Temporary blockchain network issues.</li>
+                <li>Invalid or unreachable withdrawal address.</li>
+                <li>Provider downtime or API errors.</li>
+            </ul>
+            <h4>Next Steps for Failed Withdrawals</h4>
+            <ul>
+                <li><b>Retry</b> – Admin can retry sending funds once issue is resolved.</li>
+                <li><b>Reject</b> – If unresolved, admin can reject with a reason, moving request to Rejected tab.</li>
+            </ul>
+</div>
+<li>Total wagered amount</li>
+</ul>
+        </li>
+        <li><b>Finance Stats</b> – Player’s deposit total, withdrawn total, and net difference.</li>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

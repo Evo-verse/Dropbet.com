@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deposits History Section - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>10. Deposits History</h2>
+
+<p>The Deposits History section allows admins to view and track all incoming deposit transactions made by users across supported networks.</p>
+
+<h3>Displayed Information:</h3>
+<ul>
+    <li><b>User</b> – Username and avatar of the depositor.</li>
+    <li><b>Network</b> – Blockchain network used (e.g., ETH, SOL, BSC, LTC).</li>
+    <li><b>Transaction Hash</b> – Clickable link to view the transaction on the blockchain explorer.</li>
+    <li><b>From Address</b> – Sender’s wallet address.</li>
+    <li><b>Amount</b> – Amount deposited, shown in cryptocurrency and approximate USD value.</li>
+    <li><b>Status</b> –
+        <ul>
+            <li><i>Complete</i> – Deposit confirmed and credited to the user’s account.</li>
+            <li><i>Failed</i> – Deposit was detected but could not be credited (e.g., network issues, unsupported token type, incorrect amount).</li>
+        </ul>
+    </li>
+    <li><b>Referral Code</b> – Referral code associated with the deposit (if any).</li>
+    <li><b>External ID</b> – Internal tracking ID for the deposit request.</li>
+</ul>
+
+<h3>Admin Actions:</h3>
+<p>No manual approval is required for deposits — they are processed automatically after blockchain confirmation.</p>
+<p>Failed deposits require manual investigation; admins can coordinate with tech support to retry or manually credit funds.</p>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

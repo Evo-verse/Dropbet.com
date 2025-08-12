@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KYC Limits Management & Challenges - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>KYC Limits Management</h2>
+
+<h3>Overview</h3>
+<p>
+    The KYC Limits Management page allows administrators to define maximum withdrawal limits for each KYC (Know Your Customer) verification level.
+    This ensures withdrawal permissions are aligned with the user’s verified identity status.
+</p>
+
+<h3>Page Layout & Features</h3>
+
+<h4>1. KYC Level</h4>
+<ul>
+    <li>Displays all available KYC tiers (e.g., LEVEL_0 to LEVEL_4).</li>
+    <li>Each level corresponds to a different verification stage:</li>
+    <ul>
+        <li><b>LEVEL_0</b> – No or minimal verification.</li>
+        <li><b>LEVEL_1+</b> – Increasing levels of verification such as ID, address proof, and source of funds.</li>
+    </ul>
+</ul>
+
+<h4>2. Unlimited Withdrawal</h4>
+<ul>
+    <li>Toggle switch to allow users in that KYC tier to withdraw without limits.</li>
+    <li>If enabled, the Max Withdrawal Amount field becomes inactive for that tier.</li>
+</ul>
+
+<h4>3. Max Withdrawal Amount (USD)</h4>
+<ul>
+    <li>Defines the maximum withdrawal amount allowed for that KYC level.</li>
+    <li>If Unlimited Withdrawal is disabled, this field sets the exact withdrawal cap.</li>
+    <li>Values are entered in USD.</li>
+</ul>
+
+<h4>4. Save Changes</h4>
+<ul>
+    <li>After making any adjustments, click <b>Save changes</b> to apply updates immediately for all users in the affected tier.</li>
+</ul>
+
+<hr />
+
+<h2>Challenges</h2>
+
+<h3>Overview</h3>
+<p>
+    The Challenges page allows admins to create, manage, and review gaming challenges for players.
+    It is divided into two main sections: <b>Open</b> (active challenges) and <b>Finished</b> (completed challenges).
+</p>
+
+<h3>1. Open Challenges Tab</h3>
+<p>Displays all currently active challenges with the following columns:</p>
+<ul>
+    <li><b>Admin</b> – Username of the admin who created the challenge.</li>
+    <li><b>Game</b> – The linked game for the challenge.</li>
+    <li><b>Slug</b> – Unique identifier used for the challenge link.</li>
+    <li><b>Challenge</b> – Description of the objective (e.g., “First to hit 250x on Gates of Olympus”).</li>
+    <li><b>Hidden</b> – Indicates if the challenge is visible to players.</li>
+    <li><b>Prize</b> – Reward for completing the challenge.</li>
+    <li><b>Candidates</b> – Number of players participating.</li>
+    <li><b>Created At</b> – Date and time created.</li>
+    <li><b>Actions</b> – Manage challenge (view/edit/delete).</li>
+</ul>
+
+<h4>Buttons & Filters</h4>
+<ul>
+    <li><b>Add Challenge</b> – Opens form to create a new challenge.</li>
+    <li><b>Search / Filters</b> – Search by slug, filter by game or admin.</li>
+</ul>
+
+<h3>2. Finished Challenges Tab</h3>
+<p>Displays completed challenges with an additional column:</p>
+<ul>
+    <li><b>Winner</b> – Shows the player who won the challenge.</li>
+</ul>
+<p>Admins can use <b>Search Winner</b> to find past winners or review performance.</p>
+
+<h3>3. Bets Challenge View</h3>
+<p>When viewing a challenge’s bets, the table includes:</p>
+<ul>
+    <li><b>User</b> – Player’s username.</li>
+    <li><b>Game</b> – Game where the bet occurred.</li>
+    <li><b>Bet</b> – Amount placed.</li>
+    <li><b>Multiplier</b> – Multiplier achieved.</li>
+    <li><b>Payout</b> – Total winnings.</li>
+    <li><b>Settled At</b> – Date/time settled.</li>
+    <li><b>Actions</b> – View Details or Award prize manually.</li>
+</ul>
+
+<h4>Challenge Creation Fields</h4>
+<ul>
+    <li><b>Min bet amount (DBC)</b> – Minimum bet required for entry.</li>
+    <li><b>Reward amount</b> – Prize value in DBC or equivalent currency.</li>
+    <li><b>Game slug</b> – Unique identifier for the game (must match system slug).</li>
+    <li><b>Min bet multiplier</b> – Minimum multiplier needed to qualify.</li>
+    <li><b>Hidden challenge</b> – Toggle Yes/No for visibility.</li>
+    <li><b>Challenge image</b> – Upload image to display with the challenge.</li>
+</ul>
+
+<h4>Buttons</h4>
+<ul>
+    <li><b>Upload image</b> – Attach image file.</li>
+    <li><b>Cancel</b> – Discard form without saving.</li>
+    <li><b>Confirm</b> – Save and activate challenge.</li>
+</ul>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

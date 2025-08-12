@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slots Section - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>11. Slots</h2>
+
+<p>The Slots tab is where administrators can manage all slot games available on the platform, including enabling/disabling games, editing their details, and reviewing provider and RTP information.</p>
+
+<h3>Main Table Overview</h3>
+<p>Each row represents a slot game with the following columns:</p>
+<ul>
+    <li><b>ID</b> – Unique system ID for the slot.</li>
+    <li><b>Icon</b> – Displays the slot’s current thumbnail; if none is uploaded, a default placeholder is shown.</li>
+    <li><b>Default Icon</b> – Indicates if the current icon is the default provider image.</li>
+    <li><b>Name</b> – Full name of the slot game.</li>
+    <li><b>Provider</b> – Name of the game provider and integration type (with a “Disabled” tag if the provider is inactive).</li>
+    <li><b>RTP</b> – The game’s Return to Player percentage.</li>
+    <li><b>Category</b> – The game category (e.g., Slots, Casual, Live Casino, etc.).</li>
+    <li><b>Active Toggle</b> – Enables or disables the game for players. Disabled games remain in the system but cannot be played.</li>
+    <li><b>Actions</b> – “Edit Slot” button to open the slot configuration window.</li>
+    <li><b>More Info</b> – Three-dot menu for additional actions or quick details.</li>
+</ul>
+
+<h3>Editing a Slot</h3>
+<p>Clicking <b>Edit Slot</b> opens the slot management window with two tabs:</p>
+
+<ol>
+    <li><b>Edit Slot Info</b>
+        <ul>
+            <li><b>Image Upload</b> – Allows replacing the slot’s thumbnail image by uploading a new file.</li>
+            <li><b>Category Selector</b> – Assigns the game to one or more categories (House Game, Live Casino, Slots, Blackjack, Roulette, Game Shows, etc.).</li>
+            <li><b>Confirm / Cancel Buttons</b> – Save or discard changes.</li>
+        </ul>
+    </li>
+    <li><b>Details Tab</b>
+        <ul>
+            <li><b>Game Name</b> – Official slot title.</li>
+            <li><b>Provider Name</b> – The provider’s full name.</li>
+            <li><b>Provider Slug</b> – Technical identifier for integration.</li>
+            <li><b>RTP</b> – Displays the RTP value set by the provider or manually.</li>
+            <li><b>Game Info JSON</b> – Shows technical metadata about the game, such as payout percentages or internal flags.</li>
+            <li><b>Thumbnail Preview</b> – Displays the current slot image.</li>
+        </ul>
+    </li>
+</ol>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

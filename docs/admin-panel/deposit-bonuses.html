@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deposit Bonus - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Deposit Bonus</h2>
+
+<h3>Overview</h3>
+<p>
+    The Deposit Bonus page allows administrators to monitor and manage all player deposit bonus activities.
+    This includes viewing who has claimed bonuses, tracking wagering progress, checking expiration dates,
+    and updating bonus statuses when needed.
+</p>
+
+<h3>Page Layout & Features</h3>
+
+<h4>1. Deposit Bonus List</h4>
+<p>The table displays all users who have been assigned or claimed a deposit bonus, with the following columns:</p>
+<ul>
+    <li><b>Username</b> – Player’s account name or email (with avatar).</li>
+    <li><b>Deposit Amount</b> – Qualifying deposit amount made to activate the bonus (if applicable).</li>
+    <li><b>Bonus Amount</b> – Value of the bonus credited to the user.</li>
+    <li><b>Bonus Claim Date</b> – Date the player claimed or received the bonus.</li>
+    <li><b>Bonus Active Until</b> – Expiration date for the bonus; once reached, the bonus is no longer usable.</li>
+    <li><b>Wagered</b> – Amount already wagered toward the bonus requirement.</li>
+    <li><b>Wager Required</b> – Total wagering amount needed before the bonus can be fully unlocked for withdrawal.</li>
+    <li><b>Status</b> – Current bonus state (ACTIVE, CLAIMED, CANCELLED).</li>
+    <li><b>Actions</b> – Three-dot menu for administrative actions (e.g., cancel bonus).</li>
+</ul>
+
+<h4>2. Statuses & Their Meanings</h4>
+<ul>
+    <li><b>ACTIVE</b> – Bonus is valid and wagering requirements are being tracked.</li>
+    <li><b>CLAIMED</b> – Bonus credited but not actively in play; may require user action to activate.</li>
+    <li><b>CANCELLED</b> – Bonus voided by admin or due to terms violation; no longer valid.</li>
+</ul>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

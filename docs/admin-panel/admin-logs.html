@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Logs - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>16. Admin Logs</h2>
+
+<h3>Purpose</h3>
+<p>The Admin Logs section tracks every action performed in the admin panel, providing transparency and a full history of changes. This helps with monitoring activity, troubleshooting, and maintaining accountability among administrators.</p>
+
+<h3>Log Details</h3>
+<p>Each entry contains:</p>
+<ul>
+    <li><b>Admin Username</b> – The account that performed the action.</li>
+    <li><b>Reference Info</b> – The specific resource or endpoint affected (e.g., <code>/admin/casino/games/house/settings</code>).</li>
+    <li><b>Action Type</b> – The type of HTTP request made (e.g., POST, PUT, DELETE).</li>
+    <li><b>IP Address</b> – The IP address from which the action was performed.</li>
+    <li><b>Status</b> – The HTTP response code (e.g., 200 = success, 201 = created).</li>
+    <li><b>Created At</b> – Date and time of the action.</li>
+    <li><b>More Info</b> – Additional details about the request (if available).</li>
+</ul>
+
+<h3>Navigation & Filters</h3>
+<ul>
+    <li><b>Sort Order</b> – Toggle between ascending and descending order by date.</li>
+    <li><b>Request Type Filter</b> – Filter logs by action type (e.g., POST, GET, DELETE).</li>
+    <li><b>Pagination</b> – Browse through historical records using page controls.</li>
+</ul>
+
+<h3>Use Cases</h3>
+<ul>
+    <li>Identify recent configuration changes.</li>
+    <li>Investigate suspicious activity.</li>
+    <li>Track which admin updated specific settings.</li>
+    <li>Maintain compliance and audit readiness.</li>
+</ul>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

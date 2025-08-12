@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Promocodes - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #f6f6f6;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Promocodes</h2>
+
+<h3>Overview</h3>
+<p>
+    The Promocodes page allows administrators to create, manage, and track promocodes that act as balance top-ups for players.
+    Promocodes can be configured with specific amounts, usage limits, eligibility requirements, and expiration dates.
+    They can be distributed for promotional campaigns, influencer giveaways, or loyalty rewards.
+</p>
+
+<h3>Page Layout & Features</h3>
+
+<h4>1. Promocode List</h4>
+<p>The main table displays all existing promocodes with the following columns:</p>
+<ul>
+    <li><b>Promocode</b> – Unique code players will enter to redeem the balance.</li>
+    <li><b>Title</b> – Internal title for campaign identification.</li>
+    <li><b>Created</b> – Date and time the promocode was created.</li>
+    <li><b>Amount ($)</b> – Value of the promocode in the set currency.</li>
+    <li><b>Claims Left</b> – Remaining number of times the code can be redeemed (blank if unlimited).</li>
+    <li><b>Status</b> – Shows whether the code is Active or Inactive.</li>
+    <li><b>Total Users Claimed</b> – Number of unique users who have redeemed it.</li>
+    <li><b>Expires</b> – Date and time when the code expires.</li>
+    <li><b>Actions</b> – Three-dot menu to edit or delete the promocode.</li>
+</ul>
+<p>
+    Use the <b>Search</b> bar to find specific codes or the <b>Choose Filter</b> dropdown to refine results.
+</p>
+
+<h4>2. Adding a New Promocode</h4>
+<p>Click <b>+ Add Promocode</b> to open the creation form. Required fields are marked with *.</p>
+<ul>
+    <li><b>Promocode*</b> – Unique code string (case-insensitive).</li>
+    <li><b>Title*</b> – Internal campaign name.</li>
+    <li><b>Amount ($)*</b> – Credit amount given upon redemption.</li>
+    <li><b>Currency*</b> – Currency type (e.g., DBC).</li>
+    <li><b>User KYC Level</b> – Minimum verification level required to redeem.</li>
+    <li><b>Affiliate Code</b> – Optional affiliate link field.</li>
+    <li><b>Min VIP Level</b> – Minimum VIP tier required.</li>
+    <li><b>Min Total Wager ($)</b> – Minimum wagering requirement.</li>
+    <li><b>Min Total Deposit ($)</b> – Minimum deposit requirement.</li>
+    <li><b>Total Claims</b> – Maximum total redemptions across all players.</li>
+    <li><b>Lock Withdrawal Hours</b> – Hours withdrawals are locked after redemption.</li>
+    <li><b>Expiration Date*</b> – Date/time after which the code is invalid.</li>
+    <li><b>Hidden</b> – Hide from public listings.</li>
+    <li><b>Active</b> – Activate immediately upon creation.</li>
+    <li><b>Create Batch</b> – Generate multiple codes with same configuration.</li>
+</ul>
+<p>
+    <b>Actions:</b>
+    <br>• <b>Submit</b> – Save the promocode.
+    <br>• <b>Cancel</b> – Discard changes.
+</p>
+
+<h4>3. Editing or Deleting Promocodes</h4>
+<p>
+    Use the <b>Actions</b> menu to modify or remove an existing promocode.
+    Changes to active codes take effect immediately.
+</p>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

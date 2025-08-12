@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bots Section - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>14. Bots</h2>
+
+<h3>Purpose</h3>
+<p>The bot system allows automated gameplay on the platform, simulating real player activity based on pre-set configurations. Bots can help create constant engagement and maintain active game sessions without manual input.</p>
+
+<h3>Creating a New Bot</h3>
+<ol>
+    <li>Go to the <b>Bots</b> section in the admin panel.</li>
+    <li>Click <b>Add Bot</b>.</li>
+    <li>Fill in the required fields:
+        <ul>
+            <li><b>Account Name</b> – Select or enter the name of an existing player account that will act as a bot.</li>
+            <li><b>Status</b> – Choose Active or Inactive.</li>
+            <li><b>Bot Type</b> – Defines average session duration and bet size:
+                <ul>
+                    <li><b>Minnow</b> – ~2 hours, minimum bets</li>
+                    <li><b>Dolphin</b> – ~4 hours, medium bets</li>
+                    <li><b>Whale</b> – ~6 hours, high bets</li>
+                </ul>
+            </li>
+            <li><b>Behavior Pattern</b> – Determines how the bot places bets and changes games:
+                <ul>
+                    <li><b>Casual</b> – Small changes in bet size, switches slot after losing streaks.</li>
+                    <li><b>Regular/Normal</b> – Steady betting, rarely changes slots unless a big win or long play occurs.</li>
+                    <li><b>Chaser</b> – Increases bets after losses to recover.</li>
+                    <li><b>Highroller</b> – Keeps bets within a fixed high range until hitting big.</li>
+                    <li><b>Trickster</b> – Randomly changes between all patterns.</li>
+                </ul>
+            </li>
+            <li><b>Session Start Time</b> – The UTC time when the bot begins playing.</li>
+            <li><b>Active Days of the Week</b> – Select which days the bot will be active.</li>
+            <li><b>Games</b> – Choose from enabled slot games.</li>
+        </ul>
+    </li>
+    <li>Click <b>Confirm</b> to save the bot.</li>
+</ol>
+
+<h3>Editing an Existing Bot</h3>
+<ol>
+    <li>In the <b>Bots</b> list, click on a bot to open its settings.</li>
+    <li>Modify fields such as Status, Bot Type, Behavior Pattern, schedule, or games list.</li>
+    <li>Click <b>Save</b> to apply changes.</li>
+</ol>
+
+<h3>Bot Behavior Rules</h3>
+<ul>
+    <li>All bot bets run through the internal aggregator, bypassing the external slot aggregator (no external commission fees).</li>
+    <li>Only enabled slot games can be selected.</li>
+    <li>Start times are randomized daily within ±1 hour of the configured time.</li>
+    <li>Bots can take random breaks up to 1 hour during a session.</li>
+    <li>Decision-making during play follows the selected behavioral pattern:
+        <ul>
+            <li>Evaluate game state.</li>
+            <li>Decide to increase bet, decrease bet, or switch slot.</li>
+        </ul>
+    </li>
+</ul>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>

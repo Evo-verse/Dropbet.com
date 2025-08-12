@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIP Program – Submissions Page - Admin Panel Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .status-red {
+            color: #c00;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>VIP Program – Submissions Page</h2>
+
+<div class="section">
+    <h3>Overview</h3>
+    <p>This page lists all players who have submitted the VIP Program application form. It serves as an overview for admins to review and access detailed player information.</p>
+</div>
+
+<div class="section">
+    <h3>Layout &amp; Columns</h3>
+    <ul>
+        <li><b>Username</b> – The registered username of the applicant on DropBet.</li>
+        <li><b>Site player</b> – The casino or platform where the player is currently active (can be external, e.g., Stake, Stake.us, etc.).</li>
+        <li><b>Total wagered (lifetime)</b> – Total amount the player has wagered historically on their current site.</li>
+        <li><b>Total wagered (recent period)</b> – Amount wagered in a defined recent timeframe (e.g., last month or during a promotion).</li>
+        <li><b>Actions (⋮)</b> – Click to view the full submission details.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Search &amp; Filtering</h3>
+    <ul>
+        <li><b>Search by username</b> – Enter the player’s username to quickly locate a specific application.</li>
+        <li><b>Search button</b> – Executes the search query.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Actions Menu</h3>
+    <p>For each row, the ⋮ menu opens the VIP Submission Details view, showing the complete form responses provided by the player.</p>
+</div>
+
+<div class="section">
+    <h3>VIP Submission Details View</h3>
+    <p>The details page is structured into four main sections based on the original form:</p>
+    <h4>Step 1 – Stay in touch method</h4>
+    <ul>
+        <li>Applicant’s real name.</li>
+        <li>Preferred communication method (e.g., Email, Telegram).</li>
+        <li>Contact details / username on the stated platform.</li>
+    </ul>
+    <h4>Step 2 – Site information</h4>
+    <ul>
+        <li>Current site(s) the player uses.</li>
+        <li>Amount wagered in the last month.</li>
+        <li>Reasons for leaving or staying with their current site.</li>
+    </ul>
+    <h4>Step 3 – Play style</h4>
+    <ul>
+        <li>Average deposit size in USD.</li>
+        <li>Weekly frequency of play.</li>
+        <li>Preferred game types (slots, house games, live games, etc.).</li>
+    </ul>
+    <h4>Step 4 – Statistics information</h4>
+    <ul>
+        <li>VIP progress screenshot from their current site.</li>
+        <li>May include level, percentage progress, total games played, number of wins, etc.</li>
+    </ul>
+</div>
+
+<footer>
+    <a href="https://evo-verse.github.io/Dropbet.com/admin-panel.html">← Back</a>
+</footer>
+
+</body>
+</html>
