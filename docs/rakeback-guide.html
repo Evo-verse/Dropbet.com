@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Casino Platform - Rakeback & Loyalty System – Technical Guide</title>
+    <style>
+        body { font-family: Arial, sans-serif; color:#333; margin:0; padding:20px; line-height:1.6; }
+        h2 { font-size:1.8em; margin-top:40px; margin-bottom:10px; border-bottom:2px solid #ddd; padding-bottom:4px; }
+        h3 { font-size:1.4em; margin-top:20px; margin-bottom:8px; }
+        h4 { font-size:1.2em; margin-top:15px; margin-bottom:8px; }
+        ul { margin-left:20px; margin-bottom:15px; }
+        li { margin-bottom:8px; }
+        p { margin-bottom:15px; }
+        code { background:#eee; padding:2px 4px; font-family:Consolas, monospace; border-radius:4px; }
+        .section { margin-bottom:40px; }
+        .note { color:#666; font-style: italic; }
+        table { width:100%; border-collapse:collapse; margin:10px 0 15px; }
+        th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #eee; }
+        footer { text-align:center; margin:2rem 0; font-size:1rem; }
+        footer a { text-decoration:none; font-weight:bold; }
+    </style>
+</head>
+<body>
+
+<h2>Rakeback &amp; Loyalty System – Technical Guide</h2>
+
+<div class="section">
+    <h3>1. Overview</h3>
+    <p>The Rakeback System rewards players by returning a percentage of the casino’s profit on each bet. The reward percentage is based on the player’s VIP Level, which is determined by XP (Experience Points) earned from wagers.</p>
+    <h4>System Components</h4>
+    <ul>
+        <li>Casino Profit Calculation</li>
+        <li>VIP Level &amp; Loyalty Percentages</li>
+        <li>Rakeback Types &amp; Distribution</li>
+        <li>Manual Claim System</li>
+        <li>EXP Accrual &amp; VIP Progression</li>
+        <li>One-time Level Bonuses</li>
+        <li>Integration with Affiliate Levels (optional)</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>2. Casino Profit Calculation</h3>
+    <h4>Formula per bet</h4>
+    <p><code>realEdge = wager * (1 - RTP)</code></p>
+    <ul>
+        <li><b>wager</b> – Amount the user bets (in USD or equivalent).</li>
+        <li><b>RTP</b> – Return-to-Player percentage of the game (e.g., 97.17% = 0.9717).</li>
+        <li><b>realEdge</b> – The house profit on that bet.</li>
+    </ul>
+    <h4>Example</h4>
+    <ul>
+        <li>Bet = $100</li>
+        <li>RTP = 97.17% (0.9717)</li>
+        <li>Profit = <code>100 * (1 - 0.9717) = $2.83</code></li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>3. VIP Level &amp; Loyalty Percentages (Rakeback Multipliers)</h3>
+    <table>
+        <thead>
+        <tr><th>VIP Level</th><th>Loyalty % (Rakeback Base)</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Metal</td><td>7%</td></tr>
+        <tr><td>Bronze</td><td>8%</td></tr>
+        <tr><td>Silver</td><td>9%</td></tr>
+        <tr><td>Gold</td><td>10%</td></tr>
+        <tr><td>Diamond</td><td>12%</td></tr>
+        </tbody>
+    </table>
+    <h4>Example</h4>
+    <p>If casino profit is <code>$2.83</code> and VIP Level = <b>Gold</b> (10%):<br>
+        Rakeback = <code>$2.83 * 0.10 = $0.283</code></p>
+</div>
+
+<div class="section">
+    <h3>4. Rakeback Types &amp; Distribution</h3>
+    <p>After calculating rakeback, the system splits it into four claimable balances:</p>
+    <table>
+        <thead>
+        <tr><th>Type</th><th>% of Rakeback</th><th>Reset Frequency</th><th>Claim Expiry</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Instant</td><td>10%</td><td>Never resets</td><td>Never expires</td></tr>
+        <tr><td>Daily</td><td>20%</td><td>Every day (cron at 00:00)</td><td>Expires at reset</td></tr>
+        <tr><td>Weekly</td><td>30%</td><td>Every Monday (cron at 00:00)</td><td>Expires at reset</td></tr>
+        <tr><td>Monthly</td><td>40%</td><td>1st of the month (cron at 00:00)</td><td>Expires at reset</td></tr>
+        </tbody>
+    </table>
+    <h4>Example Split for $0.283 total rakeback</h4>
+    <ul>
+        <li>Instant = <code>$0.0283</code></li>
+        <li>Daily = <code>$0.0566</code></li>
+        <li>Weekly = <code>$0.0849</code></li>
+        <li>Monthly = <code>$0.1132</code></li>
+    </ul>
+    <p class="note">If not claimed before reset, Daily, Weekly, and Monthly amounts are forfeited.</p>
+</div>
+
+<div class="section">
+    <h3>5. Claiming Rakeback</h3>
+    <h4>API Endpoints</h4>
+    <ul>
+        <li><code>GET /pending-vip-rewards</code> → Returns available rakeback per type.</li>
+        <li><code>POST /claim-vip-rewards</code> → Claims a specific type.</li>
+    </ul>
+    <h4>Example request</h4>
+    <pre><code>{
+  "type": "INSTANT"
+}
+</code></pre>
+    <h4>Rules</h4>
+    <ul>
+        <li>User must manually claim each type.</li>
+        <li>Claims are added to the user’s withdrawable balance.</li>
+        <li>Instant claims can be done anytime.</li>
+        <li>Daily/Weekly/Monthly must be claimed before their scheduled reset.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>6. EXP Accrual &amp; VIP Progression</h3>
+    <h4>Earning EXP</h4>
+    <ul>
+        <li>1 USD wagered = 1 XP (adjusted for currency).</li>
+        <li>Partial bets accumulate until reaching 1 USD total.</li>
+        <li>No rounding up: If a user wagers $0.5, they must wager $0.5 more to get 1 XP.</li>
+    </ul>
+    <h4>Accumulation Examples</h4>
+    <ul>
+        <li><code>$0.3 + $0.4 + $0.3 → $1.0 → +1 XP</code></li>
+        <li><code>$0.5 (no XP), then $0.6 → $1.1 → +1 XP</code>, $0.1 carried over.</li>
+    </ul>
+    <h4>Developer Tasks</h4>
+    <ul>
+        <li>Track pending partial wager amounts per user.</li>
+        <li>Grant XP only when threshold reached.</li>
+        <li>Display in profile:
+            <ul>
+                <li>Current XP</li>
+                <li>XP needed for next level</li>
+                <li>Current VIP tier &amp; sublevel</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>7. VIP Levels &amp; Required Wager</h3>
+    <h4>7.1 Progression Table</h4>
+    <table>
+        <thead>
+        <tr><th>Level</th><th>Wager Required (USD)</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Wood 1</td><td>0</td></tr>
+        <tr><td>Metal 1</td><td>100</td></tr>
+        <tr><td>Diamond 5</td><td>7,500,000</td></tr>
+        <tr><td>Beast</td><td>+10,000,000</td></tr>
+        </tbody>
+    </table>
+    <p class="note">Full progression from your data should be stored in a config table for dynamic updates.</p>
+</div>
+
+<div class="section">
+    <h3>8. One-Time Level Bonuses</h3>
+    <h4>Rules</h4>
+    <ul>
+        <li>Upon reaching a new sublevel, the player receives a one-time bonus.</li>
+        <li>Bonus amount is defined in config (see provided data).</li>
+    </ul>
+    <h4>Examples</h4>
+    <ul>
+        <li>Bronze 3 (XP 3,000–4,000) → Bonus = <code>$6</code></li>
+        <li>Platinum 3 (XP 1,250,000–1,500,000) → Bonus = <code>$875</code></li>
+    </ul>
+    <h4>Implementation</h4>
+    <ul>
+        <li>On XP update:
+            <ul>
+                <li>Check if <code>XP &gt;= XP From</code> and <code>&lt; XP To</code> for a level not yet reached.</li>
+                <li>Grant configured bonus.</li>
+                <li>Log transaction.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>9. Loyalty Percent for Calculations</h3>
+    <p>Used in additional reward systems:</p>
+    <table>
+        <thead>
+        <tr><th>Tier</th><th>Loyalty Percent</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Wood</td><td>0%</td></tr>
+        <tr><td>Metal</td><td>25%</td></tr>
+        <tr><td>Bronze</td><td>27.5%</td></tr>
+        <tr><td>Silver</td><td>40%</td></tr>
+        <tr><td>Gold</td><td>50%</td></tr>
+        <tr><td>Platinum</td><td>60%</td></tr>
+        <tr><td>Diamond</td><td>70%</td></tr>
+        <tr><td>Beast</td><td>80%</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h3>10. Developer Implementation Notes</h3>
+    <h4>Cron Jobs Required</h4>
+    <ul>
+        <li><code>0 0 * * *</code> → Daily reset.</li>
+        <li><code>0 0 * * 1</code> → Weekly reset.</li>
+        <li><code>0 0 1 * *</code> → Monthly reset.</li>
+    </ul>
+    <h4>Database Structure</h4>
+    <ul>
+        <li><b>users</b> → Tracks XP, current level, pending partial wager.</li>
+        <li><b>vip_rewards</b> → Stores unclaimed Instant/Daily/Weekly/Monthly amounts.</li>
+        <li><b>vip_levels</b> → Config for XP ranges, bonuses, loyalty %.</li>
+        <li><b>transactions</b> → Logs rakeback claims.</li>
+    </ul>
+    <h4>Frontend Requirements</h4>
+    <ul>
+        <li>Show current rakeback amounts by type.</li>
+        <li>Show countdown until reset for Daily/Weekly/Monthly.</li>
+        <li>Claim button for each type.</li>
+        <li>VIP progress bar (XP to next level).</li>
+        <li>Level badge &amp; Loyalty % displayed.</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>6.2 Promocode Claims</h3>
+    <h4>Logic &amp; Rules</h4>
+    <ul>
+        <li>Promocodes are single-use per user.</li>
+        <li>Only one reward type is supported: bonus balance.</li>
+        <li>No VIP or affiliate restrictions.</li>
+        <li>If a code is invalid or reused, the user sees a standard error message.</li>
+    </ul>
+    <h4>Frontend Handling</h4>
+    <ul>
+        <li>Promocode input uses <code>react-hook-form</code>.</li>
+        <li>State may interact with <code>useAffiliateCodeStore</code> for code tracking.</li>
+    </ul>
+    <h4>UI Elements</h4>
+    <ul>
+        <li>Input field</li>
+        <li>Submit button</li>
+        <li>Confirmation/error messages</li>
+        <li>Claim history (in user dashboard)</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>6.3 VIP System</h3>
+    <h4>Workflow</h4>
+    <p>The VIP system is manual and handled through an application form.</p>
+    <ul>
+        <li>Users can submit a form to request VIP status transfer from another casino.</li>
+        <li>Form includes:
+            <ul>
+                <li>DropBet username</li>
+                <li>Screenshot from external platform</li>
+                <li>Optional message</li>
+            </ul>
+        </li>
+        <li>Admins manually review the request and assign VIP level in the backend.</li>
+    </ul>
+    <h4>VIP Impact</h4>
+    <ul>
+        <li>Higher rakeback percentages</li>
+        <li>Potential eligibility for exclusive promotions</li>
+        <li>No automated level calculation or tiering logic exists</li>
+    </ul>
+    <h4>Frontend Elements</h4>
+    <ul>
+        <li>VIP application form</li>
+        <li>Status indicator on the profile</li>
+    </ul>
+</div>
+
+<footer>
+    <a href="#">← Back</a>
+</footer>
+
+</body>
+</html>

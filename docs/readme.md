@@ -9,6 +9,7 @@ Use the links below (or your site's nav) to explore each section:
 - [Account & Authentication](authentication.html)  
 - [Wallet & Vault](wallet-vault.html)  
 - [Rewards & Bonus](reward-bonus.html)  
+- [Rakeback & Loyalty System Technical Guide](rakeback-guide.html)
 - [Affiliate & Referral](affiliate-referral.html)  
 - [In-House Games](in-house-games.html)
 - [Slot Aggregation Integration](slot-integration.html)
