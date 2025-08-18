@@ -25,3 +25,4 @@ Use the links below (or your site's nav) to explore each section:
 - [DB Markdown](db-schema-documentation.md)
 - [Figma files](figma.html)
 - [Architecture Diagram](architecture-diagram.html)
+- [3rd Party Integrations](integrations.html)
