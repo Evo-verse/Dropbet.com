@@ -24,3 +24,4 @@ Use the links below (or your site's nav) to explore each section:
     - [Postman Integration Collection](https://github.com/Evo-verse/Dropbet.com/blob/main/docs/postman-collections/Dropbet-integration-api.postman_collection.json)
 - [DB Markdown](db-schema-documentation.md)
 - [Figma files](figma.html)
+- [Architecture Diagram](architecture-diagram.html)
