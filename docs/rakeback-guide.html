@@ -283,6 +283,39 @@
         <li>VIP application form</li>
         <li>Status indicator on the profile</li>
     </ul>
+
+    <div class="section">
+        <h3>4. Rakeback %</h3>
+
+        <h4>1. Source of Truth (Explicit Configuration)</h4>
+        <ul>
+            <li><strong>Base Rakeback Rates:</strong> Fixed percentages per type (Instant, Daily, Weekly, Monthly).</li>
+            <li><strong>Provider Commission (GGR):</strong> A single commission percentage may be applied during net rakeback calculations.</li>
+            <li><strong>Accumulated vs. Claimable Fields:</strong> Define where intermediate totals and final claimable amounts are stored (affects data persistence, not calculation).</li>
+        </ul>
+
+        <h4>2. Indirect Influences (Loyalty)</h4>
+        <ul>
+            <li><strong>Loyalty Level %:</strong> Acts as multiplier or cap on credited rakeback.</li>
+            <li><strong>Loyalty Policies:</strong> Global caps (daily/weekly/monthly), promo rules, and multipliers applied at runtime.</li>
+        </ul>
+
+        <h4>3. Effective Rakeback (Conceptual Flow)</h4>
+        <ul>
+            <li>Start with base percentage (per type).</li>
+            <li>Apply loyalty multipliers/caps.</li>
+            <li>Adjust for provider GGR commission if configured.</li>
+            <li>Enforce global maximums/budget limits.</li>
+            <li>Persist results into claimable fields.</li>
+        </ul>
+
+        <h4>4. Update Locations (Quick Guide)</h4>
+        <ul>
+            <li><strong>Base Percentages:</strong> Change canonical config for Instant/Daily/Weekly/Monthly.</li>
+            <li><strong>Provider Commission:</strong> Update single global commission value.</li>
+            <li><strong>Loyalty Impact:</strong> Update loyalty module (multipliers, caps, promo policies).</li>
+        </ul>
+    </div>
 </div>
 
 <footer style="text-align: center; margin: 2rem 0; font-size: 1rem">

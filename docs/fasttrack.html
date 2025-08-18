@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FastTrack Integration Technical Guide">
+    <title>FastTrack Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<section>
+    <h2>FastTrack Integration</h2>
+
+    <h3>Scope of Data Transferred</h3>
+    <p>The integration with FastTrack receives the following data points from our system:</p>
+    <ul>
+        <li><strong>Bet Activity:</strong> Bet amounts, metadata, and game identifiers.</li>
+        <li><strong>Game Participation:</strong> List of games where bets are placed.</li>
+        <li><strong>Deposits:</strong> User deposit transactions and amounts.</li>
+        <li><strong>Promotional Progress:</strong> Progress markers in active promotional programs.</li>
+        <li><strong>Withdrawals:</strong> User withdrawal requests and completed transactions.</li>
+    </ul>
+
+    <h3>Usage</h3>
+    <ul>
+        <li><strong>Analytics:</strong> FastTrack processes the data to provide more accurate activity and behavioral analytics.</li>
+        <li><strong>Personalization:</strong> Powers the frontend recommendation engine, enabling personalized offers and campaigns.</li>
+        <li><strong>Backend Promotion Handling:</strong> Integration allows FastTrack to credit users with additional funds as part of promotional campaigns.</li>
+    </ul>
+
+    <h3>Promo System</h3>
+
+    <h4>System Representation</h4>
+    <p>Exposed under the Promo module.</p>
+    <p>Users are tracked via the Promo Tracker once they engage with a promotional program.</p>
+
+    <h4>Behavior</h4>
+    <ul>
+        <li><strong>Registration:</strong> When a user opts in, they are registered in the tracker.</li>
+        <li><strong>Deposit Trigger:</strong> Upon the user’s first deposit, if a deposit promo is active, funds are credited automatically according to the configured promo rules.</li>
+    </ul>
+</section>
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
+    >← Home</a
+    >
+</footer>
+</body>
+</html>

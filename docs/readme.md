@@ -27,3 +27,5 @@ Use the links below (or your site's nav) to explore each section:
 - [Architecture Diagram](architecture-diagram.html)
 - [3rd Party Integrations](integrations.html)
 - [Chat](chat.html)  
+- [Country block](country.html)
+- [FastTrack Integration](fasttrack.html)
