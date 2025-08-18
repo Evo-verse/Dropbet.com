@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Hide Implementation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 6px;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        code {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<h2>Chat Toggle Logic</h2>
+<p>The chat is opened and closed by switching the value in the store <code>useSidebarStore</code>:</p>
+<pre><code>const stripOpen = useSidebarStore((store) =&gt; store.stripOpen);
+const toggleStrip = useSidebarStore((store) =&gt; store.toggleStrip);</code></pre>
+
+<p>Currently, the mechanism for hiding the chat is not implemented, and to hide the chat completely, you need to comment out the following code:</p>
+
+<h2>Places to Comment Out</h2>
+
+<h3>1. src/components/common/Menu/MobileMenu</h3>
+<pre><code>&lt;button
+  onClick={() =&gt; {
+    handleOpenChat();
+  }}
+  className={clsx(styles.menuItem, chatOpen &amp;&amp; styles.active)}
+&gt;
+  &lt;ChatIcon className={styles.icon} width={27} /&gt;
+  &lt;span className={styles.title}&gt;{t('chat')}&lt;/span&gt;
+&lt;/button&gt;
+  </code></pre>
+
+<h3>2. src/components/common/Header/index.tsx</h3>
+<pre><code>&lt;button
+  className={clsx(
+    styles.topBtn,
+    styles.bellBtn,
+    styles.desktopBtn,
+    stripOpen &amp;&amp; styles.activeChatButton
+  )}
+  onClick={() =&gt; toggleStrip(!stripOpen)}
+&gt;
+  &lt;ChatIcon alt="chat" /&gt;
+&lt;/button&gt;
+  </code></pre>
+
+<h3>3. src/components/common/Layout/Layout.tsx</h3>
+<pre><code>&lt;LiveStrip /&gt;</code></pre>
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
+    >← Home</a
+    >
+</footer>
+</body>
+</html>
