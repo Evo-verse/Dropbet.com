@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Platform Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Promotions & Blogs</h1>
+
+<h2>Promotions & Blogs Management</h2>
+<p>
+    Promotions and blogs are currently hard-coded in <code>src/constants/promotions.tsx</code> and <code>src/constants/blog.tsx</code>.
+    There is no way to manage promotions/blogs from the admin panel at this time.
+</p>
+
+<h3>Adding a New Promotion/Blog</h3>
+<p>
+    To add a new promotion/blog, you need to add a new item to the <code>promotionsPosts/blogPosts</code> list and update the
+    <code>EPromotionTitle/EBlogTitle</code> enum.
+</p>
+
+<pre><code>export enum EPromotionTitle {
+    DEPOSIT_BONUS = 'Welcome Bonus',
+}
+
+export type TPromotionsPost = (typeof promotionsPosts)[0];
+
+export const promotionsPosts = [
+    {
+        title: EPromotionTitle.DEPOSIT_BONUS,
+        get href() {
+            return sanitizePromoUrl(this.title);
+        },
+        img: depositBonusImg,
+        date: new Date(new Date().setDate(new Date().getDate() + 30)).toString(),
+        description: `Everything You Need to Know About Dropbet’s 100% Welcome Bonus`,
+        content: &lt;Promotion /&gt;,
+    },
+];
+</code></pre>
+
+<pre><code>
+export enum EBlogTitle {
+  $5K_Raffle = '$5k Raffle',
+  WAGER_$25k = 'Wager $25k get $100',
+  BECOME_AFFILIATE = 'Become an affiliate at Dropbet',
+  LOSSBACK = 'Lossback for the first 7 days',
+}
+
+export type TBlogPost = (typeof blogPosts)[0];
+
+export const blogPosts = [
+  {
+    title: EBlogTitle.LOSSBACK,
+    get href() {
+      return sanitizeBlogUrl(this.title);
+    },
+    img: lossbackImg,
+    date: '6.05.25',
+    description: `Get 20% Back on Losses During Your First Week at DropBet`,
+    content: <Lossback />,
+  },
+ ...
+];
+</code></pre>
+
+<h3>How It Works</h3>
+<p>
+    This list is displayed on the promotions/blogs list page:
+   <p>
+    <code>src/components/pages/promotions/index.tsx</code>;
+</p>
+    <p>
+    <code>src/components/pages/blog/index.tsx</code>;
+</p>
+</p>
+<p>
+    We pass a link to the promotion/blog list element that matches the promotion/blog title.
+    This allows navigation to a specific promotion/blog page to view details.
+</p>
+<p>
+    The content for each promotion/blog is provided as a React component.
+    For example:
+</p>
+<pre><code>content: &lt;Promotion /&gt;,</code> - promotion</pre>
+<p>or</p>
+<pre><code>content: &lt;Lossback /&gt;,</code> - blog</pre>
+
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold">
+        ← Home
+    </a>
+</footer>
+</body>
+</html>
