@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Bot Service Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Casino Bot Service Description</h1>
+
+<h2>1. General Information</h2>
+<ul>
+    <li>The bot service allows automating gaming activity in the casino using any accounts created on the platform.</li>
+    <li>Bots can imitate the behavior of real players, following predefined strategies and schedules.</li>
+    <li>The system supports strategy extensions, enabling the creation of new behavior patterns without changing the core logic.</li>
+    <li>Game activity generation is only available for enabled slot games.</li>
+    <li>All bot bets go through the system’s internal aggregator, bypassing the external slot aggregator, which eliminates any commission fees.</li>
+</ul>
+
+<h2>2. Bot Creation and Configuration</h2>
+<h3>2.1. Account Assignment</h3>
+<p>Any existing account on the platform can be designated as a bot.</p>
+
+<h3>2.2. Schedule</h3>
+<p>For each bot, the following parameters are configured:</p>
+<ul>
+    <li>Days of the week when the bot will be active.</li>
+    <li>Initial start time in <strong>UTC format</strong>.</li>
+    <li>Randomized session duration, calculated based on the bot’s personality configuration.</li>
+    <li>Start time offset — each new start time is generated with a ±1 hour dispersion from the personal start time.</li>
+    <li>Breaks during play — the bot may take a random break of up to 1 hour during its session.</li>
+</ul>
+
+<h2>3. Bot Types</h2>
+<p>The bot type defines its betting level and session duration:</p>
+<table>
+    <thead>
+    <tr>
+        <th>Bot Type</th>
+        <th>Average Session Duration</th>
+        <th>Bet Size</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Minnow</td>
+        <td>~2 hours</td>
+        <td>Minimum bets</td>
+    </tr>
+    <tr>
+        <td>Dolphin</td>
+        <td>~4 hours</td>
+        <td>Medium bets</td>
+    </tr>
+    <tr>
+        <td>Whale</td>
+        <td>~6 hours</td>
+        <td>High bets</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>4. Behavioral Patterns</h2>
+<h3>4.1. Casual</h3>
+<ul>
+    <li>Rarely changes bets.</li>
+    <li>Slight bet increase after wins.</li>
+    <li>Bet decrease after a losing streak.</li>
+    <li>Switches slot after a long series of losses.</li>
+</ul>
+
+<h3>4.2. Regular/Normal</h3>
+<ul>
+    <li>Keeps bet size at the level of a single line.</li>
+    <li>Plays on the same slot for the entire session.</li>
+    <li>Switches to another slot only after a big win or a large number of bets on the same slot.</li>
+</ul>
+
+<h3>4.3. Chaser</h3>
+<ul>
+    <li>Increases bet after a loss to recover losses.</li>
+    <li>May change slot after prolonged losses at high stakes.</li>
+    <li>Switches slot after significant wins.</li>
+</ul>
+
+<h3>4.4. Highroller</h3>
+<ul>
+    <li>Keeps bets within a fixed range.</li>
+    <li>Plays until hitting a high multiplier.</li>
+</ul>
+
+<h3>4.5. Trickster</h3>
+<ul>
+    <li>Each new bet adopts the behavior of one of the available strategies (random selection).</li>
+</ul>
+
+<h2>5. Bot Decision-Making Logic</h2>
+<p>During a session, the bot:</p>
+<ul>
+    <li>Evaluates the current game state.</li>
+    <li>Decides whether to:
+        <ul>
+            <li>Increase the bet.</li>
+            <li>Decrease the bet.</li>
+            <li>Change to another slot from the available list.</li>
+        </ul>
+    </li>
+    <li>Follows the behavioral pattern that defines its core decision-making strategy.</li>
+</ul>
+
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold">
+        ← Home
+    </a>
+</footer>
+</body>
+</html>

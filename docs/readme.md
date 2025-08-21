@@ -30,3 +30,4 @@ Use the links below (or your site's nav) to explore each section:
 - [Country block](country.html)
 - [FastTrack Integration](fasttrack.html)
 - [Promotions & Blogs management](promotions.html)
+- [Casino Bot Service](bots.html)
