@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Flags Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Feature Flags</h1>
+
+<h2>Overview</h2>
+<p>
+    Feature Flags are toggles that enable or disable specific functionality in the application without redeploying.
+    We manage flags via GitLab’s Unleash-compatible Feature Flags service and consume them in the backend.
+</p>
+
+<h2>Access & Client Token</h2>
+<p>
+    In your GitLab project, open <strong>Deployments → Feature Flags</strong> and click <strong>Configure client</strong> to generate a client token (shown once).
+    Use that token as <code>FEATURE_FLAGS_API_KEY</code> and the project-specific Unleash endpoint as <code>FEATURE_FLAGS_API_URL</code>.
+</p>
+
+<h2>Environment Variables</h2>
+<pre><code>FEATURE_FLAGS_API_URL="https://gitlab.com/api/v4/feature_flags/unleash/&lt;project_id&gt;"
+FEATURE_FLAGS_API_KEY="glffct-xxxxxxxxxxxxxxxx"
+NODE_ENV="staging"  # or production/local
+</code></pre>
+
+<h2>How It Works</h2>
+<p>
+    The server initializes a Feature Flags client on startup. The client periodically pulls flag configuration
+    from GitLab and evaluates strategies locally (by <code>userId</code>, percentage rollout, environment, etc.).
+    You can target admins by using a special admin context (<code>userId = -1</code>).
+</p>
+
+<h3>Code Usage (Backend)</h3>
+<pre><code>// Check if a flag is enabled for a user
+const on = await FS.isEnabled('enable_slot_games', { id: user.id, sId: user.sId });
+
+// Admin-only check
+const onForAdmin = await FS.isEnabled('disable_captcha', { id: -1 });
+</code></pre>
+
+<h2>Managing Flags in GitLab</h2>
+<ol>
+    <li>Go to <strong>Deployments → Feature Flags → New feature flag</strong>.</li>
+    <li>Set the <strong>Name</strong> to exactly match the key used in code (e.g., <code>disable_captcha</code>).</li>
+    <li>Select the <strong>Environment</strong> to which the flag applies.</li>
+    <li>Choose a <strong>Strategy</strong>:
+        <ul>
+            <li>Enable for specific User IDs (include <code>-1</code> for admins if needed).</li>
+            <li>Gradual rollout by <code>userId</code> (10%, 25%, 50%, 100%).</li>
+            <li>Enable for all users.</li>
+        </ul>
+    </li>
+    <li>Click <strong>Save</strong> and then <strong>Enable</strong>.</li>
+</ol>
+<p>No new deployment is required; the server picks up changes automatically.</p>
+
+<h2>Verifying Flags</h2>
+<p>You can verify the active flags via API:</p>
+<pre><code>curl -H "Authorization: Bearer &lt;FEATURE_FLAGS_API_KEY&gt;" \
+     -H "UNLEASH-APPNAME: &lt;YourAppName&gt;" \
+     -H "UNLEASH-ENVIRONMENT: &lt;environment&gt;" \
+     https://gitlab.com/api/v4/feature_flags/unleash/&lt;project_id&gt;/client/features
+</code></pre>
+
+<h2>Current Flag Keys</h2>
+<p>Below is the list of actual flag keys used by the backend:</p>
+<ul>
+    <li><code>disable_otp</code></li>
+    <li><code>disable_can_withdraw_check</code></li>
+    <li><code>disable_rate_limiting</code></li>
+    <li><code>disable_captcha</code></li>
+    <li><code>enable_debug</code></li>
+    <li><code>house_game_turbo</code></li>
+    <li><code>show_test_users_in_dashboard</code></li>
+    <li><code>enable_coming_soon</code></li>
+    <li><code>disable_set_cookies</code></li>
+    <li><code>disable_set_cookies_and_mask_tokens</code></li>
+    <li><code>disable_plinko_withdraw_balance_update</code></li>
+    <li><code>disable_notification_delay</code></li>
+    <li><code>skindeck_deposit_enabled</code></li>
+    <li><code>ignore_geo_check_error</code></li>
+    <li><code>disable_withdraw_check_based_on_tips</code></li>
+    <li><code>enable_slot_games</code></li>
+    <li><code>enable_slot_session_token_v2</code></li>
+    <li><code>enable_chat_fe</code></li>
+    <li><code>enable_kyc_sumsub</code></li>
+</ul>
+
+<h2>Public Flags (Frontend-safe)</h2>
+<p>Flags allowed to be exposed to the frontend:</p>
+<ul>
+    <li><code>enable_slot_games</code></li>
+    <li><code>enable_chat_fe</code></li>
+</ul>
+
+<h2>Best Practices</h2>
+<ul>
+    <li>Use flags for risky/experimental features and quick kill-switches.</li>
+    <li>Keep names identical in code and GitLab UI.</li>
+    <li>Use <code>userId</code> stickiness for stable rollouts.</li>
+    <li>Store tokens in CI/CD secrets; never commit them.</li>
+    <li>Remove stale flags after the feature is fully launched.</li>
+</ul>
+
+<h2>Useful Links</h2>
+<ul>
+    <li>
+        GitLab Feature Flags documentation: 
+        <a href="https://docs.gitlab.com/operations/feature_flags/" target="_blank" rel="noopener">
+            https://docs.gitlab.com/operations/feature_flags/
+        </a>
+    </li>
+    <li>
+        Repository with Feature Flags:
+        <a href="https://gitlab.com/Volodymyr_sh/dropwl-api/-/feature_flags" target="_blank" rel="noopener">
+            https://gitlab.com/Volodymyr_sh/dropwl-api/-/feature_flags
+        </a>
+    </li>
+</ul>
+
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
+    >← Home</a
+    >
+</footer>
+</body>
+</html>

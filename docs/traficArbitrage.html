@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrage Affiliate Postbacks Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            font-family: Consolas, monospace;
+            border-radius: 4px;
+        }
+
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Arbitrage Affiliate Postbacks</h1>
+
+<h2>Overview</h2>
+<p>
+    The <strong>Arbitrage Affiliate Postback Service</strong> is responsible for sending postbacks
+    to the specified provider’s server whenever users perform target actions
+    (e.g., registration, deposit) on the platform. This mechanism allows
+    affiliate networks and arbitrage teams to track conversions.
+</p>
+
+<h2>Traffic Links</h2>
+<p>
+    For each campaign, a special referral link is generated. Example:
+</p>
+<pre><code>https://dropwl.com/r/tmt?subId=asdkj79</code></pre>
+<ul>
+    <li><code>tmt</code> – campaign/provider code.</li>
+    <li><code>subId</code> – unique identifier assigned by the affiliate team.</li>
+</ul>
+<p>
+    Affiliates can generate additional links with different <code>subId</code> values
+    to track traffic across multiple campaigns.
+</p>
+
+<h2>Frontend Behavior</h2>
+<p>
+    When a user visits such a link:
+</p>
+<ul>
+    <li>A record is saved in <strong>localStorage</strong> under the key <code>income-traffic-ref</code>.</li>
+    <li>The structure looks like this:</li>
+</ul>
+<pre><code>{
+  "state": {
+    "ref": {
+      "subId": "asdkj79",
+      "provider": "TMT"
+    }
+  },
+  "version": 0
+}</code></pre>
+
+<h2>User Registration Flow</h2>
+<ol>
+    <li>User registers on the platform.</li>
+    <li>The system checks if there is an active arbitrage campaign for the chosen provider.</li>
+    <li>If valid, the user is linked to the <code>subId</code> stored in localStorage.</li>
+    <li>The backend sends a <strong>postback</strong> to the provider to confirm the registration event.</li>
+</ol>
+
+<h3>Example Code (Controller)</h3>
+<pre><code>@UseGuards(JwtGuard)
+@Post('registration')
+async createRegistration(
+  @Request() request: RequestExt,
+  @Body() dto: TrafficUserReg,
+) {
+  return this.trafficArbitrageService.registration(request.user, dto);
+}</code></pre>
+
+<h2>Postbacks on Target Actions</h2>
+<p>
+    After registration, when a user performs target actions (e.g., deposit), the system
+    will trigger additional postbacks. Example flow:
+</p>
+<ol>
+    <li>User makes a deposit.</li>
+    <li>The backend looks up the linked arbitrage entry by <code>userId</code>.</li>
+    <li>If the deposit status is <code>COMPLETE</code>, the provider’s postback URL is triggered with event data.</li>
+</ol>
+
+<h3>Example Code (Service)</h3>
+<pre><code>async deposit(dto: DepositDto) {
+  const entry = await this.repo.findByUserId(dto.userId);
+  if (entry && dto.status === DepositStatus.COMPLETE) {
+    return this.depFactory.getStrategy(entry.provider).execute({
+      provider: entry.provider,
+      userId: entry.userId,
+      subId: entry.subId,
+      actions: entry.actions,
+      amount: dto.amount,
+    });
+  }
+}</code></pre>
+
+<h2>Providers & Strategies</h2>
+<p>
+    Each provider (e.g., <code>TMT</code>, <code>XMR</code>) has its own registration and deposit strategies
+    implemented in the backend. The system uses a factory to select the correct strategy:
+</p>
+<pre><code>this.strategies = {
+  [ArbitrageProvider.TMT]: this.tmt,
+  [ArbitrageProvider.XMR]: this.xmr,
+};</code></pre>
+
+<h2>Postback Requests</h2>
+<p>
+    Postbacks are sent via HTTP GET requests to the provider’s server with relevant parameters.
+    Example (TMT provider):
+</p>
+<pre><code>GET https://provider-server.com/postback?status=Registration&amp;subId=asdkj79</code></pre>
+
+<h3>Example Code (TMT Postback)</h3>
+<pre><code>this.httpService.get(baseUrl, {
+  params: {
+    status: TmtApi.Status.Registration,
+    subId: dto.subId,
+  },
+});</code></pre>
+
+<h2>Key Points</h2>
+<ul>
+    <li>Affiliate teams create referral links with <code>subId</code>.</li>
+    <li>On click, <code>subId</code> and <code>provider</code> are saved in localStorage.</li>
+    <li>Upon registration, the user is bound to that <code>subId</code>.</li>
+    <li>On target actions, backend sends postbacks to the provider’s endpoint.</li>
+    <li>Providers use postbacks to track and confirm conversions.</li>
+</ul>
+
+<footer style="text-align: center; margin: 2rem 0; font-size: 1rem">
+    <a href="https://evo-verse.github.io/Dropbet.com/" style="text-decoration: none; font-weight: bold"
+    >← Home</a
+    >
+</footer>
+</body>
+</html>

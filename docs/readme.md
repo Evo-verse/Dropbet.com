@@ -31,3 +31,5 @@ Use the links below (or your site's nav) to explore each section:
 - [FastTrack Integration](fasttrack.html)
 - [Promotions & Blogs management](promotions.html)
 - [Casino Bot Service](bots.html)
+- [Features Flags - NEW](featuresflags.html)
+- [Arbitrage Affiliate - NEW](traficArbitrage.html)
